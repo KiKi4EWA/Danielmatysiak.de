@@ -1,3 +1,12 @@
+/* ─── FONTS ───────────────────────────────────────── */
+@font-face {
+  font-family: "AHDN";
+  src: url("ahdn.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ─── VARIABLES ───────────────────────────────────── */
 :root {
   --bg:        #f5f0e6;
@@ -11,7 +20,7 @@
   --accent-2:  #4878b0;
   --max:       1240px;
   --gutter:    clamp(20px, 4vw, 48px);
-  --display:   "Boogaloo", sans-serif;
+  --display:   "AHDN", "Boogaloo", sans-serif;
   --mono:      "IBM Plex Mono", "Courier New", monospace;
   --sans:      "Barlow", Helvetica, Arial, sans-serif;
   --ease-out:  cubic-bezier(0.23, 1, 0.32, 1);
