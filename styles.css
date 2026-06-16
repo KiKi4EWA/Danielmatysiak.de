@@ -315,6 +315,7 @@ h4 {
   font-family: var(--mono);
   font-size: 10.5px;
   letter-spacing: 0.1em;
+  word-spacing: -0.06em;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
