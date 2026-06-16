@@ -224,7 +224,13 @@ h1 {
   color: var(--text);
 }
 
-.hero h1 {
+h1, h2, h3, h4,
+.nav-brand,
+.chapter-title,
+.price-name,
+.stance-block p:first-child,
+.contact-row-name,
+details.acc-item > summary {
   text-transform: uppercase;
 }
 
@@ -454,6 +460,17 @@ h4 {
 
 @media (hover: hover) and (pointer: fine) {
   .chapter-item:hover .chapter-title { color: var(--accent); }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chapter-item:nth-child(2):hover,
+  .chapter-item:nth-child(2):hover .chapter-title { color: #cf7338; }
+  .chapter-item:nth-child(3):hover,
+  .chapter-item:nth-child(3):hover .chapter-title { color: #7a9672; }
+  .chapter-item:nth-child(4):hover,
+  .chapter-item:nth-child(4):hover .chapter-title { color: #9898cc; }
+  .chapter-item:nth-child(5):hover,
+  .chapter-item:nth-child(5):hover .chapter-title { color: #7a4b90; }
 }
 
 @media (prefers-reduced-motion: reduce) {
