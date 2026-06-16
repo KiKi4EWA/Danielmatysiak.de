@@ -242,7 +242,7 @@ h1 {
   font-family: var(--display);
   font-size: clamp(58px, 8.5vw, 108px);
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
   line-height: 0.9;
   color: var(--text);
 }
@@ -261,7 +261,7 @@ h2 {
   font-family: var(--display);
   font-size: clamp(32px, 4.2vw, 54px);
   font-weight: 400;
-  letter-spacing: 0em;
+  letter-spacing: 0.01em;
   line-height: 1.0;
   color: var(--text);
   margin-bottom: 1.5rem;
