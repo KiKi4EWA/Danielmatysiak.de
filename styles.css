@@ -52,13 +52,13 @@ body.page-about {
 }
 
 body.page-faq {
-  --accent:    #c8352a;
-  --accent-h:  #d84438;
+  --accent:    #9898cc;
+  --accent-h:  #aaaadc;
 }
 
 body.page-contact {
-  --accent:    #c8612a;
-  --accent-h:  #d97030;
+  --accent:    #7a4b90;
+  --accent-h:  #8a5ba0;
 }
 
 a { color: inherit; }
@@ -171,6 +171,10 @@ img { max-width: 100%; display: block; }
 .section {
   border-top: 1px solid var(--accent);
   padding: 56px 0;
+}
+
+.hero + .section {
+  border-top: none;
 }
 
 .legal-section {
