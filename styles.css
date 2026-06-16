@@ -224,6 +224,10 @@ h1 {
   color: var(--text);
 }
 
+.hero h1 {
+  text-transform: uppercase;
+}
+
 h2 {
   font-family: var(--display);
   font-size: clamp(32px, 4.2vw, 54px);
