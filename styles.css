@@ -24,7 +24,6 @@
   --mono:      "IBM Plex Mono", "Courier New", monospace;
   --sans:      "Barlow", Helvetica, Arial, sans-serif;
   --ease-out:  cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-io:   cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -111,6 +110,11 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.02em;
   color: var(--text);
   text-decoration: none;
+  transition: color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-brand:hover { color: var(--accent); }
 }
 
 .nav-claim {
@@ -357,6 +361,38 @@ h4 {
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeUp 280ms var(--ease-out) forwards;
+}
+
+.hero h1 {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeUp 280ms var(--ease-out) 80ms forwards;
+}
+
+.hero .lede {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeUp 280ms var(--ease-out) 200ms forwards;
+}
+
+.hero .hero-grid {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeUp 280ms var(--ease-out) 260ms forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-kicker,
+  .hero h1,
+  .hero .lede,
+  .hero .hero-grid {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
 
 .hero-grid {
@@ -431,7 +467,7 @@ h4 {
   transition: color 180ms var(--ease-out);
   opacity: 0;
   transform: translateY(6px);
-  animation: fadeUp 320ms var(--ease-out) forwards;
+  animation: fadeUp 280ms var(--ease-out) forwards;
 }
 
 .chapter-item:nth-child(1) { animation-delay: 40ms; }
@@ -845,6 +881,16 @@ details.acc-item[open] > summary::after { transform: rotate(45deg); }
   color: var(--muted);
   line-height: 1.7;
   max-width: 640px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+}
+
+@starting-style {
+  details.acc-item[open] > .acc-body {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
 }
 
 /* ─── CONTACT ─────────────────────────────────────── */
@@ -895,8 +941,10 @@ a.contact-row:last-child { border-bottom: 1px solid var(--line); }
   transition: color 160ms ease, transform 120ms ease-out;
 }
 
-a.contact-row:hover .contact-row-name { color: var(--accent); }
-a.contact-row:hover .contact-row-arrow { color: var(--accent); transform: translateX(3px); }
+@media (hover: hover) and (pointer: fine) {
+  a.contact-row:hover .contact-row-name { color: var(--accent); }
+  a.contact-row:hover .contact-row-arrow { color: var(--accent); transform: translateX(3px); }
+}
 
 .hours { margin-top: 2rem; }
 
