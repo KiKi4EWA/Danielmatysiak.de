@@ -1001,6 +1001,66 @@ form textarea { min-height: 120px; resize: vertical; }
   margin: 2rem 0 0.6rem;
 }
 
+/* ─── EMBEDS ──────────────────────────────────────── */
+.embed-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.embed-wrap {
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: var(--bg-2);
+}
+
+.embed-wrap-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.embed-wrap-label a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+.embed-wrap-label a:hover { color: var(--accent-h); }
+
+.embed-wrap iframe {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 0 !important;
+  filter: sepia(10%) brightness(0.97) saturate(0.9);
+}
+
+.embed-links {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.embed-links a {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+.embed-links a:hover { color: var(--text); }
+
 /* ─── FOOTER ──────────────────────────────────────── */
 footer {
   border-top: 1px solid var(--accent);
