@@ -1009,6 +1009,26 @@ form textarea { min-height: 120px; resize: vertical; }
   margin-top: 2rem;
 }
 
+.embed-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 780px) {
+  .embed-row { grid-template-columns: 1fr; }
+}
+
+.releases-block {
+  margin-top: 2.5rem;
+}
+
+.releases-block + .releases-block {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
 .embed-wrap {
   border: 1px solid var(--line);
   overflow: hidden;
