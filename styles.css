@@ -115,8 +115,8 @@ img { max-width: 100%; display: block; }
 
 .nav-claim {
   font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.14em;
+  font-size: 11px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
 }
