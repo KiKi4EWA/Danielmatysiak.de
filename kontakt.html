@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt · Daniel Matysiak</title>
+  <meta name="description" content="Projekt anfragen. Audio Engineering und Collective Sound Lab. Berlin.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Barlow:wght@400;500&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Daniel Matysiak</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="leistungen.html">Audio</a></li>
+        <li><a href="lab.html">Lab</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="kontakt.html" class="active">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page">
+
+    <section class="hero">
+      <p class="hero-kicker">05 — Kontakt</p>
+      <h1>Projekt<br>anfragen.</h1>
+    </section>
+
+    <section class="section">
+      <div class="contact-grid">
+        <div>
+          <p class="body-text" style="color:var(--muted);font-size:15px">Du hast ein konkretes Projekt oder willst eine Zusammenarbeit starten. Erstgespräch kostenlos.</p>
+
+          <div style="margin-top:2rem">
+            <a class="contact-row" href="mailto:dmatysiak030@gmail.com">
+              <div>
+                <span class="contact-row-name">E-Mail</span>
+                <span class="contact-row-sub">dmatysiak030@gmail.com</span>
+              </div>
+              <span class="contact-row-arrow">→</span>
+            </a>
+            <a class="contact-row" href="https://www.linkedin.com/in/daniel-matysiak-9b5b524a/" target="_blank" rel="noopener">
+              <div>
+                <span class="contact-row-name">LinkedIn</span>
+                <span class="contact-row-sub">Direktnachricht</span>
+              </div>
+              <span class="contact-row-arrow">→</span>
+            </a>
+            <a class="contact-row" href="https://soundcloud.com/daniel-matysiak" target="_blank" rel="noopener">
+              <div>
+                <span class="contact-row-name">SoundCloud</span>
+                <span class="contact-row-sub">Releases und Previews</span>
+              </div>
+              <span class="contact-row-arrow">→</span>
+            </a>
+          </div>
+
+          <div class="hours">
+            <div class="hour-row"><span class="day">Montag</span><span class="time">10:00 bis 16:00</span></div>
+            <div class="hour-row"><span class="day">Dienstag</span><span class="time">10:00 bis 16:00</span></div>
+            <div class="hour-row"><span class="day">Mittwoch</span><span class="time">10:00 bis 16:00</span></div>
+            <div class="hour-row"><span class="day">Donnerstag</span><span class="time">10:00 bis 16:00</span></div>
+            <div class="hour-row"><span class="day">Freitag</span><span class="time">10:00 bis 14:00</span></div>
+            <div class="hour-row"><span class="day">Samstag</span><span class="time">nach Vereinbarung</span></div>
+            <div class="hour-row"><span class="day">Sonntag</span><span class="time">geschlossen</span></div>
+          </div>
+          <p class="hours-note">Studio Sessions auch außerhalb der Office Hours möglich.</p>
+        </div>
+
+        <div>
+          <form id="contact-form" name="simple-contact-form" accept-charset="utf-8"
+                action="https://formspree.io/f/xeqwzelq" method="post" onsubmit="handleSubmit(event)">
+            <div class="form-field">
+              <label for="full-name">Name</label>
+              <input type="text" name="name" id="full-name" placeholder="Vor- und Nachname" required>
+            </div>
+            <div class="form-field">
+              <label for="email-address">E-Mail</label>
+              <input type="email" name="_replyto" id="email-address" placeholder="email@domain.tld" required>
+            </div>
+            <div class="form-field">
+              <label for="message">Nachricht</label>
+              <textarea name="message" id="message" placeholder="Worum geht es bei deinem Projekt?" required></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="Kontaktformular danielmatysiak.de">
+            <button type="submit" class="btn">Absenden</button>
+          </form>
+
+          <div id="thank-you" class="hidden">
+            <h3>Danke.</h3>
+            <p>Deine Nachricht ist angekommen. Ich melde mich so bald wie möglich.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="legal-section" id="impressum">
+      <p class="section-title">Rechtliches</p>
+      <h2>Impressum</h2>
+      <h3>Angaben gemäß § 5 TMG</h3>
+      <p>Daniel Matysiak<br>[Straße und Hausnummer]<br>10XXX Berlin<br>Deutschland</p>
+      <h3>Kontakt</h3>
+      <p>E-Mail: <a href="mailto:dmatysiak030@gmail.com">dmatysiak030@gmail.com</a></p>
+      <h3>Berufsbezeichnung</h3>
+      <p>Audio Engineer und Produzent. Freiberuflich tätig.</p>
+      <h3>Haftung für Inhalte</h3>
+      <p>Die Inhalte dieser Seite wurden mit Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität übernehme ich keine Gewähr.</p>
+      <h3>Externe Links</h3>
+      <p>Für Inhalte verlinkter externer Seiten bin ich nicht verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar.</p>
+    </section>
+
+    <section class="legal-section" id="datenschutz">
+      <h2>Datenschutz</h2>
+      <h3>Verantwortlicher</h3>
+      <p>Daniel Matysiak, Berlin. Kontakt: dmatysiak030@gmail.com</p>
+      <h3>Erhobene Daten</h3>
+      <p>Diese Website verwendet keine Cookies, kein Tracking und keine Analyse-Dienste. Es werden keine personenbezogenen Daten gespeichert, außer wenn du das Kontaktformular nutzt.</p>
+      <h3>Kontaktformular</h3>
+      <p>Wenn du das Kontaktformular ausfüllst, werden deine Angaben (Name, E-Mail, Nachricht) über Formspree an mich weitergeleitet. Formspree verarbeitet diese Daten auf Servern in den USA. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO. Die Daten werden nicht an Dritte weitergegeben.</p>
+      <h3>Google Fonts</h3>
+      <p>Diese Seite lädt Schriften von Google Fonts. Dabei wird deine IP-Adresse an Google übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+      <h3>Deine Rechte</h3>
+      <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung. Kontakt: dmatysiak030@gmail.com</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <span>Daniel Matysiak · Berlin</span>
+        <nav class="footer-nav">
+          <a href="leistungen.html">Audio</a>
+          <a href="lab.html">Lab</a>
+          <a href="about.html">About</a>
+          <a href="faq.html">FAQ</a>
+          <a href="kontakt.html">Kontakt</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-socials">
+          <a href="https://soundcloud.com/daniel-matysiak" target="_blank" rel="noopener">SoundCloud</a>
+          <a href="https://open.spotify.com/artist/4DrfQyzufCqDIMgRiKM5IV" target="_blank" rel="noopener">Spotify</a>
+          <a href="https://www.linkedin.com/in/daniel-matysiak-9b5b524a/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="footer-legal">
+          <a href="#impressum">Impressum</a>
+          <a href="#datenschutz">Datenschutz</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      navMenu.classList.toggle('open');
+    });
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contact-form');
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(res => {
+        if (res.ok) {
+          form.classList.add('hidden');
+          document.getElementById('thank-you').classList.remove('hidden');
+        } else {
+          form.submit();
+        }
+      }).catch(() => form.submit());
+    }
+  </script>
+
+</body>
+</html>

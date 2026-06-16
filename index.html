@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Matysiak · Audio Engineer Berlin</title>
+  <meta name="description" content="Audio Engineer und Produzent aus Berlin. Mix, Mastering, Recording, Podcast. Von Club Release bis Hörspiel.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Barlow:wght@400;500&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Daniel Matysiak</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="leistungen.html">Audio</a></li>
+        <li><a href="lab.html">Lab</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page">
+
+    <section class="hero">
+      <p class="hero-kicker">Audio Engineer und Produzent aus Berlin</p>
+      <h1>Sound ist Form.<br>Form ist Funktion.</h1>
+      <p class="lede">Von Club Release bis Podcast. Von Vocal Tracking bis Hörspiel. Recording, Mixing, Mastering und interdisziplinäre Klangprojekte.</p>
+    </section>
+
+    <section class="section">
+      <p class="section-label">Übersicht</p>
+      <nav class="chapter-list" aria-label="Seitennavigation">
+        <a class="chapter-item" href="leistungen.html">
+          <span class="chapter-num">01</span>
+          <span class="chapter-title">Audio</span>
+          <span class="chapter-desc">Mix · Master · Record · Podcast</span>
+        </a>
+        <a class="chapter-item" href="lab.html">
+          <span class="chapter-num">02</span>
+          <span class="chapter-title">Lab</span>
+          <span class="chapter-desc">Collective Sound Lab · Buchbare Projekte</span>
+        </a>
+        <a class="chapter-item" href="about.html">
+          <span class="chapter-num">03</span>
+          <span class="chapter-title">About</span>
+          <span class="chapter-desc">Wer ich bin · Wie ich arbeite</span>
+        </a>
+        <a class="chapter-item" href="faq.html">
+          <span class="chapter-num">04</span>
+          <span class="chapter-title">FAQ</span>
+          <span class="chapter-desc">Häufige Fragen</span>
+        </a>
+        <a class="chapter-item" href="kontakt.html">
+          <span class="chapter-num">05</span>
+          <span class="chapter-title">Kontakt</span>
+          <span class="chapter-desc">Projekt anfragen · Berlin</span>
+        </a>
+      </nav>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <span>Daniel Matysiak · Berlin</span>
+        <nav class="footer-nav">
+          <a href="leistungen.html">Audio</a>
+          <a href="lab.html">Lab</a>
+          <a href="about.html">About</a>
+          <a href="faq.html">FAQ</a>
+          <a href="kontakt.html">Kontakt</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-socials">
+          <a href="https://soundcloud.com/daniel-matysiak" target="_blank" rel="noopener">SoundCloud</a>
+          <a href="https://open.spotify.com/artist/4DrfQyzufCqDIMgRiKM5IV" target="_blank" rel="noopener">Spotify</a>
+          <a href="https://www.linkedin.com/in/daniel-matysiak-9b5b524a/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="footer-legal">
+          <a href="kontakt.html#impressum">Impressum</a>
+          <a href="kontakt.html#datenschutz">Datenschutz</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      navMenu.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>
