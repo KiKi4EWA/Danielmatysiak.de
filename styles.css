@@ -32,6 +32,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--sans);
+  font-size: 16px;
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -241,7 +242,7 @@ h1 {
   font-family: var(--display);
   font-size: clamp(58px, 8.5vw, 108px);
   font-weight: 400;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.04em;
   line-height: 0.9;
   color: var(--text);
 }
@@ -260,7 +261,7 @@ h2 {
   font-family: var(--display);
   font-size: clamp(32px, 4.2vw, 54px);
   font-weight: 400;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.02em;
   line-height: 1.0;
   color: var(--text);
   margin-bottom: 1.5rem;
@@ -293,6 +294,7 @@ h4 {
   font-size: clamp(15px, 1.5vw, 17px);
   color: var(--muted);
   line-height: 1.7;
+  max-width: 66ch;
 }
 
 .section-intro {
@@ -563,7 +565,7 @@ h4 {
 }
 
 .price-detail {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.6;
   font-family: var(--sans);
@@ -663,7 +665,7 @@ h4 {
 }
 
 .pillar p {
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.6;
 }
@@ -727,7 +729,7 @@ h4 {
 }
 
 .lab-phase p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.5;
 }
@@ -763,7 +765,7 @@ h4 {
 }
 
 .lab-module p {
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.6;
 }
@@ -877,7 +879,7 @@ details.acc-item[open] > summary::after { transform: rotate(45deg); }
 
 .acc-body {
   padding-bottom: 1.25rem;
-  font-size: 14px;
+  font-size: 14.5px;
   color: var(--muted);
   line-height: 1.7;
   max-width: 640px;
