@@ -31,6 +31,31 @@ body {
   background-attachment: fixed;
 }
 
+body.page-audio {
+  --accent:    #4878b0;
+  --accent-h:  #5a8cc8;
+}
+
+body.page-lab {
+  --accent:    #cf7338;
+  --accent-h:  #de8450;
+}
+
+body.page-about {
+  --accent:    #8a6654;
+  --accent-h:  #9a7461;
+}
+
+body.page-faq {
+  --accent:    #6d8661;
+  --accent-h:  #7b976e;
+}
+
+body.page-contact {
+  --accent:    #a05e46;
+  --accent-h:  #b36d53;
+}
+
 a { color: inherit; }
 img { max-width: 100%; display: block; }
 
@@ -615,6 +640,11 @@ h4 {
   font-size: 13.5px;
   color: var(--muted);
   line-height: 1.6;
+}
+
+.lab-module strong {
+  color: var(--text);
+  font-weight: 500;
 }
 
 .lab-cta {
