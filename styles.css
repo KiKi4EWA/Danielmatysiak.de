@@ -31,6 +31,11 @@ body {
   background-attachment: fixed;
 }
 
+body.page-home {
+  --accent:    #4878b0;
+  --accent-h:  #5a8cc8;
+}
+
 body.page-audio {
   --accent:    #4878b0;
   --accent-h:  #5a8cc8;
@@ -42,18 +47,18 @@ body.page-lab {
 }
 
 body.page-about {
-  --accent:    #8a6654;
-  --accent-h:  #9a7461;
+  --accent:    #7a9672;
+  --accent-h:  #8aaa82;
 }
 
 body.page-faq {
-  --accent:    #6d8661;
-  --accent-h:  #7b976e;
+  --accent:    #c8352a;
+  --accent-h:  #d84438;
 }
 
 body.page-contact {
-  --accent:    #a05e46;
-  --accent-h:  #b36d53;
+  --accent:    #c8612a;
+  --accent-h:  #d97030;
 }
 
 a { color: inherit; }
@@ -67,7 +72,7 @@ img { max-width: 100%; display: block; }
   background: rgba(237,232,219,0.93);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--accent);
 }
 
 .nav-inner {
@@ -164,12 +169,12 @@ img { max-width: 100%; display: block; }
 
 /* ─── SECTIONS ────────────────────────────────────── */
 .section {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--accent);
   padding: 56px 0;
 }
 
 .legal-section {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--accent);
   padding: 44px 0;
 }
 
@@ -185,8 +190,8 @@ img { max-width: 100%; display: block; }
 
 .eyebrow {
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: 13px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 1.25rem;
@@ -371,13 +376,13 @@ h4 {
   align-items: baseline;
   gap: 1.5rem;
   padding: 1.5rem 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--accent);
   text-decoration: none;
   color: var(--text);
   transition: color 160ms ease;
 }
 
-.chapter-item:last-child { border-bottom: 1px solid var(--line); }
+.chapter-item:last-child { border-bottom: 1px solid var(--accent); }
 
 .chapter-item:hover { color: var(--accent); }
 
@@ -523,7 +528,7 @@ h4 {
 @media (max-width: 480px) { .pillars { grid-template-columns: 1fr; } }
 
 .pillar {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--accent);
   padding: 1rem 1.5rem 1rem 0;
 }
 
@@ -913,7 +918,7 @@ form textarea { min-height: 120px; resize: vertical; }
 
 /* ─── FOOTER ──────────────────────────────────────── */
 footer {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--accent);
   padding: 2.5rem 0 3rem;
 }
 
