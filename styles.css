@@ -550,8 +550,23 @@ h4 {
   justify-content: space-between;
   align-items: start;
   gap: 1.5rem;
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
+  margin: 0 -0.5rem;
   border-top: 1px solid var(--line);
+  transition: background 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .price-row:hover {
+    background: var(--bg-2);
+  }
+  .price-row:hover .price-name {
+    color: var(--accent);
+  }
+}
+
+.price-name {
+  transition: color 180ms ease;
 }
 
 .price-row:last-child { border-bottom: 1px solid var(--line); }
@@ -745,6 +760,21 @@ h4 {
 .lab-module {
   border-top: 1px solid var(--line);
   padding: 1.25rem 1.5rem 1.25rem 0;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lab-module:hover {
+    border-top-color: var(--accent);
+    background: var(--bg-2);
+  }
+  .lab-module:hover h4 {
+    color: var(--accent);
+  }
+}
+
+.lab-module h4 {
+  transition: color 180ms ease;
 }
 
 .lab-module-tag {
@@ -1149,6 +1179,17 @@ form textarea { min-height: 120px; resize: vertical; }
   transition: color 160ms ease;
 }
 .embed-links a:hover { color: var(--text); }
+
+/* ─── SCROLL REVEAL ──────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 320ms var(--ease-out), transform 320ms var(--ease-out);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
 
 /* ─── FOOTER ──────────────────────────────────────── */
 footer {
