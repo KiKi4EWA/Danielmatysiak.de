@@ -462,7 +462,7 @@ h4 {
 
 .hero-panel ul li:first-child { border-top: 1px solid var(--line); }
 
-.hero-panel ul li span {
+.hero-panel ul li span:last-child {
   font-family: var(--mono);
   font-size: 11px;
   color: var(--accent);
