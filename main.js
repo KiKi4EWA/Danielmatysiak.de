@@ -8,6 +8,42 @@ if (toggle && nav) {
   });
 }
 
+// Language toggle
+const langBtn = document.getElementById('lang-btn');
+if (langBtn) {
+  let lang = localStorage.getItem('lang') || 'de';
+  const deCache = new Map();
+
+  const dePlaceholderCache = new Map();
+
+  function applyLang(l) {
+    lang = l;
+    localStorage.setItem('lang', l);
+    document.documentElement.lang = l;
+    langBtn.textContent = l === 'de' ? 'EN' : 'DE';
+    document.querySelectorAll('[data-en]').forEach(el => {
+      if (!deCache.has(el)) deCache.set(el, el.innerHTML);
+      el.innerHTML = l === 'en' ? el.dataset.en : deCache.get(el);
+    });
+    document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+      if (!dePlaceholderCache.has(el)) dePlaceholderCache.set(el, el.placeholder);
+      el.placeholder = l === 'en' ? el.dataset.enPlaceholder : dePlaceholderCache.get(el);
+    });
+  }
+
+  // Cache original DE before any swap
+  document.querySelectorAll('[data-en]').forEach(el => {
+    deCache.set(el, el.innerHTML);
+  });
+  document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+    dePlaceholderCache.set(el, el.placeholder);
+  });
+
+  langBtn.addEventListener('click', () => applyLang(lang === 'de' ? 'en' : 'de'));
+  langBtn.textContent = lang === 'de' ? 'EN' : 'DE';
+  if (lang === 'en') applyLang('en');
+}
+
 // Scroll reveal — skip if reduced motion preferred
 if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
   const sel = [

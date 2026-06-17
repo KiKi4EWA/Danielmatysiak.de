@@ -40,20 +40,21 @@
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="kontakt.html" class="active">Kontakt</a></li>
       </ul>
+      <button class="lang-btn" id="lang-btn">EN</button>
     </div>
   </nav>
 
   <main class="page">
 
     <section class="hero">
-      <p class="hero-kicker">05 — Kontakt</p>
-      <h1>Projekt<br>anfragen.</h1>
+      <p class="hero-kicker" data-en="05 — Contact">05 — Kontakt</p>
+      <h1 data-en="Start a<br>project.">Projekt<br>anfragen.</h1>
     </section>
 
     <section class="section">
       <div class="contact-grid">
         <div>
-          <p class="body-text" style="color:var(--muted);font-size:15px">Du hast ein konkretes Projekt oder willst eine Zusammenarbeit starten. Erstgespräch kostenlos.</p>
+          <p class="body-text" style="color:var(--muted);font-size:15px" data-en="You have a concrete project or want to start a collaboration. First conversation free.">Du hast ein konkretes Projekt oder willst eine Zusammenarbeit starten. Erstgespräch kostenlos.</p>
 
           <div style="margin-top:2rem">
             <a class="contact-row" href="https://signal.me/#eu/ytpYkIDQV0vk9zMrBibOo_m4kzF3wHfx0a8rHgkST4qM8pjwKVtALJuwZXJrjIkE" target="_blank" rel="noopener">
@@ -66,14 +67,14 @@
             <a class="contact-row" href="https://www.linkedin.com/in/daniel-matysiak-9b5b524a/" target="_blank" rel="noopener">
               <div>
                 <span class="contact-row-name">LinkedIn</span>
-                <span class="contact-row-sub">Direktnachricht</span>
+                <span class="contact-row-sub" data-en="Direct message">Direktnachricht</span>
               </div>
               <span class="contact-row-arrow">→</span>
             </a>
             <a class="contact-row" href="https://soundcloud.com/daniel-matysiak" target="_blank" rel="noopener">
               <div>
                 <span class="contact-row-name">SoundCloud</span>
-                <span class="contact-row-sub">Releases und Previews</span>
+                <span class="contact-row-sub" data-en="Releases and Previews">Releases und Previews</span>
               </div>
               <span class="contact-row-arrow">→</span>
             </a>
@@ -81,15 +82,15 @@
 
           <p class="section-label" style="margin-top:2rem;margin-bottom:0.5rem">Office Hours</p>
           <div class="hours">
-            <div class="hour-row"><span class="day">Montag</span><span class="time">10:00 bis 16:00</span></div>
-            <div class="hour-row"><span class="day">Dienstag</span><span class="time">10:00 bis 16:00</span></div>
-            <div class="hour-row"><span class="day">Mittwoch</span><span class="time">10:00 bis 16:00</span></div>
-            <div class="hour-row"><span class="day">Donnerstag</span><span class="time">10:00 bis 16:00</span></div>
-            <div class="hour-row"><span class="day">Freitag</span><span class="time">10:00 bis 14:00</span></div>
-            <div class="hour-row"><span class="day">Samstag</span><span class="time">nach Vereinbarung</span></div>
-            <div class="hour-row"><span class="day">Sonntag</span><span class="time">geschlossen</span></div>
+            <div class="hour-row"><span class="day" data-en="Monday">Montag</span><span class="time">10:00 bis 16:00</span></div>
+            <div class="hour-row"><span class="day" data-en="Tuesday">Dienstag</span><span class="time">10:00 bis 16:00</span></div>
+            <div class="hour-row"><span class="day" data-en="Wednesday">Mittwoch</span><span class="time">10:00 bis 16:00</span></div>
+            <div class="hour-row"><span class="day" data-en="Thursday">Donnerstag</span><span class="time">10:00 bis 16:00</span></div>
+            <div class="hour-row"><span class="day" data-en="Friday">Freitag</span><span class="time">10:00 bis 14:00</span></div>
+            <div class="hour-row"><span class="day" data-en="Saturday">Samstag</span><span class="time" data-en="by appointment">nach Vereinbarung</span></div>
+            <div class="hour-row"><span class="day" data-en="Sunday">Sonntag</span><span class="time" data-en="closed">geschlossen</span></div>
           </div>
-          <p class="hours-note">Studio Sessions auch außerhalb der Office Hours möglich.</p>
+          <p class="hours-note" data-en="Studio sessions also available outside office hours.">Studio Sessions auch außerhalb der Office Hours möglich.</p>
         </div>
 
         <div>
@@ -97,23 +98,23 @@
                 action="https://formspree.io/f/xeqwzelq" method="post" onsubmit="handleSubmit(event)">
             <div class="form-field">
               <label for="full-name">Name</label>
-              <input type="text" name="name" id="full-name" placeholder="Vor- und Nachname" required>
+              <input type="text" name="name" id="full-name" placeholder="Vor- und Nachname" data-en-placeholder="First and last name" required>
             </div>
             <div class="form-field">
               <label for="email-address">E-Mail</label>
               <input type="email" name="_replyto" id="email-address" placeholder="email@domain.tld" required>
             </div>
             <div class="form-field">
-              <label for="message">Nachricht</label>
-              <textarea name="message" id="message" placeholder="Worum geht es bei deinem Projekt?" required></textarea>
+              <label for="message" data-en="Message">Nachricht</label>
+              <textarea name="message" id="message" placeholder="Worum geht es bei deinem Projekt?" data-en-placeholder="What's your project about?" required></textarea>
             </div>
             <input type="hidden" name="_subject" value="Kontaktformular danielmatysiak.de">
-            <button type="submit" class="btn">Absenden</button>
+            <button type="submit" class="btn" data-en="Send">Absenden</button>
           </form>
 
           <div id="thank-you" class="hidden">
-            <h3>Danke.</h3>
-            <p>Deine Nachricht ist angekommen. Ich melde mich so bald wie möglich.</p>
+            <h3 data-en="Thank you.">Danke.</h3>
+            <p data-en="Your message has arrived. I'll get back to you as soon as possible.">Deine Nachricht ist angekommen. Ich melde mich so bald wie möglich.</p>
           </div>
         </div>
       </div>
