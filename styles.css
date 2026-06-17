@@ -397,7 +397,6 @@ h4 {
 }
 
 .hero-img-wrap {
-  min-height: clamp(200px, 28vw, 380px);
   background: var(--bg-2);
   border: 1px solid var(--line);
   overflow: hidden;
@@ -418,8 +417,7 @@ h4 {
     grid-template-columns: 1fr;
   }
   .hero-img-wrap {
-    aspect-ratio: 3 / 2;
-    min-height: 0;
+    display: none;
   }
 }
 
