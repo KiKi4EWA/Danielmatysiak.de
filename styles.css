@@ -438,6 +438,11 @@ h4 {
   opacity: 0;
   transform: translateY(6px);
   animation: fadeUp 280ms var(--ease-out) 80ms forwards;
+  transition: color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero:hover h1 { color: var(--accent); }
 }
 
 .hero .lede {
