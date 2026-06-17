@@ -715,6 +715,7 @@ h4 {
 .value-item {
   border-top: 1px solid var(--line);
   padding: 1rem 0;
+  transition: border-color 180ms ease;
 }
 
 .value-item h4 {
@@ -724,12 +725,24 @@ h4 {
   line-height: 1.38;
   color: var(--text);
   margin-bottom: 0.3rem;
+  transition: color 180ms ease;
 }
 
 .value-item p {
   font-size: 13px;
   color: var(--muted);
   line-height: 1.6;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .value-item:hover { border-top-color: var(--accent); }
+  .value-item:hover h4 { color: var(--accent); }
+}
+
+.pillar { transition: background 180ms ease; }
+
+@media (hover: hover) and (pointer: fine) {
+  .pillar:hover { background: var(--bg-2); }
 }
 
 /* ─── LAB MODULES ─────────────────────────────────── */
