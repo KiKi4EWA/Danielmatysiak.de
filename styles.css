@@ -378,9 +378,18 @@ h4 {
 /* Hero with image — 2-column editorial layout */
 .hero-has-img {
   display: grid;
-  grid-template-columns: 1fr clamp(220px, 40vw, 500px);
+  grid-template-columns: 1fr clamp(200px, 36vw, 460px);
   gap: 0 clamp(1.5rem, 3.5vw, 3rem);
-  align-items: start;
+  align-items: stretch;
+}
+
+.hero-text {
+  min-width: 0;
+}
+
+/* h1 scales to the narrower text column */
+.hero-has-img h1 {
+  font-size: clamp(32px, 4.5vw, 58px);
 }
 
 .hero-has-img .hero-grid {
@@ -388,7 +397,7 @@ h4 {
 }
 
 .hero-img-wrap {
-  aspect-ratio: 5 / 6;
+  min-height: clamp(200px, 28vw, 380px);
   background: var(--bg-2);
   border: 1px solid var(--line);
   overflow: hidden;
@@ -410,6 +419,7 @@ h4 {
   }
   .hero-img-wrap {
     aspect-ratio: 3 / 2;
+    min-height: 0;
   }
 }
 
