@@ -904,13 +904,13 @@ h4 {
   margin-top: 3rem;
   padding-top: 2rem;
   display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 .lab-cta p {
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--muted);
 }
 
