@@ -379,6 +379,7 @@ h4 {
 .hero-has-img {
   display: grid;
   grid-template-columns: 1fr clamp(200px, 36vw, 460px);
+  grid-template-rows: minmax(clamp(320px, 55vh, 680px), auto);
   gap: 0 clamp(1.5rem, 3.5vw, 3rem);
   align-items: stretch;
 }
