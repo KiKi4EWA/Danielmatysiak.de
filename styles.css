@@ -918,7 +918,7 @@ h4 {
 
 .page-audio .pillar,
 .page-lab .pillar {
-  background: rgba(255, 255, 255, 0.55);
+  background: none;
 }
 
 .pillar-label {
@@ -994,7 +994,7 @@ h4 {
 .lab-phase {
   border-top: 2px solid var(--accent);
   padding: 1rem 1.5rem 0 0;
-  background: rgba(255, 255, 255, 0.55);
+  background: none;
 }
 
 .lab-phase-num {
@@ -1028,7 +1028,7 @@ h4 {
 .lab-module {
   border-top: 1px solid var(--line);
   padding: 1.25rem 1.5rem 1.25rem 0;
-  background: rgba(255, 255, 255, 0.55);
+  background: none;
   transition: border-color 180ms ease, background 180ms ease;
 }
 
