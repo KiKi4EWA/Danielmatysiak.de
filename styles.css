@@ -410,12 +410,7 @@ h4 {
   min-height: clamp(280px, 40vh, 480px);
 }
 .hero-deco::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(237,232,219,0.65) 40%, transparent 70%);
-  z-index: 1;
-  pointer-events: none;
+  display: none;
 }
 .hero-deco-img {
   position: absolute;
@@ -449,6 +444,16 @@ h4 {
   object-position: center top;
   -webkit-mask-image: linear-gradient(to right, transparent 10%, black 52%);
   mask-image: linear-gradient(to right, transparent 10%, black 52%);
+}
+
+/* Text halo for readability — no overlay needed, glow sits behind letters */
+.hero-deco .hero-kicker,
+.hero-deco h1,
+.hero-deco .lede {
+  text-shadow:
+    0 0 18px rgba(245,240,230,0.98),
+    0 0 36px rgba(245,240,230,0.88),
+    0 0 72px rgba(245,240,230,0.65);
 }
 
 .hero-deco-img.hero-deco-portrait {
