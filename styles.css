@@ -1249,7 +1249,7 @@ a.contact-row:last-child { border-bottom: 1px solid var(--line); }
 .contact-row-arrow {
   font-size: 1rem;
   color: var(--muted);
-  transition: color 160ms ease, transform 120ms ease-out;
+  transition: color 160ms ease, transform 120ms var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1330,6 +1330,13 @@ form textarea { min-height: 120px; resize: vertical; }
   padding: 1.5rem;
   background: var(--bg-2);
   border: 1px solid var(--line);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 280ms var(--ease-out), transform 280ms var(--ease-out);
+}
+
+@starting-style {
+  #thank-you { opacity: 0; transform: translateY(4px); }
 }
 
 #thank-you h3 { font-size: 1.1rem; margin-bottom: 0.35rem; color: var(--text); }
