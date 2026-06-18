@@ -432,6 +432,10 @@ h4 {
   mask-image: linear-gradient(to right, transparent 10%, black 52%);
 }
 
+.page-faq .hero-deco-img.hero-deco-full {
+  object-position: right center;
+}
+
 /* Hero with image — 2-column editorial layout */
 .hero-has-img {
   display: grid;
