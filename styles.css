@@ -406,6 +406,13 @@ h4 {
   width: 42%;
   opacity: 0.65;
   pointer-events: none;
+  z-index: 0;
+}
+
+.hero-deco .hero-kicker,
+.hero-deco h1 {
+  position: relative;
+  z-index: 1;
 }
 
 /* Hero with image — 2-column editorial layout */
