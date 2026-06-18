@@ -740,7 +740,9 @@ h4 {
 
 .chapter-item:last-child { border-bottom: 1px solid var(--accent); }
 
-.chapter-item:hover { color: var(--accent); }
+@media (hover: hover) and (pointer: fine) {
+  .chapter-item:hover { color: var(--accent); }
+}
 .chapter-item:active { color: var(--accent); }
 
 .chapter-num {
@@ -769,16 +771,18 @@ h4 {
   text-transform: uppercase;
 }
 
-.chapter-item:hover .chapter-title { color: var(--accent); }
+@media (hover: hover) and (pointer: fine) {
+  .chapter-item:hover .chapter-title { color: var(--accent); }
 
-.chapter-item:nth-child(2):hover,
-.chapter-item:nth-child(2):hover .chapter-title { color: #cf7338; }
-.chapter-item:nth-child(3):hover,
-.chapter-item:nth-child(3):hover .chapter-title { color: #7a9672; }
-.chapter-item:nth-child(4):hover,
-.chapter-item:nth-child(4):hover .chapter-title { color: #9898cc; }
-.chapter-item:nth-child(5):hover,
-.chapter-item:nth-child(5):hover .chapter-title { color: #7a4b90; }
+  .chapter-item:nth-child(2):hover,
+  .chapter-item:nth-child(2):hover .chapter-title { color: #cf7338; }
+  .chapter-item:nth-child(3):hover,
+  .chapter-item:nth-child(3):hover .chapter-title { color: #7a9672; }
+  .chapter-item:nth-child(4):hover,
+  .chapter-item:nth-child(4):hover .chapter-title { color: #9898cc; }
+  .chapter-item:nth-child(5):hover,
+  .chapter-item:nth-child(5):hover .chapter-title { color: #7a4b90; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .chapter-item {
@@ -807,8 +811,10 @@ h4 {
   transition: background 180ms var(--ease-out);
 }
 
-.price-row:hover { background: var(--bg-2); }
-.price-row:hover .price-name { color: var(--accent); }
+@media (hover: hover) and (pointer: fine) {
+  .price-row:hover { background: var(--bg-2); }
+  .price-row:hover .price-name { color: var(--accent); }
+}
 .price-row:active { background: var(--bg-2); }
 .price-row:active .price-name { color: var(--accent); }
 
@@ -1031,12 +1037,14 @@ h4 {
   transition: border-color 180ms ease, background 180ms ease;
 }
 
-.lab-module:hover {
-  border-top-color: var(--accent);
-  background: var(--bg-2);
-}
-.lab-module:hover h4 {
-  color: var(--accent);
+@media (hover: hover) and (pointer: fine) {
+  .lab-module:hover {
+    border-top-color: var(--accent);
+    background: var(--bg-2);
+  }
+  .lab-module:hover h4 {
+    color: var(--accent);
+  }
 }
 .lab-module:active { border-top-color: var(--accent); background: var(--bg-2); }
 .lab-module:active h4 { color: var(--accent); }
@@ -1549,10 +1557,10 @@ footer {
 
 /* ─── SWIPE PAGE TRANSITION ───────────────────────── */
 @keyframes swipe-in-from-right {
-  from { transform: translateX(100%); }
+  from { transform: translateX(60%); opacity: 0; }
 }
 @keyframes swipe-in-from-left {
-  from { transform: translateX(-100%); }
+  from { transform: translateX(-60%); opacity: 0; }
 }
 
 .page[data-entering="from-right"] {
