@@ -184,6 +184,8 @@ img { max-width: 100%; display: block; }
   border: none;
   cursor: pointer;
   padding: 4px;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 .nav-toggle span {
   display: block;
@@ -203,6 +205,11 @@ img { max-width: 100%; display: block; }
   .nav-toggle {
     display: flex;
     margin-left: auto;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 5px;
+    padding: 8px 10px;
   }
   .lang-btn {
     margin-left: 1rem;
@@ -490,11 +497,7 @@ h4 {
   object-position: right center;
 }
 
-.page-home .hero-deco-img.hero-deco-full,
-.page-audio .hero-deco-img.hero-deco-full,
-.page-lab .hero-deco-img.hero-deco-full {
-  object-position: left top;
-}
+/* object-position for home/audio/lab is randomized by JS */
 
 @media (max-width: 480px) {
   /* Hero line-height: 0.9 is too tight when text wraps on small screens */

@@ -1,17 +1,50 @@
-// Hero — seitenspezifische Bildrotation
+// Hero — seitenspezifische Bildrotation + randomisierte Anker-Position
 const heroDecoEl = document.querySelector('.hero-deco-full, .hero-deco-portrait');
+const noMotionGlobal = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 if (heroDecoEl) {
   const imgSets = {
-    'page-home':  ['img/index_hero2.png', 'img/index_hero3.png'],
-    'page-audio': ['img/audio_hero2.png', 'img/audio_hero3.png', 'img/audio_hero4.png', 'img/audio_hero5.png', 'img/audio_hero6.png'],
-    'page-lab':   ['img/lab_hero3.png', 'img/lab_hero4.png'],
+    'page-home':    ['img/index_hero2.png', 'img/index_hero3.png'],
+    'page-audio':   ['img/audio_hero2.png', 'img/audio_hero3.png', 'img/audio_hero4.png', 'img/audio_hero5.png', 'img/audio_hero6.png'],
+    'page-lab':     ['img/lab_hero3.png', 'img/lab_hero4.png'],
     'page-faq':     ['img/faq_hero1.png', 'img/faq_hero2.png', 'img/faq_hero3.png'],
     'page-contact': ['img/kontakt_hero1.png', 'img/kontakt_hero3.png', 'img/kontakt_hero4.png', 'img/kontakt_hero5.png'],
     'page-about':   ['img/about_hero.png'],
   };
   const key = Object.keys(imgSets).find(k => document.body.classList.contains(k));
-  if (key) heroDecoEl.src = imgSets[key][Math.floor(Math.random() * imgSets[key].length)];
+  if (key) {
+    heroDecoEl.src = imgSets[key][Math.floor(Math.random() * imgSets[key].length)];
+
+    // Für home/audio/lab: rechte Seite dominant, zufällig center oder right center
+    if (['page-home', 'page-audio', 'page-lab'].includes(key)) {
+      heroDecoEl.style.objectPosition = Math.random() > 0.4 ? 'right center' : 'center';
+    }
+  }
 }
+
+// Parallax — subtiler Tiefeneffekt für home/audio/lab full-bleed hero
+(function () {
+  const parallaxPages = ['page-home', 'page-audio', 'page-lab'];
+  if (!parallaxPages.some(k => document.body.classList.contains(k))) return;
+  if (noMotionGlobal) return;
+  const img = document.querySelector('.hero-deco-img.hero-deco-full');
+  if (!img) return;
+
+  // Bild etwas größer als Container → Parallax-Spielraum
+  img.style.height = '115%';
+  img.style.top = '-7.5%';
+  img.style.willChange = 'transform';
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      img.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+      ticking = false;
+    });
+  }, { passive: true });
+})();
 
 // Swipe navigation — spring-based drag (Emil: page follows finger, spring-snap on release)
 (function () {
