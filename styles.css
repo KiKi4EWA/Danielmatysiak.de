@@ -1254,6 +1254,7 @@ form textarea { min-height: 120px; resize: vertical; }
   width: 100%;
   border: none;
   border-radius: 0 !important;
+  clip-path: inset(0);
 }
 
 .embed-wrap.embed-spotify iframe {
