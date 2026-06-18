@@ -460,9 +460,12 @@ h4 {
 }
 
 .page-faq .hero h1,
-.page-about .hero h1,
 .page-contact .hero h1 {
   font-size: clamp(80px, 11vw, 148px);
+}
+
+.page-about .hero h1 {
+  font-size: clamp(48px, 6.5vw, 84px);
 }
 
 .page-contact .hero-deco-img.hero-deco-full,
@@ -848,6 +851,7 @@ h4 {
 .pillar {
   border-top: 1px solid var(--accent);
   padding: 1rem 1.5rem 1rem 0;
+  background: rgba(255, 255, 255, 0.28);
 }
 
 .pillar-label {
@@ -921,6 +925,7 @@ h4 {
 .lab-phase {
   border-top: 2px solid var(--accent);
   padding: 1rem 1.5rem 0 0;
+  background: rgba(255, 255, 255, 0.28);
 }
 
 .lab-phase-num {
@@ -954,6 +959,7 @@ h4 {
 .lab-module {
   border-top: 1px solid var(--line);
   padding: 1.25rem 1.5rem 1.25rem 0;
+  background: rgba(255, 255, 255, 0.28);
   transition: border-color 180ms ease, background 180ms ease;
 }
 
