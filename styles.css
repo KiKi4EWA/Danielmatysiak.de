@@ -444,15 +444,6 @@ h4 {
   object-position: center top;
 }
 
-/* Text halo for readability — no overlay needed, glow sits behind letters */
-.hero-deco .hero-kicker,
-.hero-deco h1,
-.hero-deco .lede {
-  text-shadow:
-    0 0 18px rgba(245,240,230,0.98),
-    0 0 36px rgba(245,240,230,0.88),
-    0 0 72px rgba(245,240,230,0.65);
-}
 
 /* Hero h1: semi-transparent fill so illustration bleeds through the letters */
 .hero-deco h1 {
@@ -481,7 +472,7 @@ h4 {
 .page-contact .hero-deco {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .page-faq .hero h1,
