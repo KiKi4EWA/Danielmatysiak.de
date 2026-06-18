@@ -799,7 +799,7 @@ h4 {
 }
 
 .price-detail {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--muted);
   line-height: 1.6;
   font-family: var(--sans);
@@ -905,7 +905,7 @@ h4 {
 }
 
 .pillar p {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--muted);
   line-height: 1.6;
 }
@@ -925,7 +925,7 @@ h4 {
 }
 
 .value-item h4 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.38;
@@ -935,7 +935,7 @@ h4 {
 }
 
 .value-item p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.6;
 }
@@ -977,13 +977,13 @@ h4 {
 }
 
 .lab-phase h4 {
-  font-size: clamp(14px, 1.5vw, 17px);
+  font-size: clamp(15px, 1.5vw, 17px);
   color: var(--text);
   margin-bottom: 0.35rem;
 }
 
 .lab-phase p {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--muted);
   line-height: 1.5;
 }
@@ -1036,7 +1036,7 @@ h4 {
 }
 
 .lab-module p {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--muted);
   line-height: 1.6;
 }
@@ -1163,7 +1163,7 @@ details.acc-item[open] > summary::after { transform: rotate(45deg); }
 
 .acc-body {
   padding-bottom: 1.25rem;
-  font-size: 14.5px;
+  font-size: 15px;
   color: var(--muted);
   line-height: 1.7;
   max-width: 640px;
