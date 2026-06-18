@@ -734,9 +734,7 @@ h4 {
 
 .chapter-item:last-child { border-bottom: 1px solid var(--accent); }
 
-@media (hover: hover) and (pointer: fine) {
-  .chapter-item:hover { color: var(--accent); }
-}
+.chapter-item:hover { color: var(--accent); }
 .chapter-item:active { color: var(--accent); }
 
 .chapter-num {
@@ -765,20 +763,16 @@ h4 {
   text-transform: uppercase;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .chapter-item:hover .chapter-title { color: var(--accent); }
-}
+.chapter-item:hover .chapter-title { color: var(--accent); }
 
-@media (hover: hover) and (pointer: fine) {
-  .chapter-item:nth-child(2):hover,
-  .chapter-item:nth-child(2):hover .chapter-title { color: #cf7338; }
-  .chapter-item:nth-child(3):hover,
-  .chapter-item:nth-child(3):hover .chapter-title { color: #7a9672; }
-  .chapter-item:nth-child(4):hover,
-  .chapter-item:nth-child(4):hover .chapter-title { color: #9898cc; }
-  .chapter-item:nth-child(5):hover,
-  .chapter-item:nth-child(5):hover .chapter-title { color: #7a4b90; }
-}
+.chapter-item:nth-child(2):hover,
+.chapter-item:nth-child(2):hover .chapter-title { color: #cf7338; }
+.chapter-item:nth-child(3):hover,
+.chapter-item:nth-child(3):hover .chapter-title { color: #7a9672; }
+.chapter-item:nth-child(4):hover,
+.chapter-item:nth-child(4):hover .chapter-title { color: #9898cc; }
+.chapter-item:nth-child(5):hover,
+.chapter-item:nth-child(5):hover .chapter-title { color: #7a4b90; }
 
 @media (prefers-reduced-motion: reduce) {
   .chapter-item {
@@ -807,14 +801,8 @@ h4 {
   transition: background 180ms var(--ease-out);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .price-row:hover {
-    background: var(--bg-2);
-  }
-  .price-row:hover .price-name {
-    color: var(--accent);
-  }
-}
+.price-row:hover { background: var(--bg-2); }
+.price-row:hover .price-name { color: var(--accent); }
 .price-row:active { background: var(--bg-2); }
 .price-row:active .price-name { color: var(--accent); }
 
@@ -982,6 +970,12 @@ h4 {
 .value-item:active { border-top-color: var(--accent); }
 .value-item:active h4 { color: var(--accent); }
 
+@media (hover: none) {
+  .value-item h4 { color: var(--accent); }
+  details.acc-item > summary { color: var(--accent); }
+  a.contact-row .contact-row-name { color: var(--accent); }
+}
+
 .pillar { transition: background 180ms var(--ease-out); }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1040,14 +1034,12 @@ h4 {
   transition: border-color 180ms ease, background 180ms ease;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .lab-module:hover {
-    border-top-color: var(--accent);
-    background: var(--bg-2);
-  }
-  .lab-module:hover h4 {
-    color: var(--accent);
-  }
+.lab-module:hover {
+  border-top-color: var(--accent);
+  background: var(--bg-2);
+}
+.lab-module:hover h4 {
+  color: var(--accent);
 }
 .lab-module:active { border-top-color: var(--accent); background: var(--bg-2); }
 .lab-module:active h4 { color: var(--accent); }
