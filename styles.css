@@ -379,9 +379,9 @@ h4 {
 }
 
 .btn {
-  background: rgba(237, 232, 219, 0.55);
+  background: rgba(237, 232, 219, 0.52);
   color: var(--accent);
-  border: 1.5px solid var(--accent);
+  border: 1px solid transparent;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -392,7 +392,7 @@ h4 {
 .btn-ghost {
   background: rgba(237, 232, 219, 0.35);
   color: var(--text);
-  border: 1px solid var(--text);
+  border: 1px solid transparent;
 }
 
 @media (hover: hover) and (pointer: fine) {
