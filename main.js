@@ -5,7 +5,7 @@ const noMotionGlobal = window.matchMedia('(prefers-reduced-motion: reduce)').mat
 if (heroDecoEl) {
   const imgSets = {
     'page-home':    ['img/index_hero2.png', 'img/index_hero3.png'],
-    'page-audio':   ['img/neve_leistungen.jpg', 'img/audio_hero3.png', 'img/audio_hero4.png', 'img/audio_hero5.png', 'img/audio_hero6.png'],
+    'page-audio':   ['img/audio_hero3.png', 'img/audio_hero4.png', 'img/audio_hero5.png', 'img/audio_hero6.png'],
     'page-lab':     ['img/lab_hero3.png', 'img/lab_hero4.png'],
     'page-faq':     ['img/faq_hero1.png', 'img/faq_hero2.png', 'img/faq_hero3.png'],
     'page-contact': ['img/kontakt_hero1.png', 'img/kontakt_hero3.png', 'img/kontakt_hero5.png'],
