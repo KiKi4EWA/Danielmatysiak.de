@@ -640,8 +640,10 @@ h4 {
 
 .hero-panel {
   grid-column: span 5;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
+  background: rgba(237, 232, 219, 0.52);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   padding: 1.5rem 1.75rem;
   align-self: start;
 }
@@ -905,7 +907,7 @@ h4 {
 
 .page-audio .pillar,
 .page-lab .pillar {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .pillar-label {
@@ -979,7 +981,7 @@ h4 {
 .lab-phase {
   border-top: 2px solid var(--accent);
   padding: 1rem 1.5rem 0 0;
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .lab-phase-num {
@@ -1013,7 +1015,7 @@ h4 {
 .lab-module {
   border-top: 1px solid var(--line);
   padding: 1.25rem 1.5rem 1.25rem 0;
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.55);
   transition: border-color 180ms ease, background 180ms ease;
 }
 
