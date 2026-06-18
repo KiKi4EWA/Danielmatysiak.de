@@ -400,6 +400,19 @@ h4 {
 }
 .btn-ghost:active { transform: scale(0.97); }
 
+/* Buttons außerhalb des Hero: Accent-Tint der jeweiligen Seite */
+.section .btn,
+.section .btn-ghost,
+form .btn {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .section .btn:hover,
+  form .btn:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+  .section .btn-ghost:hover { background: color-mix(in srgb, var(--accent) 16%, transparent); }
+}
+
 .cta-row {
   display: flex;
   flex-wrap: wrap;
