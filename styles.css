@@ -395,10 +395,11 @@ h4 {
 /* Hero with image — 2-column editorial layout */
 .hero-has-img {
   display: grid;
-  grid-template-columns: 1fr clamp(200px, 36vw, 460px);
+  grid-template-columns: 1fr clamp(280px, 42vw, 540px);
   grid-template-rows: minmax(clamp(320px, 55vh, 680px), auto);
-  gap: 0 clamp(1.5rem, 3.5vw, 3rem);
+  gap: 0;
   align-items: stretch;
+  margin-right: calc(-1 * var(--gutter));
 }
 
 .hero-text {
@@ -416,7 +417,6 @@ h4 {
 
 .hero-img-wrap {
   background: var(--bg-2);
-  border: 1px solid var(--line);
   overflow: hidden;
   opacity: 0;
   transform: translateY(6px);
