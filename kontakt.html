@@ -123,31 +123,36 @@
 
     <section class="legal-section" id="impressum">
       <p class="section-title">Rechtliches</p>
-      <h2>Impressum</h2>
-      <h3>Angaben gemäß § 5 TMG</h3>
-      <p>Daniel Matysiak<br>Pannierstr. 64<br>12043 Berlin<br>Deutschland</p>
-      <h3>Kontakt</h3>
-      <p>E-Mail: <a href="mailto:hallo@danielmatysiak.de">hallo@danielmatysiak.de</a></p>
-      <h3>Berufsbezeichnung</h3>
-      <p>Audio Engineer und Produzent. Freiberuflich tätig.</p>
-      <h3>Haftung für Inhalte</h3>
-      <p>Die Inhalte dieser Seite wurden mit Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität übernehme ich keine Gewähr.</p>
-      <h3>Externe Links</h3>
-      <p>Für Inhalte verlinkter externer Seiten bin ich nicht verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar.</p>
-    </section>
-
-    <section class="legal-section" id="datenschutz">
-      <h2>Datenschutz</h2>
-      <h3>Verantwortlicher</h3>
-      <p>Daniel Matysiak, Pannierstr. 64, 12043 Berlin. Kontakt: hallo@danielmatysiak.de</p>
-      <h3>Erhobene Daten</h3>
-      <p>Diese Website verwendet keine Cookies, kein Tracking und keine Analyse-Dienste. Es werden keine personenbezogenen Daten gespeichert, außer wenn du das Kontaktformular nutzt.</p>
-      <h3>Kontaktformular</h3>
-      <p>Wenn du das Kontaktformular ausfüllst, werden deine Angaben (Name, E-Mail, Nachricht) über Formspree an mich weitergeleitet. Formspree verarbeitet diese Daten auf Servern in den USA. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO. Die Daten werden nicht an Dritte weitergegeben.</p>
-      <h3>Google Fonts</h3>
-      <p>Diese Seite lädt Schriften von Google Fonts. Dabei wird deine IP-Adresse an Google übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
-      <h3>Deine Rechte</h3>
-      <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung. Kontakt: hallo@danielmatysiak.de</p>
+      <details class="acc-item">
+        <summary>Impressum</summary>
+        <div class="acc-body">
+          <h3>Angaben gemäß § 5 TMG</h3>
+          <p>Daniel Matysiak<br>Pannierstr. 64<br>12043 Berlin<br>Deutschland</p>
+          <h3>Kontakt</h3>
+          <p>E-Mail: <a href="mailto:hallo@danielmatysiak.de">hallo@danielmatysiak.de</a></p>
+          <h3>Berufsbezeichnung</h3>
+          <p>Audio Engineer und Produzent. Freiberuflich tätig.</p>
+          <h3>Haftung für Inhalte</h3>
+          <p>Die Inhalte dieser Seite wurden mit Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität übernehme ich keine Gewähr.</p>
+          <h3>Externe Links</h3>
+          <p>Für Inhalte verlinkter externer Seiten bin ich nicht verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar.</p>
+        </div>
+      </details>
+      <details class="acc-item" id="datenschutz">
+        <summary>Datenschutz</summary>
+        <div class="acc-body">
+          <h3>Verantwortlicher</h3>
+          <p>Daniel Matysiak, Pannierstr. 64, 12043 Berlin. Kontakt: hallo@danielmatysiak.de</p>
+          <h3>Erhobene Daten</h3>
+          <p>Diese Website verwendet keine Cookies, kein Tracking und keine Analyse-Dienste. Es werden keine personenbezogenen Daten gespeichert, außer wenn du das Kontaktformular nutzt.</p>
+          <h3>Kontaktformular</h3>
+          <p>Wenn du das Kontaktformular ausfüllst, werden deine Angaben (Name, E-Mail, Nachricht) über Formspree an mich weitergeleitet. Formspree verarbeitet diese Daten auf Servern in den USA. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO. Die Daten werden nicht an Dritte weitergegeben.</p>
+          <h3>Google Fonts</h3>
+          <p>Diese Seite lädt Schriften von Google Fonts. Dabei wird deine IP-Adresse an Google übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+          <h3>Deine Rechte</h3>
+          <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung. Kontakt: hallo@danielmatysiak.de</p>
+        </div>
+      </details>
     </section>
 
   </main>
@@ -180,6 +185,12 @@
 
   <script src="main.js"></script>
   <script>
+    // Accordion per Anker öffnen (#impressum / #datenschutz)
+    if (location.hash) {
+      const target = document.querySelector(location.hash);
+      if (target && target.tagName === 'DETAILS') { target.open = true; target.scrollIntoView(); }
+    }
+
     function handleSubmit(e) {
       e.preventDefault();
       const form = document.getElementById('contact-form');
