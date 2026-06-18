@@ -15,9 +15,14 @@ if (heroDecoEl) {
   if (key) {
     heroDecoEl.src = imgSets[key][Math.floor(Math.random() * imgSets[key].length)];
 
-    // Für home/audio/lab: rechte Seite dominant, zufällig center oder right center
-    if (['page-home', 'page-audio', 'page-lab'].includes(key)) {
+    // Für home/audio: rechte Seite dominant, zufällig right center oder center
+    if (['page-home', 'page-audio'].includes(key)) {
       heroDecoEl.style.objectPosition = Math.random() > 0.4 ? 'right center' : 'center';
+    }
+    // Lab: drei Optionen gleichverteilt
+    if (key === 'page-lab') {
+      const labPositions = ['right center', 'center', 'left center'];
+      heroDecoEl.style.objectPosition = labPositions[Math.floor(Math.random() * labPositions.length)];
     }
   }
 }
