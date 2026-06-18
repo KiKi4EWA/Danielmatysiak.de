@@ -4,12 +4,12 @@ const noMotionGlobal = window.matchMedia('(prefers-reduced-motion: reduce)').mat
 
 if (heroDecoEl) {
   const imgSets = {
-    'page-home':    ['img/index_hero2.png', 'img/index_hero3.png'],
-    'page-audio':   ['img/audio_neve.png', 'img/audio_hero3.png', 'img/audio_hero4.png', 'img/audio_hero5.png', 'img/audio_hero6.png'],
-    'page-lab':     ['img/lab_hero3.png', 'img/lab_hero4.png'],
-    'page-faq':     ['img/faq_hero1.png', 'img/faq_hero2.png', 'img/faq_hero3.png'],
-    'page-contact': ['img/kontakt_hero1.png', 'img/kontakt_hero3.png', 'img/kontakt_hero5.png'],
-    'page-about':   ['img/about_hero.png'],
+    'page-home':    ['img/index_hero2.webp', 'img/index_hero3.webp'],
+    'page-audio':   ['img/audio_neve.webp', 'img/audio_hero3.webp', 'img/audio_hero4.webp', 'img/audio_hero5.webp', 'img/audio_hero6.webp'],
+    'page-lab':     ['img/lab_hero3.webp', 'img/lab_hero4.webp'],
+    'page-faq':     ['img/faq_hero1.webp', 'img/faq_hero2.webp', 'img/faq_hero3.webp'],
+    'page-contact': ['img/kontakt_hero1.webp', 'img/kontakt_hero3.webp', 'img/kontakt_hero5.webp'],
+    'page-about':   ['img/about_hero.webp'],
   };
   const key = Object.keys(imgSets).find(k => document.body.classList.contains(k));
   if (key) {
