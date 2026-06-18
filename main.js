@@ -13,7 +13,7 @@ if (heroDecoEl) {
   if (key) heroDecoEl.src = imgSets[key][Math.floor(Math.random() * imgSets[key].length)];
 }
 
-// Swipe navigation between pages (mobile)
+// Swipe navigation — spring-based drag (Emil: page follows finger, spring-snap on release)
 (function () {
   const ORDER = ['index.html', 'leistungen.html', 'lab.html', 'about.html', 'faq.html', 'kontakt.html'];
   const CLASS_MAP = {
@@ -24,11 +24,31 @@ if (heroDecoEl) {
     'page-faq':     'faq.html',
     'page-contact': 'kontakt.html',
   };
+
+  const pageEl   = document.querySelector('.page');
+  const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const SPRING   = 'cubic-bezier(0.32, 0.72, 0, 1)';
+
+  // Entry animation: incoming page slides in from correct side
+  const entryDir = sessionStorage.getItem('swipe-dir');
+  if (entryDir && pageEl && !noMotion) {
+    pageEl.dataset.entering = entryDir;
+    pageEl.addEventListener('animationend', () => delete pageEl.dataset.entering, { once: true });
+  }
+  sessionStorage.removeItem('swipe-dir');
+
   const cur = Object.entries(CLASS_MAP).find(([c]) => document.body.classList.contains(c))?.[1];
   const idx = ORDER.indexOf(cur);
   if (idx === -1) return;
 
   let x0 = 0, y0 = 0, t0 = 0, active = false;
+
+  function springBack() {
+    if (!pageEl || noMotion) return;
+    pageEl.style.transition = `transform 420ms ${SPRING}`;
+    pageEl.style.transform  = '';
+    setTimeout(() => { pageEl.style.transition = ''; }, 440);
+  }
 
   document.addEventListener('touchstart', e => {
     if (e.target.closest('input, textarea, select, details, [data-no-swipe]')) return;
@@ -36,26 +56,43 @@ if (heroDecoEl) {
     y0 = e.touches[0].clientY;
     t0 = Date.now();
     active = true;
+    if (pageEl) pageEl.style.transition = '';
   }, { passive: true });
 
   document.addEventListener('touchmove', e => {
     if (!active) return;
+    const dx = e.touches[0].clientX - x0;
     const dy = Math.abs(e.touches[0].clientY - y0);
-    const dx = Math.abs(e.touches[0].clientX - x0);
-    if (dy > dx + 8) active = false; // clearly scrolling vertically
+    if (dy > Math.abs(dx) + 8) { active = false; springBack(); return; }
+    if (noMotion || !pageEl) return;
+    // Page follows finger; extra damping at first/last page boundary
+    const atEdge = (dx > 0 && idx === 0) || (dx < 0 && idx === ORDER.length - 1);
+    pageEl.style.transform = `translateX(${dx * (atEdge ? 0.15 : 0.45)}px)`;
   }, { passive: true });
 
   document.addEventListener('touchend', e => {
     if (!active) { active = false; return; }
     active = false;
-    const dx = e.changedTouches[0].clientX - x0;
-    const dy = e.changedTouches[0].clientY - y0;
-    const dt = Date.now() - t0;
-    const velocity = Math.abs(dx) / dt;
-    // Need deliberate horizontal swipe: distance OR velocity, not purely vertical
-    if (Math.abs(dy) > Math.abs(dx) || (Math.abs(dx) < 55 && velocity < 0.35)) return;
+    const dx  = e.changedTouches[0].clientX - x0;
+    const dy  = e.changedTouches[0].clientY - y0;
+    const vel = Math.abs(dx) / (Date.now() - t0);
+
+    if (Math.abs(dy) > Math.abs(dx) || (Math.abs(dx) < 55 && vel < 0.35)) {
+      springBack(); return;
+    }
     const next = dx < 0 ? idx + 1 : idx - 1;
-    if (next >= 0 && next < ORDER.length) location.href = ORDER[next];
+    if (next < 0 || next >= ORDER.length) { springBack(); return; }
+
+    // Save direction so incoming page knows which side to enter from
+    sessionStorage.setItem('swipe-dir', dx < 0 ? 'from-right' : 'from-left');
+
+    if (pageEl && !noMotion) {
+      pageEl.style.transition = `transform 300ms ${SPRING}`;
+      pageEl.style.transform  = `translateX(${dx < 0 ? -window.innerWidth : window.innerWidth}px)`;
+      setTimeout(() => { location.href = ORDER[next]; }, 280);
+    } else {
+      location.href = ORDER[next];
+    }
   }, { passive: true });
 })();
 

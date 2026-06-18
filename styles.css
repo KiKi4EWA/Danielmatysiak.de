@@ -29,7 +29,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   font-family: var(--sans);
@@ -1495,4 +1495,19 @@ footer {
   gap: 1rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
+}
+
+/* ─── SWIPE PAGE TRANSITION ───────────────────────── */
+@keyframes swipe-in-from-right {
+  from { transform: translateX(100%); }
+}
+@keyframes swipe-in-from-left {
+  from { transform: translateX(-100%); }
+}
+
+.page[data-entering="from-right"] {
+  animation: swipe-in-from-right 380ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.page[data-entering="from-left"] {
+  animation: swipe-in-from-left 380ms cubic-bezier(0.32, 0.72, 0, 1);
 }
