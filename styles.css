@@ -457,7 +457,8 @@ h4 {
   font-size: clamp(80px, 11vw, 148px);
 }
 
-.page-contact .hero-deco-img.hero-deco-full {
+.page-contact .hero-deco-img.hero-deco-full,
+.page-about .hero-deco-img.hero-deco-full {
   object-fit: contain;
   object-position: right center;
 }
