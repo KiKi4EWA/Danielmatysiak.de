@@ -6,7 +6,7 @@ if (heroDecoEl) {
     'page-audio': ['img/audio_hero2.png', 'img/audio_hero3.png', 'img/audio_hero4.png', 'img/audio_hero5.png'],
     'page-lab':   ['img/lab_hero3.png', 'img/lab_hero4.png'],
     'page-faq':     ['img/faq_hero1.png', 'img/faq_hero2.png', 'img/faq_hero3.png'],
-    'page-contact': ['img/kontakt_hero1.png', 'img/kontakt_hero2.png', 'img/kontakt_hero3.png'],
+    'page-contact': ['img/kontakt_hero1.png', 'img/kontakt_hero3.png'],
     'page-about':   ['img/about_hero.png'],
   };
   const key = Object.keys(imgSets).find(k => document.body.classList.contains(k));
