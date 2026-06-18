@@ -972,11 +972,6 @@ h4 {
 .value-item:active { border-top-color: var(--accent); }
 .value-item:active h4 { color: var(--accent); }
 
-@media (hover: none) {
-  .value-item h4 { color: var(--accent); }
-  details.acc-item > summary { color: var(--accent); }
-  a.contact-row .contact-row-name { color: var(--accent); }
-}
 
 .pillar { transition: background 180ms var(--ease-out); }
 
@@ -1461,13 +1456,17 @@ form textarea { min-height: 120px; resize: vertical; }
 }
 .embed-links a:hover { color: var(--text); }
 
-/* ─── MOBILE TAP HIGHLIGHT (erste 3 Seiten) ──────── */
+/* ─── MOBILE TAP HIGHLIGHT (alle 6 Seiten) ───────── */
 .chapter-item.tapped { color: var(--accent); }
 .chapter-item.tapped .chapter-title { color: var(--accent); }
 .price-row.tapped { background: var(--bg-2); }
 .price-row.tapped .price-name { color: var(--accent); }
 .lab-module.tapped { border-top-color: var(--accent); background: var(--bg-2); }
 .lab-module.tapped h4 { color: var(--accent); }
+.value-item.tapped { border-top-color: var(--accent); }
+.value-item.tapped h4 { color: var(--accent); }
+details.acc-item.tapped > summary { color: var(--accent); }
+a.contact-row.tapped .contact-row-name { color: var(--accent); }
 
 /* ─── SCROLL REVEAL ──────────────────────────────── */
 .reveal {
