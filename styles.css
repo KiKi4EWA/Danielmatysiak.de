@@ -197,7 +197,16 @@ img { max-width: 100%; display: block; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
 @media (max-width: 680px) {
-  .nav-toggle { display: flex; }
+  .nav-inner {
+    justify-content: flex-start;
+  }
+  .nav-toggle {
+    display: flex;
+    margin-left: auto;
+  }
+  .lang-btn {
+    margin-left: 1rem;
+  }
   .nav-links {
     display: flex;
     flex-direction: column;
@@ -480,6 +489,10 @@ h4 {
   /* Hero line-height: 0.9 is too tight when text wraps on small screens */
   h1 {
     line-height: 1.05;
+  }
+
+  .hero h1 {
+    color: var(--accent);
   }
 
   .page-faq .hero-deco,
