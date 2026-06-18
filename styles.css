@@ -24,6 +24,7 @@
   --mono:      "IBM Plex Mono", "Courier New", monospace;
   --sans:      "Barlow", Helvetica, Arial, sans-serif;
   --ease-out:  cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,6 +59,7 @@ body.page-lab {
   --accent:    #cf7338;
   --accent-h:  #de8450;
 }
+
 
 body.page-about {
   --accent:    #7a9672;
@@ -195,22 +197,36 @@ img { max-width: 100%; display: block; }
 @media (max-width: 680px) {
   .nav-toggle { display: flex; }
   .nav-links {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0 16px;
     position: absolute;
     top: 52px;
     left: 0;
     right: 0;
     background: rgba(237,232,219,0.98);
-    flex-direction: column;
-    gap: 0;
-    padding: 8px 0 16px;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
   }
-  .nav-links.open { display: flex; }
+  .nav-links.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
   .nav-links li a {
     display: block;
     padding: 10px var(--gutter);
+  }
+}
+
+@media (max-width: 680px) and (prefers-reduced-motion: reduce) {
+  .nav-links {
+    transition: none;
   }
 }
 
@@ -544,11 +560,11 @@ h4 {
   animation: fadeUp 280ms var(--ease-out) forwards;
 }
 
-.chapter-item:nth-child(1) { animation-delay: 40ms; }
-.chapter-item:nth-child(2) { animation-delay: 100ms; }
-.chapter-item:nth-child(3) { animation-delay: 160ms; }
-.chapter-item:nth-child(4) { animation-delay: 220ms; }
-.chapter-item:nth-child(5) { animation-delay: 280ms; }
+.chapter-item:nth-child(1) { animation-delay: 20ms; }
+.chapter-item:nth-child(2) { animation-delay: 50ms; }
+.chapter-item:nth-child(3) { animation-delay: 80ms; }
+.chapter-item:nth-child(4) { animation-delay: 110ms; }
+.chapter-item:nth-child(5) { animation-delay: 140ms; }
 
 @keyframes fadeUp {
   to { opacity: 1; transform: translateY(0); }
@@ -1122,7 +1138,7 @@ form textarea {
   outline: none;
   width: 100%;
   border-radius: 0;
-  transition: border-color 160ms ease, background 160ms ease;
+  transition: border-color 160ms var(--ease-out), background 160ms ease;
 }
 
 form input::placeholder,
@@ -1278,7 +1294,7 @@ form textarea { min-height: 120px; resize: vertical; }
 .reveal {
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 320ms var(--ease-out), transform 320ms var(--ease-out);
+  transition: opacity 280ms var(--ease-out), transform 280ms var(--ease-out);
 }
 .reveal.is-visible {
   opacity: 1;
