@@ -27,11 +27,12 @@ if (heroDecoEl) {
   }
 }
 
-// Parallax — subtiler Tiefeneffekt für home/audio/lab full-bleed hero
+// Parallax — subtiler Tiefeneffekt für home/audio/lab full-bleed hero (nur Desktop)
 (function () {
   const parallaxPages = ['page-home', 'page-audio', 'page-lab'];
   if (!parallaxPages.some(k => document.body.classList.contains(k))) return;
   if (noMotionGlobal) return;
+  if (window.matchMedia('(pointer: coarse)').matches) return; // kein Parallax auf Touch
   const img = document.querySelector('.hero-deco-img.hero-deco-full');
   if (!img) return;
 
@@ -220,4 +221,24 @@ if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
   }, { threshold: 0.08 });
 
   els.forEach(el => io.observe(el));
+}
+
+// Mobile tap-highlight für erste 3 Seiten (divs bekommen kein iOS hover)
+if (window.matchMedia('(pointer: coarse)').matches) {
+  const tapMap = {
+    'page-home':  '.chapter-item',
+    'page-audio': '.price-row',
+    'page-lab':   '.lab-module',
+  };
+  const pageKey = Object.keys(tapMap).find(k => document.body.classList.contains(k));
+  if (pageKey) {
+    const els = [...document.querySelectorAll(tapMap[pageKey])];
+    els.forEach(el => {
+      el.addEventListener('touchstart', () => {
+        const already = el.classList.contains('tapped');
+        els.forEach(o => o.classList.remove('tapped'));
+        if (!already) el.classList.add('tapped');
+      }, { passive: true });
+    });
+  }
 }
