@@ -148,7 +148,9 @@ img { max-width: 100%; display: block; }
   transition: color 160ms ease;
 }
 
-.nav-links a:hover { color: var(--text); }
+@media (hover: hover) and (pointer: fine) {
+  .nav-links a:hover { color: var(--text); }
+}
 .nav-links a.active {
   color: var(--accent);
   border-bottom: 1px solid var(--accent);
@@ -735,7 +737,7 @@ h4 {
   padding: 1rem 0.5rem;
   margin: 0 -0.5rem;
   border-top: 1px solid var(--line);
-  transition: background 180ms ease;
+  transition: background 180ms var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -908,7 +910,7 @@ h4 {
   .value-item:hover h4 { color: var(--accent); }
 }
 
-.pillar { transition: background 180ms ease; }
+.pillar { transition: background 180ms var(--ease-out); }
 
 @media (hover: hover) and (pointer: fine) {
   .pillar:hover { background: var(--bg-2); }
@@ -1082,7 +1084,9 @@ h4 {
 }
 
 .faq-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-.faq-tab:hover  { color: var(--text); }
+@media (hover: hover) and (pointer: fine) {
+  .faq-tab:hover { color: var(--text); }
+}
 
 .faq-panel        { display: none; }
 .faq-panel.active { display: block; }
@@ -1105,7 +1109,9 @@ details.acc-item > summary {
   transition: color 160ms ease;
 }
 
-details.acc-item > summary:hover { color: var(--accent); }
+@media (hover: hover) and (pointer: fine) {
+  details.acc-item > summary:hover { color: var(--accent); }
+}
 details.acc-item > summary::-webkit-details-marker { display: none; }
 
 details.acc-item > summary::after {
