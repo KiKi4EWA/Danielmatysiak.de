@@ -1252,6 +1252,13 @@ a.contact-row:last-child { border-bottom: 1px solid var(--line); }
   transition: color 160ms ease, transform 120ms ease-out;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  a.contact-row:hover .contact-row-arrow {
+    transform: translateX(4px);
+    color: var(--accent);
+  }
+}
+
 
 .hours { margin-top: 2rem; }
 
