@@ -420,7 +420,7 @@ h4 {
 }
 
 .hero-img-wrap {
-  background: var(--bg);
+  background: transparent;
   overflow: hidden;
   opacity: 0;
   transform: translateY(6px);
