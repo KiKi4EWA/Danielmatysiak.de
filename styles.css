@@ -963,10 +963,6 @@ h4 {
   line-height: 1.6;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .value-item:hover { border-top-color: var(--accent); }
-  .value-item:hover h4 { color: var(--accent); }
-}
 .value-item:active { border-top-color: var(--accent); }
 .value-item:active h4 { color: var(--accent); }
 
@@ -1175,9 +1171,6 @@ details.acc-item > summary {
   transition: color 160ms ease;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  details.acc-item > summary:hover { color: var(--accent); }
-}
 details.acc-item > summary::-webkit-details-marker { display: none; }
 
 details.acc-item > summary::after {
@@ -1258,10 +1251,6 @@ a.contact-row:last-child { border-bottom: 1px solid var(--line); }
   transition: color 160ms ease, transform 120ms ease-out;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  a.contact-row:hover .contact-row-name { color: var(--accent); }
-  a.contact-row:hover .contact-row-arrow { color: var(--accent); transform: translateX(3px); }
-}
 
 .hours { margin-top: 2rem; }
 
