@@ -726,6 +726,7 @@ h4 {
 @media (hover: hover) and (pointer: fine) {
   .chapter-item:hover { color: var(--accent); }
 }
+.chapter-item:active { color: var(--accent); }
 
 .chapter-num {
   font-family: var(--mono);
@@ -803,6 +804,8 @@ h4 {
     color: var(--accent);
   }
 }
+.price-row:active { background: var(--bg-2); }
+.price-row:active .price-name { color: var(--accent); }
 
 .price-name {
   transition: color 180ms ease;
@@ -965,6 +968,8 @@ h4 {
   .value-item:hover { border-top-color: var(--accent); }
   .value-item:hover h4 { color: var(--accent); }
 }
+.value-item:active { border-top-color: var(--accent); }
+.value-item:active h4 { color: var(--accent); }
 
 .pillar { transition: background 180ms var(--ease-out); }
 
@@ -1033,6 +1038,8 @@ h4 {
     color: var(--accent);
   }
 }
+.lab-module:active { border-top-color: var(--accent); background: var(--bg-2); }
+.lab-module:active h4 { color: var(--accent); }
 
 .lab-module h4 {
   transition: color 180ms ease;
