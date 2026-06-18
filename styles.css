@@ -457,6 +457,11 @@ h4 {
   font-size: clamp(80px, 11vw, 148px);
 }
 
+.page-contact .hero-deco-img.hero-deco-full {
+  object-fit: contain;
+  object-position: right center;
+}
+
 /* Hero with image — 2-column editorial layout */
 .hero-has-img {
   display: grid;
