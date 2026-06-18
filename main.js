@@ -223,15 +223,12 @@ if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
   els.forEach(el => io.observe(el));
 }
 
-// Mobile tap-highlight für alle 6 Seiten (divs bekommen kein iOS hover)
+// Mobile tap-highlight für erste 3 Seiten (divs bekommen kein iOS hover)
 if (window.matchMedia('(pointer: coarse)').matches) {
   const tapMap = {
-    'page-home':    '.chapter-item',
-    'page-audio':   '.price-row',
-    'page-lab':     '.lab-module',
-    'page-about':   '.value-item',
-    'page-faq':     'details.acc-item',
-    'page-contact': 'a.contact-row',
+    'page-home':  '.chapter-item',
+    'page-audio': '.price-row',
+    'page-lab':   '.lab-module',
   };
   const pageKey = Object.keys(tapMap).find(k => document.body.classList.contains(k));
   if (pageKey) {
