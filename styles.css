@@ -478,6 +478,12 @@ h4 {
   min-height: clamp(500px, 68vh, 720px);
 }
 
+.page-contact .hero-deco {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
 .page-faq .hero h1,
 .page-contact .hero h1 {
   font-size: clamp(80px, 11vw, 148px);
