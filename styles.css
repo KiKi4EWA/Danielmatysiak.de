@@ -411,9 +411,23 @@ h4 {
 }
 
 .hero-deco .hero-kicker,
-.hero-deco h1 {
+.hero-deco h1,
+.hero-deco .lede,
+.hero-deco .hero-grid,
+.hero-deco .cta-row {
   position: relative;
   z-index: 1;
+}
+
+.hero-deco-img.hero-deco-full {
+  width: 100%;
+  right: 0;
+  left: 0;
+  top: 0;
+  transform: none;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 /* Hero with image — 2-column editorial layout */
