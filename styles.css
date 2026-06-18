@@ -398,6 +398,14 @@ h4 {
   overflow: hidden;
   min-height: clamp(280px, 40vh, 480px);
 }
+.hero-deco::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(237,232,219,0.65) 40%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
 .hero-deco-img {
   position: absolute;
   right: -2%;
@@ -416,7 +424,7 @@ h4 {
 .hero-deco .hero-grid,
 .hero-deco .cta-row {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-deco-img.hero-deco-full {
@@ -788,9 +796,10 @@ h4 {
 /* ─── ABOUT ───────────────────────────────────────── */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: clamp(2rem, 5vw, 5rem);
   align-items: start;
+  max-width: 680px;
 }
 
 .about-photo-wrap { position: relative; }
