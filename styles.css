@@ -476,6 +476,36 @@ h4 {
   object-position: right center;
 }
 
+@media (max-width: 480px) {
+  .page-faq .hero-deco,
+  .page-about .hero-deco,
+  .page-contact .hero-deco {
+    min-height: clamp(300px, 55svh, 440px);
+  }
+
+  .page-faq .hero h1,
+  .page-contact .hero h1 {
+    font-size: clamp(56px, 15vw, 72px);
+  }
+
+  /* Stronger left overlay on small screens */
+  .hero-deco::before {
+    background: linear-gradient(to right, rgba(237,232,219,0.85) 52%, transparent 82%);
+  }
+
+  /* Portrait images: cap width so they don't crowd text */
+  .hero-deco-img.hero-deco-portrait {
+    max-width: 52%;
+    opacity: 0.5;
+  }
+
+  /* Full-bleed images: fade in later so text stays clear */
+  .hero-deco-img.hero-deco-full {
+    -webkit-mask-image: linear-gradient(to right, transparent 30%, black 65%);
+    mask-image: linear-gradient(to right, transparent 30%, black 65%);
+  }
+}
+
 /* Hero with image — 2-column editorial layout */
 .hero-has-img {
   display: grid;

@@ -13,6 +13,52 @@ if (heroDecoEl) {
   if (key) heroDecoEl.src = imgSets[key][Math.floor(Math.random() * imgSets[key].length)];
 }
 
+// Swipe navigation between pages (mobile)
+(function () {
+  const ORDER = ['index.html', 'leistungen.html', 'lab.html', 'about.html', 'faq.html', 'kontakt.html'];
+  const CLASS_MAP = {
+    'page-home':    'index.html',
+    'page-audio':   'leistungen.html',
+    'page-lab':     'lab.html',
+    'page-about':   'about.html',
+    'page-faq':     'faq.html',
+    'page-contact': 'kontakt.html',
+  };
+  const cur = Object.entries(CLASS_MAP).find(([c]) => document.body.classList.contains(c))?.[1];
+  const idx = ORDER.indexOf(cur);
+  if (idx === -1) return;
+
+  let x0 = 0, y0 = 0, t0 = 0, active = false;
+
+  document.addEventListener('touchstart', e => {
+    if (e.target.closest('input, textarea, select, details, [data-no-swipe]')) return;
+    x0 = e.touches[0].clientX;
+    y0 = e.touches[0].clientY;
+    t0 = Date.now();
+    active = true;
+  }, { passive: true });
+
+  document.addEventListener('touchmove', e => {
+    if (!active) return;
+    const dy = Math.abs(e.touches[0].clientY - y0);
+    const dx = Math.abs(e.touches[0].clientX - x0);
+    if (dy > dx + 8) active = false; // clearly scrolling vertically
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    if (!active) { active = false; return; }
+    active = false;
+    const dx = e.changedTouches[0].clientX - x0;
+    const dy = e.changedTouches[0].clientY - y0;
+    const dt = Date.now() - t0;
+    const velocity = Math.abs(dx) / dt;
+    // Need deliberate horizontal swipe: distance OR velocity, not purely vertical
+    if (Math.abs(dy) > Math.abs(dx) || (Math.abs(dx) < 55 && velocity < 0.35)) return;
+    const next = dx < 0 ? idx + 1 : idx - 1;
+    if (next >= 0 && next < ORDER.length) location.href = ORDER[next];
+  }, { passive: true });
+})();
+
 // Nav toggle
 const toggle = document.getElementById('nav-toggle');
 const nav = document.getElementById('nav-links');
