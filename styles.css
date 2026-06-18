@@ -851,6 +851,9 @@ h4 {
 .pillar {
   border-top: 1px solid var(--accent);
   padding: 1rem 1.5rem 1rem 0;
+}
+
+.page-audio .pillar {
   background: rgba(255, 255, 255, 0.28);
 }
 
