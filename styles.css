@@ -896,6 +896,7 @@ h4 {
 .stance-block { margin-top: 1.5rem; }
 
 .stance-block p {
+  max-width: 66ch;
   color: var(--muted);
   margin-bottom: 1.1rem;
   line-height: 1.7;
@@ -970,7 +971,7 @@ h4 {
 }
 
 .value-item p {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--muted);
   line-height: 1.6;
 }
@@ -1065,7 +1066,7 @@ h4 {
 
 .lab-module h4 {
   font-size: clamp(16px, 1.6vw, 21px);
-  letter-spacing: -0.01em;
+  letter-spacing: 0.06em;
   color: var(--text);
   margin-bottom: 0.5rem;
   line-height: 1.2;
@@ -1087,7 +1088,7 @@ h4 {
 }
 
 .modules-cta-text {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--muted);
   margin-bottom: 1rem;
 }
@@ -1102,7 +1103,7 @@ h4 {
 }
 
 .lab-cta p {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--muted);
 }
 
