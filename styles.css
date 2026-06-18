@@ -110,7 +110,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--display);
   font-size: 17px;
   font-weight: 400;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.08em;
   color: var(--text);
   text-decoration: none;
   transition: color 160ms ease;
@@ -477,6 +477,11 @@ h4 {
 }
 
 @media (max-width: 480px) {
+  /* Hero line-height: 0.9 is too tight when text wraps on small screens */
+  h1 {
+    line-height: 1.05;
+  }
+
   .page-faq .hero-deco,
   .page-about .hero-deco,
   .page-contact .hero-deco {
