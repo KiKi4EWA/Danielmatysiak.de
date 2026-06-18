@@ -1,6 +1,6 @@
 // Hero — seitenspezifische Bildrotation
-const heroDecoFull = document.querySelector('.hero-deco-full');
-if (heroDecoFull) {
+const heroDecoEl = document.querySelector('.hero-deco-full, .hero-deco-portrait');
+if (heroDecoEl) {
   const imgSets = {
     'page-home':  ['img/index_hero.png', 'img/index_hero2.png', 'img/index_hero3.png'],
     'page-audio': ['img/audio_hero2.png', 'img/audio_hero3.png', 'img/audio_hero4.png', 'img/audio_hero5.png'],
@@ -8,7 +8,7 @@ if (heroDecoFull) {
     'page-faq':   ['img/faq_hero1.png', 'img/faq_hero2.png', 'img/faq_hero3.png'],
   };
   const key = Object.keys(imgSets).find(k => document.body.classList.contains(k));
-  if (key) heroDecoFull.src = imgSets[key][Math.floor(Math.random() * imgSets[key].length)];
+  if (key) heroDecoEl.src = imgSets[key][Math.floor(Math.random() * imgSets[key].length)];
 }
 
 // Nav toggle
