@@ -13,7 +13,7 @@
   --bg-2:      #ece7d6;
   --panel:     #e4dfc9;
   --text:      #1c1910;
-  --muted:     #7a6e5c;
+  --muted:     #5e5140;
   --line:      #d4cebc;
   --accent:    #c8612a;
   --accent-h:  #d97030;
@@ -373,28 +373,30 @@ h4 {
   text-decoration: none;
   cursor: pointer;
   border-radius: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: background 160ms var(--ease-out), color 160ms ease, border-color 160ms var(--ease-out), transform 100ms var(--ease-out);
 }
 
 .btn {
-  background: var(--accent);
-  color: #fff;
-  border: 1px solid var(--accent);
+  background: rgba(237, 232, 219, 0.55);
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .btn:hover { background: var(--accent-h); border-color: var(--accent-h); }
+  .btn:hover { background: rgba(237, 232, 219, 0.82); }
 }
 .btn:active { transform: scale(0.97); }
 
 .btn-ghost {
-  background: transparent;
+  background: rgba(237, 232, 219, 0.35);
   color: var(--text);
   border: 1px solid var(--text);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .btn-ghost:hover { background: var(--bg-2); }
+  .btn-ghost:hover { background: rgba(237, 232, 219, 0.65); }
 }
 .btn-ghost:active { transform: scale(0.97); }
 
@@ -476,6 +478,10 @@ h4 {
   mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 0;
+}
+
+.page-lab .hero-deco {
+  min-height: clamp(360px, 55vh, 580px);
 }
 
 .page-faq .hero-deco,

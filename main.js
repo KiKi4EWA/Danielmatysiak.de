@@ -19,9 +19,9 @@ if (heroDecoEl) {
     if (['page-home', 'page-audio'].includes(key)) {
       heroDecoEl.style.objectPosition = Math.random() > 0.4 ? 'right center' : 'center';
     }
-    // Lab: drei Optionen gleichverteilt
+    // Lab: drei Optionen gleichverteilt, immer top damit oben nichts abgeschnitten wird
     if (key === 'page-lab') {
-      const labPositions = ['right center', 'center', 'left center'];
+      const labPositions = ['right top', 'center top', 'left top'];
       heroDecoEl.style.objectPosition = labPositions[Math.floor(Math.random() * labPositions.length)];
     }
   }
@@ -36,9 +36,9 @@ if (heroDecoEl) {
   const img = document.querySelector('.hero-deco-img.hero-deco-full');
   if (!img) return;
 
-  // Bild etwas größer als Container → Parallax-Spielraum
+  // Bild größer als Container, Überlauf unten → Parallax nach oben (oben nie abgeschnitten)
   img.style.height = '115%';
-  img.style.top = '-7.5%';
+  img.style.top = '0';
   img.style.willChange = 'transform';
 
   let ticking = false;
@@ -46,7 +46,7 @@ if (heroDecoEl) {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(() => {
-      img.style.transform = `translateY(${window.scrollY * 0.2}px)`;
+      img.style.transform = `translateY(${-window.scrollY * 0.12}px)`;
       ticking = false;
     });
   }, { passive: true });
