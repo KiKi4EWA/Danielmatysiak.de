@@ -408,6 +408,7 @@ h4 {
 /* ─── HERO ────────────────────────────────────────── */
 .hero {
   padding: clamp(52px, 8vw, 96px) 0 clamp(44px, 6vw, 68px);
+  padding-left: clamp(12px, 3vw, 40px);
 }
 
 /* Hero with decorative layered image */
