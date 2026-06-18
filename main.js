@@ -5,7 +5,8 @@ if (heroDecoEl) {
     'page-home':  ['img/index_hero2.png', 'img/index_hero3.png'],
     'page-audio': ['img/audio_hero2.png', 'img/audio_hero3.png', 'img/audio_hero4.png', 'img/audio_hero5.png'],
     'page-lab':   ['img/lab_hero3.png', 'img/lab_hero4.png'],
-    'page-faq':   ['img/faq_hero1.png', 'img/faq_hero2.png', 'img/faq_hero3.png'],
+    'page-faq':     ['img/faq_hero1.png', 'img/faq_hero2.png', 'img/faq_hero3.png'],
+    'page-contact': ['img/kontakt_hero1.png', 'img/kontakt_hero2.png', 'img/kontakt_hero3.png'],
   };
   const key = Object.keys(imgSets).find(k => document.body.classList.contains(k));
   if (key) heroDecoEl.src = imgSets[key][Math.floor(Math.random() * imgSets[key].length)];
