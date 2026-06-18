@@ -1,3 +1,10 @@
+// Index hero — random image rotation
+const heroDecoFull = document.querySelector('.hero-deco-full');
+if (heroDecoFull) {
+  const heroImgs = ['img/index_hero.png', 'img/index_hero2.png'];
+  heroDecoFull.src = heroImgs[Math.floor(Math.random() * heroImgs.length)];
+}
+
 // Nav toggle
 const toggle = document.getElementById('nav-toggle');
 const nav = document.getElementById('nav-links');

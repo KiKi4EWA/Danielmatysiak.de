@@ -428,6 +428,8 @@ h4 {
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  -webkit-mask-image: linear-gradient(to right, transparent 10%, black 52%);
+  mask-image: linear-gradient(to right, transparent 10%, black 52%);
 }
 
 /* Hero with image — 2-column editorial layout */
