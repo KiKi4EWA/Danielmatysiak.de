@@ -22,7 +22,7 @@ if (heroDecoEl) {
     // Für audio: feste Position je Bild; Pro Tools (hero5) zufällig left/right
     if (key === 'page-audio') {
       const src = heroDecoEl.src;
-      if (src.includes('audio_neve'))  heroDecoEl.style.objectPosition = Math.random() > 0.3 ? 'left center' : 'right center';
+      if (src.includes('audio_neve'))  heroDecoEl.style.objectPosition = 'center right';
       else if (src.includes('audio_hero3')) heroDecoEl.style.objectPosition = Math.random() > 0.5 ? 'center' : 'right top';
       else if (src.includes('audio_hero4')) heroDecoEl.style.objectPosition = Math.random() > 0.5 ? 'left center' : 'right center';
       else if (src.includes('audio_hero5')) heroDecoEl.style.objectPosition = Math.random() > 0.5 ? 'left center' : 'right center';
