@@ -205,7 +205,7 @@ img { max-width: 100%; display: block; }
   .nav-toggle {
     display: flex;
     margin-left: auto;
-    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    background: color-mix(in srgb, var(--accent) 12%, var(--bg));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 0;
@@ -223,7 +223,9 @@ img { max-width: 100%; display: block; }
     top: 52px;
     left: 0;
     right: 0;
-    background: transparent;
+    background: rgba(245, 240, 230, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     opacity: 0;
@@ -925,6 +927,7 @@ form .btn {
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
 }
+.page-lab .pillars { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 720px) { .pillars { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 480px) { .pillars { grid-template-columns: 1fr; } }
 
