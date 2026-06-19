@@ -205,10 +205,10 @@ img { max-width: 100%; display: block; }
   .nav-toggle {
     display: flex;
     margin-left: auto;
-    background: rgba(255, 255, 255, 0.55);
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-radius: 5px;
+    border-radius: 0;
     padding: 8px 10px;
   }
   .lang-btn {
@@ -223,7 +223,7 @@ img { max-width: 100%; display: block; }
     top: 52px;
     left: 0;
     right: 0;
-    background: rgba(237,232,219,0.98);
+    background: transparent;
     border-top: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
     opacity: 0;
@@ -541,6 +541,10 @@ form .btn {
   .page-faq .hero h1,
   .page-contact .hero h1 {
     font-size: clamp(56px, 15vw, 72px);
+  }
+
+  .page-lab .hero h1 {
+    font-size: clamp(40px, 11vw, 58px);
   }
 
   /* Portrait images: cap width so they don't crowd text */
@@ -999,7 +1003,10 @@ form .btn {
   gap: 0;
   margin-bottom: 3.5rem;
 }
-@media (max-width: 720px) { .lab-phases { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 720px) {
+  .lab-phases { grid-template-columns: 1fr 1fr; }
+  .lab-phase { min-height: 200px; padding-bottom: 1rem; }
+}
 
 .lab-phase {
   border-top: 2px solid var(--accent);
