@@ -450,6 +450,7 @@ form .btn {
 }
 
 .hero-deco .lede { color: var(--text); }
+.hero-deco .hero-kicker { color: var(--text); }
 
 .hero-deco .hero-kicker,
 .hero-deco h1,
