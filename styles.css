@@ -506,6 +506,10 @@ form .btn {
   min-height: clamp(320px, 65vh, 780px);
 }
 
+.page-home .hero-copy {
+  grid-column: span 5;
+}
+
 .page-lab .hero-deco {
   min-height: clamp(360px, 55vh, 580px);
 }
