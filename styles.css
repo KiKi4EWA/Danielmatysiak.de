@@ -700,6 +700,7 @@ form .btn {
   background-color: rgba(255, 255, 255, 0.30);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  transform: translateZ(0);
 }
 
 .hero-panel-label {
