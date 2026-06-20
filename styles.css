@@ -488,6 +488,10 @@ form .btn {
   color: rgba(28, 25, 16, 0.72);
 }
 
+.page-home .hero-deco h1 {
+  color: rgba(28, 25, 16, 0.50);
+}
+
 
 .hero-deco-img.hero-deco-portrait {
   position: absolute;
