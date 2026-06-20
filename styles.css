@@ -660,7 +660,8 @@ form .btn {
 }
 
 .hero .hero-grid,
-.hero .hero-text {
+.hero .hero-text,
+.hero .hero-copy {
   opacity: 0;
   transform: translateY(6px);
   animation: fadeUp 280ms var(--ease-out) 260ms forwards;
@@ -672,6 +673,7 @@ form .btn {
   .hero .lede,
   .hero .hero-grid,
   .hero .hero-text,
+  .hero .hero-copy,
   .hero-img-wrap {
     opacity: 1;
     transform: none;
