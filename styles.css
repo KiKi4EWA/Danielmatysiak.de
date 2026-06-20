@@ -431,7 +431,7 @@ form .btn {
 /* Hero with decorative layered image */
 .hero-deco {
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   min-height: clamp(280px, 40vh, 480px);
 }
 .hero-deco::before {
@@ -472,6 +472,7 @@ form .btn {
 .hero-deco .hero-text {
   width: fit-content;
   max-width: min(500px, calc(100vw - 2 * var(--gutter)));
+  will-change: transform;
 }
 
 .hero-deco-img.hero-deco-full {
