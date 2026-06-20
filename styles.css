@@ -696,6 +696,12 @@ form .btn {
   .hero-panel { grid-column: span 12; }
 }
 
+.hero-panel .lede {
+  background-color: rgba(255, 255, 255, 0.30);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
 .hero-panel-label {
   font-family: var(--mono);
   font-size: 10px;
