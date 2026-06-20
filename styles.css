@@ -452,10 +452,6 @@ form .btn {
 .hero-deco .lede { color: var(--text); }
 
 .hero-lede-wrap {
-  display: grid;
-}
-
-.hero-lede-wrap .lede {
   background: rgba(237, 232, 219, 0.15);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
