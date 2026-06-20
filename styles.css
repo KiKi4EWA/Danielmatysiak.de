@@ -928,8 +928,8 @@ form .btn {
   gap: 0;
 }
 .page-lab .pillars { grid-template-columns: repeat(3, 1fr); }
-@media (max-width: 720px) { .pillars { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 480px) { .pillars { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .pillars, .page-lab .pillars { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .pillars, .page-lab .pillars { grid-template-columns: 1fr; } }
 
 .pillar {
   border-top: 1px solid var(--accent);
