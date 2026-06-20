@@ -1508,6 +1508,22 @@ form textarea { min-height: 120px; resize: vertical; }
   a.contact-row .contact-row-name { color: var(--accent); }
 }
 
+.swipe-hint {
+  display: none;
+}
+@media (hover: none) {
+  .swipe-hint {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    opacity: 0.45;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+}
+
 /* ─── SCROLL REVEAL ──────────────────────────────── */
 .reveal {
   opacity: 0;
