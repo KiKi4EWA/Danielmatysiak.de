@@ -470,7 +470,7 @@ form .btn {
 .hero-deco .hero-text { padding: 1.75rem 2rem; }
 
 .hero-deco .hero-text {
-  display: table;
+  width: fit-content;
   max-width: min(500px, calc(100vw - 2 * var(--gutter)));
 }
 
