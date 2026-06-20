@@ -464,11 +464,12 @@ form .btn {
   background: rgba(237, 232, 219, 0.52);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  padding: 1.75rem 2rem;
+  padding: 1.5rem 1.75rem;
 }
 
 .hero-deco .hero-text {
-  width: fit-content;
+  display: inline-block;
+  max-width: min(500px, calc(100vw - 2 * var(--gutter)));
 }
 
 .hero-deco-img.hero-deco-full {
