@@ -461,7 +461,7 @@ form .btn {
 
 .hero-deco .hero-copy,
 .hero-deco .hero-text {
-  background: rgba(237, 232, 219, 0.30);
+  background: rgba(237, 232, 219, 0.15);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
