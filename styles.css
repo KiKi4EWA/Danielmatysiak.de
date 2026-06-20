@@ -450,6 +450,19 @@ form .btn {
 }
 
 .hero-deco .lede { color: var(--text); }
+
+.hero-lede-wrap {
+  display: grid;
+}
+
+.hero-lede-wrap .lede {
+  background: rgba(237, 232, 219, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1.75rem 2rem;
+  width: fit-content;
+  max-width: min(500px, calc(100vw - 2 * var(--gutter)));
+}
 .hero-deco .hero-kicker { color: var(--text); }
 
 .hero-deco .hero-kicker,
@@ -654,7 +667,8 @@ form .btn {
 }
 
 .hero .hero-grid,
-.hero .hero-copy {
+.hero .hero-copy,
+.hero .hero-lede-wrap {
   opacity: 0;
   transform: translateY(6px);
   animation: fadeUp 280ms var(--ease-out) 260ms forwards;
@@ -666,6 +680,7 @@ form .btn {
   .hero .lede,
   .hero .hero-grid,
   .hero .hero-copy,
+  .hero .hero-lede-wrap,
   .hero-img-wrap {
     opacity: 1;
     transform: none;
