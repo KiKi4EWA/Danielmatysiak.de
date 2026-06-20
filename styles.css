@@ -449,6 +449,8 @@ form .btn {
   z-index: 0;
 }
 
+.hero-deco .lede { color: var(--text); }
+
 .hero-deco .hero-kicker,
 .hero-deco h1,
 .hero-deco .lede,
