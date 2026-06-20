@@ -466,8 +466,8 @@ form .btn {
   -webkit-backdrop-filter: blur(10px);
 }
 
-.hero-deco .hero-copy { padding: 1.75rem 2rem; }
-.hero-deco .hero-text { padding: 1.5rem 1.75rem; }
+.hero-deco .hero-copy,
+.hero-deco .hero-text { padding: 1.75rem 2rem; }
 
 .hero-deco .hero-text {
   display: inline-block;
