@@ -488,12 +488,6 @@ form .btn {
   color: rgba(28, 25, 16, 0.72);
 }
 
-/* Home / Audio / Lab: volle Deckkraft */
-.page-home .hero-deco h1,
-.page-audio .hero-deco h1,
-.page-lab .hero-deco h1 {
-  color: var(--text);
-}
 
 
 .hero-deco-img.hero-deco-portrait {
