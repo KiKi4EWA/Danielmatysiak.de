@@ -472,7 +472,6 @@ form .btn {
 .hero-deco .hero-text {
   width: fit-content;
   max-width: min(500px, calc(100vw - 2 * var(--gutter)));
-  will-change: transform;
 }
 
 .hero-deco-img.hero-deco-full {
