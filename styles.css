@@ -453,29 +453,16 @@ form .btn {
 .hero-deco h1,
 .hero-deco .lede,
 .hero-deco .hero-grid,
-.hero-deco .cta-row,
-.hero-deco .hero-text {
+.hero-deco .cta-row {
   position: relative;
   z-index: 2;
 }
 
-.hero-deco .hero-copy,
-.hero-deco .hero-text {
+.hero-deco .hero-copy {
   background: rgba(237, 232, 219, 0.52);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-}
-
-.page-home .hero-deco .hero-text {
-  background: rgba(237, 232, 219, 0.15);
-}
-
-.hero-deco .hero-copy,
-.hero-deco .hero-text { padding: 1.75rem 2rem; }
-
-.hero-deco .hero-text {
-  width: fit-content;
-  max-width: min(500px, calc(100vw - 2 * var(--gutter)));
+  padding: 1.75rem 2rem;
 }
 
 .hero-deco-img.hero-deco-full {
@@ -660,7 +647,6 @@ form .btn {
 }
 
 .hero .hero-grid,
-.hero .hero-text,
 .hero .hero-copy {
   opacity: 0;
   transform: translateY(6px);
@@ -672,7 +658,6 @@ form .btn {
   .hero h1,
   .hero .lede,
   .hero .hero-grid,
-  .hero .hero-text,
   .hero .hero-copy,
   .hero-img-wrap {
     opacity: 1;
