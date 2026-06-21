@@ -700,6 +700,7 @@ form .btn {
 @media (max-width: 780px) {
   .hero-copy  { grid-column: span 12; }
   .hero-panel { grid-column: span 12; }
+  .page-home .hero-copy { grid-column: span 12; }
 }
 
 .hero-panel .lede {
