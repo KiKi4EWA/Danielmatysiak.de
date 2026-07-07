@@ -570,6 +570,17 @@ form .btn {
     opacity: 0.5;
   }
 
+  /* On mobile the bg image is reduced to 0.5 opacity, so text needs more presence */
+  .hero-deco h1 {
+    color: rgba(28, 25, 16, 0.88);
+  }
+
+  /* bg image is 0.5 vs 0.65 on desktop — reduce glass opacity to keep same visual weight */
+  .hero-deco .hero-copy,
+  .hero-panel {
+    background: rgba(237, 232, 219, 0.38);
+  }
+
 }
 
 /* Hero with image — 2-column editorial layout */
@@ -650,7 +661,7 @@ form .btn {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .hero:hover h1 { color: var(--accent); }
+  .hero:hover h1 { color: color-mix(in srgb, var(--accent) 72%, transparent); }
 }
 
 .hero .lede {
