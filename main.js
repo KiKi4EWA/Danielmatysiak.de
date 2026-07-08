@@ -257,7 +257,10 @@ if (document.body.classList.contains('page-lab')) {
   document.querySelectorAll('.lab-more-btn').forEach(btn => {
     const dialog = document.getElementById(btn.dataset.dialog);
     if (!dialog) return;
-    btn.addEventListener('click', () => dialog.showModal());
+    btn.addEventListener('click', () => {
+      dialog.showModal();
+      history.replaceState(null, '', '#' + dialog.id);
+    });
   });
 
   document.querySelectorAll('.lab-dialog').forEach(dialog => {
@@ -268,6 +271,29 @@ if (document.body.classList.contains('page-lab')) {
                      rect.left <= e.clientX && e.clientX <= rect.right;
       if (!inside) dialog.close();
     });
+
+    dialog.addEventListener('close', () => {
+      if (location.hash === '#' + dialog.id) {
+        history.replaceState(null, '', location.pathname + location.search);
+      }
+    });
+
+    const shareBtn = dialog.querySelector('.lab-share-btn');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', () => {
+        const url = location.origin + location.pathname + '#' + dialog.id;
+        const title = dialog.querySelector('h4')?.textContent || document.title;
+        if (navigator.share) {
+          navigator.share({ title, url }).catch(() => {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(url).then(() => {
+            const original = shareBtn.textContent;
+            shareBtn.textContent = 'Link kopiert';
+            setTimeout(() => { shareBtn.textContent = original; }, 2000);
+          }).catch(() => {});
+        }
+      });
+    }
 
     dialog.querySelectorAll('.lab-tab').forEach(tab => {
       tab.addEventListener('click', () => {
@@ -301,4 +327,9 @@ if (document.body.classList.contains('page-lab')) {
       });
     });
   });
+
+  const hashDialog = location.hash && document.getElementById(location.hash.slice(1));
+  if (hashDialog && hashDialog.classList.contains('lab-dialog')) {
+    hashDialog.showModal();
+  }
 }
