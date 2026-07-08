@@ -1243,7 +1243,7 @@ form .btn,
   margin-bottom: 0.5rem;
 }
 
-.lab-dialog-lede {
+.lab-dialog .lab-dialog-lede {
   font-style: italic;
   color: var(--muted);
   font-size: 15px;
@@ -1276,7 +1276,7 @@ form .btn,
 
 .lab-dialog ul li { margin-bottom: 0.35rem; }
 
-.lab-dialog-note {
+.lab-dialog .lab-dialog-note {
   font-style: italic;
   font-size: 13.5px;
 }

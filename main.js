@@ -262,7 +262,10 @@ if (document.body.classList.contains('page-lab')) {
 
   document.querySelectorAll('.lab-dialog').forEach(dialog => {
     dialog.addEventListener('click', (e) => {
-      if (e.target === dialog) dialog.close();
+      const rect = dialog.getBoundingClientRect();
+      const inside = rect.top <= e.clientY && e.clientY <= rect.bottom &&
+                     rect.left <= e.clientX && e.clientX <= rect.right;
+      if (!inside) dialog.close();
     });
 
     dialog.querySelectorAll('.lab-tab').forEach(tab => {
