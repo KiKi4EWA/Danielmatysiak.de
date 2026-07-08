@@ -405,13 +405,15 @@ h4 {
 /* Buttons außerhalb des Hero: Accent-Tint der jeweiligen Seite */
 .section .btn,
 .section .btn-ghost,
-form .btn {
+form .btn,
+.lab-dialog .btn {
   background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .section .btn:hover,
-  form .btn:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+  form .btn:hover,
+  .lab-dialog .btn:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); }
   .section .btn-ghost:hover { background: color-mix(in srgb, var(--accent) 16%, transparent); }
 }
 
@@ -1086,6 +1088,8 @@ form .btn {
   padding: 1.25rem 1.5rem 1.25rem 0;
   background: none;
   transition: border-color 180ms ease, background 180ms ease;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -1155,6 +1159,183 @@ form .btn {
 .lab-cta p {
   font-size: 15px;
   color: var(--muted);
+}
+
+/* ─── LAB MODULE POPUPS ───────────────────────────── */
+.lab-module-more {
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.lab-more-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lab-more-btn:hover { text-decoration: underline; }
+}
+
+.lab-dialog {
+  max-width: 560px;
+  width: calc(100% - 2.5rem);
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border: none;
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.lab-dialog[open] {
+  animation: fadeUp 280ms var(--ease-out) forwards;
+}
+
+.lab-dialog::backdrop {
+  background: rgba(28, 25, 16, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.lab-dialog-close {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 0.5rem;
+}
+
+.lab-dialog-close button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lab-dialog-close button:hover { color: var(--accent); }
+}
+
+.lab-dialog-tag {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.lab-dialog h4 {
+  font-size: clamp(20px, 3vw, 26px);
+  margin-bottom: 0.5rem;
+}
+
+.lab-dialog-lede {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0 0 1.25rem;
+}
+
+.lab-dialog h5 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 1.25rem 0 0.5rem;
+}
+
+.lab-dialog p {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.lab-dialog ul {
+  margin: 0 0 1rem;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.lab-dialog ul li { margin-bottom: 0.35rem; }
+
+.lab-dialog-note {
+  font-style: italic;
+  font-size: 13.5px;
+}
+
+.lab-dialog-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.lab-dialog-table tr { border-top: 1px solid var(--line); }
+.lab-dialog-table tr:first-child { border-top: none; }
+
+.lab-dialog-table th,
+.lab-dialog-table td {
+  text-align: left;
+  padding: 0.6rem 0;
+  font-size: 14px;
+  vertical-align: top;
+  font-weight: 400;
+}
+
+.lab-dialog-table th {
+  font-family: var(--mono);
+  font-weight: 500;
+  white-space: nowrap;
+  padding-right: 1rem;
+  color: var(--text);
+}
+
+.lab-dialog-table td { color: var(--muted); }
+
+.lab-dialog-cta { margin-top: 1.5rem; }
+
+.lab-dialog-tabs {
+  display: flex;
+  gap: 1.25rem;
+  margin: 0.25rem 0 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.lab-tab {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 0 0.6rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.lab-tab.is-active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 /* ─── EDITORIAL LIST ──────────────────────────────── */

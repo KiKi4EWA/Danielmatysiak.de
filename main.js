@@ -251,3 +251,28 @@ if (window.matchMedia('(pointer: coarse)').matches) {
     });
   }
 }
+
+// Lab-Modul-Popups: Öffnen per Button, Schließen per Backdrop-Klick, Tabs umschalten
+if (document.body.classList.contains('page-lab')) {
+  document.querySelectorAll('.lab-more-btn').forEach(btn => {
+    const dialog = document.getElementById(btn.dataset.dialog);
+    if (!dialog) return;
+    btn.addEventListener('click', () => dialog.showModal());
+  });
+
+  document.querySelectorAll('.lab-dialog').forEach(dialog => {
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    dialog.querySelectorAll('.lab-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.panel;
+        dialog.querySelectorAll('.lab-tab').forEach(t => t.classList.toggle('is-active', t === tab));
+        dialog.querySelectorAll('.lab-dialog-panel').forEach(p => {
+          p.hidden = p.dataset.panel !== target;
+        });
+      });
+    });
+  });
+}
