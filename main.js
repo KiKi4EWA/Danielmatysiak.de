@@ -272,14 +272,32 @@ if (document.body.classList.contains('page-lab')) {
     dialog.querySelectorAll('.lab-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         const target = tab.dataset.panel;
+        const current = dialog.querySelector('.lab-dialog-panel:not([hidden])');
+        const next = dialog.querySelector(`.lab-dialog-panel[data-panel="${target}"]`);
+        if (!next || current === next) return;
+
         dialog.querySelectorAll('.lab-tab').forEach(t => {
           const active = t === tab;
           t.classList.toggle('is-active', active);
           t.setAttribute('aria-selected', active ? 'true' : 'false');
         });
-        dialog.querySelectorAll('.lab-dialog-panel').forEach(p => {
-          p.hidden = p.dataset.panel !== target;
-        });
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!current || reduceMotion) {
+          dialog.querySelectorAll('.lab-dialog-panel').forEach(p => {
+            p.hidden = p.dataset.panel !== target;
+          });
+          return;
+        }
+
+        current.classList.add('lab-panel-fade-out');
+        setTimeout(() => {
+          current.hidden = true;
+          current.classList.remove('lab-panel-fade-out');
+          next.hidden = false;
+          next.classList.add('lab-panel-fade-in');
+          requestAnimationFrame(() => next.classList.remove('lab-panel-fade-in'));
+        }, 90);
       });
     });
   });
