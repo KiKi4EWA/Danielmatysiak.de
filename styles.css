@@ -1188,6 +1188,7 @@ form .btn,
   max-width: 560px;
   width: calc(100% - 2.5rem);
   max-height: 85vh;
+  margin: auto;
   overflow-y: auto;
   padding: clamp(1.5rem, 4vw, 2.25rem);
   border: none;
