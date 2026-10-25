@@ -250,7 +250,7 @@ page = f'''<!DOCTYPE html>
         <div class="hero-copy">
           <p class="lede" data-en="Independent label for dub, reggae, hip-hop, electronic, ambient and house music. Here you will find every release at a glance.">Unabhängiges Label für Dub, Reggae, Hip-Hop, Electronic, Ambient und House Music. Hier findest du alle Releases im Überblick.</p>
           <div class="cta-row">
-            <button type="button" class="btn btn-menu" id="artist-btn" popovertarget="artist-menu" aria-haspopup="true" aria-expanded="false"><span data-en="Archive">Archiv</span><span class="caret" aria-hidden="true"></span></button>
+            <button type="button" class="btn btn-menu" id="artist-btn" popovertarget="artist-menu" aria-haspopup="true" aria-expanded="false"><span data-en="Label artists">Label-Künstler</span><span class="caret" aria-hidden="true"></span></button>
             <a class="btn-ghost" href="kontakt.html"><span data-en="Contact">Kontakt</span></a>
           </div>
         </div>
