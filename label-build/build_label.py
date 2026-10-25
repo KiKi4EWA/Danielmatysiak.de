@@ -14,9 +14,9 @@ extras = json.loads((ROOT / "data/release-extras.json").read_text()).get("releas
 _ca = ROOT / "data/cover-assignments.json"
 ASSIGN = json.loads(_ca.read_text()).get("covers", {}) if _ca.exists() else {}
 def art_title(pid):
-    """Dateiname JJMMTTN(N).jpg -> #obruni_JJ.MM.TT.N (z. B. 1204242.jpg -> #obruni_12.04.24.2)"""
-    m = re.fullmatch(r"(\d{2})(\d{2})(\d{2})(\d{1,2})", os.path.splitext(ASSIGN.get(pid, ""))[0])
-    return "#obruni_" + ".".join(m.groups()) if m else None
+    """Dateiname 1203122.jpg -> #oban_1203122 (JJMMTT + laufende Nummer, unverändert aus dem Dateinamen)"""
+    stem = os.path.splitext(ASSIGN.get(pid, ""))[0]
+    return "#oban_" + stem if re.fullmatch(r"\d{7,8}", stem) else None
 
 REL = sorted((r for r in reg["releases"] if r["label"] == "4Spur Records" and not extras.get(r["product_id"], {}).get("hidden")),
              key=lambda r: (r["release_date"], r["product_id"]), reverse=True)
