@@ -287,6 +287,7 @@
       pi.alt = (en ? a.photoAltEn : a.photoAlt) || a.name;
       pb.setAttribute('aria-label', en ? 'Show photo large' : 'Foto groß anzeigen');
     }
+    requestAnimationFrame(fitPhoto);
   }
 
   function setArtist(slug, scroll) {
@@ -341,6 +342,17 @@
     window.addEventListener('resize', () => { if (menu.matches(':popover-open')) menu.hidePopover(); });
   }
   // Großansicht des Artist-Fotos: dieselbe Lightbox wie bei den Covern, nur im Querformat
+  // Foto so hoch wie der Text (4:3), im Abstand der Cover direkt neben dem Absatz
+  function fitPhoto() {
+    if (!intro || intro.hidden) return;
+    const pb = intro.querySelector('.artist-intro-photo'), tx = intro.querySelector('.artist-intro-text');
+    if (pb.hidden) return;
+    if (matchMedia('(max-width: 800px)').matches) { pb.style.removeProperty('width'); pb.style.removeProperty('height'); return; }
+    const h = Math.round(tx.getBoundingClientRect().height);
+    if (h > 0) { pb.style.height = h + 'px'; pb.style.width = Math.round(h * 4 / 3) + 'px'; }
+  }
+  if (intro && 'ResizeObserver' in window) new ResizeObserver(fitPhoto).observe(intro.querySelector('.artist-intro-text'));
+  window.addEventListener('resize', fitPhoto);
   if (intro && lb) {
     intro.querySelector('.artist-intro-photo').addEventListener('click', e => {
       const a = ARTISTS.find(x => x.slug === activeArtist); if (!a || !a.photo) return;
