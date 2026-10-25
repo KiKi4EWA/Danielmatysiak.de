@@ -44,7 +44,7 @@ N = len(D)
 
 # Kopf
 s = re.sub(r"<title>.*?</title>", "<title>Produktionen für andere Künstler – Daniel Matysiak</title>", s, 1)
-DESC = "Ausgewählte Arbeiten für andere Künstler: Releases, an denen Daniel Matysiak beteiligt war, darunter Nicolas Sosa, ANNA T, Tiita und Wolfgang Tillmans."
+DESC = "Produktionen für andere Künstler: Beats, Samples, Mix und Mastering von Daniel Matysiak für Releases von Nicolas Sosa, ANNA T, Tiita und Wolfgang Tillmans."
 s = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{DESC}">', s, 1)
 s = s.replace('content="index, follow"', 'content="noindex, follow"', 1)
 s = s.replace("https://danielmatysiak.de/label.html", "https://danielmatysiak.de/produktionen.html")
@@ -63,7 +63,7 @@ cut(r'<section class="hero hero-deco">', r'</section>', '''<section class="hero 
       <h1 data-en="Productions.">Produktionen.</h1>
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="lede" data-en="Selected works for other artists: releases I have produced, mixed or mastered outside of my own label 4Spur Records.">Ausgewählte Arbeiten für andere Künstler: Releases, die ich außerhalb meines eigenen Labels 4Spur Records produziert, gemischt oder gemastert habe.</p>
+          <p class="lede" data-en="Beats, samples, mixing and mastering for other artists' releases, from singles to EPs.">Beats, Samples, Mix und Mastering für die Releases anderer Künstler, von Singles bis EPs.</p>
           <div class="cta-row">
             <a class="btn" href="kontakt.html"><span data-en="Start a project">Projekt anfragen</span></a>
             <a class="btn-ghost" href="leistungen.html"><span data-en="Back to Audio">Zurück zu Audio</span></a>
@@ -77,14 +77,12 @@ cut(r'<div id="artist-menu" popover', r'</div>\n\s*\n', "")
 cut(r'<section class="artist-intro"', r'</section>\n\s*\n', "")
 # Wand
 cut(r'<section class="section release-wall" id="archiv">', r'</section>', f'''<section class="section release-wall" id="archiv">
-      <p class="eyebrow" data-en="Selected works">Ausgewählte Arbeiten</p>
-      <p class="section-intro" data-en="{N} selected works for other artists, newest first. Click a cover for details."><span class="release-count">{N}</span> ausgewählte Arbeiten für andere Künstler, neueste zuerst. Klick auf ein Cover öffnet die Details.</p>
+      <p class="eyebrow" data-en="Releases">Releases</p>
       <ul class="release-grid" role="list">
           {grid}
       </ul>
       <div class="cta-row">
-        <a class="btn" href="https://open.spotify.com/playlist/0XUePz5P5GzsRHbm8iVkRv" target="_blank" rel="noopener"><span data-en="Playlist on Spotify ↗">Playlist auf Spotify ↗</span></a>
-        <a class="btn-ghost" href="label.html"><span data-en="To the label">Zum Label</span></a>
+        <a class="btn" href="label.html"><span data-en="To the label">Zum Label</span></a>
       </div>
     </section>''')
 # Jahresleiste
