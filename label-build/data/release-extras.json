@@ -1,0 +1,423 @@
+{
+ "_hinweis": "Optionale Zusatzdaten je product_id. Nur belegte Angaben eintragen. \"hidden\": true blendet ein Release aus, \"artist\" überschreibt den Artist aus dem Register (bis der Orchard-Eintrag korrigiert ist). \"cover_by\" nennt den Cover-Künstler, wenn es nicht Obruni Antwi ist (dann kein Bildtitel #oban_…).",
+ "_beispiel": {
+  "0000000": {
+   "highlight": true,
+   "links": {
+    "spotify": "https://…",
+    "apple": "https://…",
+    "bandcamp": "https://…"
+   },
+   "tracks": [
+    {
+     "title": "…",
+     "duration": "3:12"
+    }
+   ],
+   "duration": "12:30",
+   "description": "…",
+   "credits": [
+    {
+     "role": "Mix",
+     "name": "…"
+    }
+   ],
+   "videos": [
+    {
+     "title": "…",
+     "url": "https://…"
+    }
+   ]
+  }
+ },
+ "releases": {
+  "7018769": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/augenlied-single/6810388041",
+    "spotify": "https://open.spotify.com/album/1AOdwvLBbswHBB9LYHOUOH"
+   },
+   "description": "Ein dunkles Dub-Stück, digital produziert mit MPC, 808 und Juno, getragen von weiten Delay-Räumen.",
+   "description_en": "A dark dub piece, produced digitally with MPC, 808 and Juno, carried by wide delay spaces."
+  },
+  "7004136": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/olga-mein-herz-single/6807667693",
+    "spotify": "https://open.spotify.com/album/649LD7GoTYvbrzCXUDzc3d"
+   },
+   "description": "Zwei Mbira-Stücke, die wie ein Gedicht als Haiku geschrieben sind.",
+   "description_en": "Two mbira pieces written as a haiku, like a poem."
+  },
+  "6583184": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/nk44-feat-kingali-030-single/6783938315",
+    "spotify": "https://open.spotify.com/album/6e6O2id7xkwFCSh92RGHrP"
+   },
+   "description": "NK44 steht für Neukölln 44, den Ort, an dem die Stücke entstanden sind. Pannier, Donau und Ecke Reuter sind die drei Straßen, die dort zusammenkommen; die drei Tracks greifen sie auf und geben jeder ihren eigenen Vibe.",
+   "description_en": "NK44 stands for Neukölln 44, the place where the pieces were made. Pannier, Donau and Ecke Reuter are the three streets that meet there; the three tracks take them up and give each its own vibe."
+  },
+  "6563692": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/jerry-ep/6777901433",
+    "spotify": "https://open.spotify.com/album/0seVNwtVfGYK54JgYh5h00"
+   },
+   "description": "Eine musikalische Reise mit viel Spielfreude, 808s und funkigen Synthesizern.",
+   "description_en": "A musical journey full of playfulness, 808s and funky synthesizers."
+  },
+  "6564352": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/dub-du-phonk-single/6781570641",
+    "spotify": "https://open.spotify.com/album/6YzDKBMbMkcyRicdmtoRsm"
+   },
+   "description": "Ein digitales Dub-Stück, das Phonk-Elemente verbindet. Eine Mbira spielt mit.",
+   "description_en": "A digital dub piece that blends phonk elements, with a mbira playing along."
+  },
+  "6563697": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/blaue-lichter-single/6781570779",
+    "spotify": "https://open.spotify.com/album/5YBUaUAcHD5snCOgpqrKRO"
+   }
+  },
+  "6563658": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/1kopf-single/6777971003",
+    "spotify": "https://open.spotify.com/album/6ufIaxwMYulK2ZGv1NrORn"
+   }
+  },
+  "6500088": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/machen-was-sie-wollen-rap-feat-ete-ali-single/1896220849",
+    "spotify": "https://open.spotify.com/album/4m90eqfnF2hn40nyB1aEeJ"
+   },
+   "description": "Ein Freestyle von Eli und ihrem Papa.",
+   "description_en": "A freestyle by Eli and her dad."
+  },
+  "5806400": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/liquidrom-feat-kingali-030-single/1801595619",
+    "spotify": "https://open.spotify.com/album/7JRjux3aD5cywnmEr4bVPs"
+   },
+   "description": "Inspiriert von da.",
+   "description_en": "Inspired by that."
+  },
+  "4882087": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/obrunis-fear-feat-kingali-030-single/1741280608",
+    "spotify": "https://open.spotify.com/album/7wbnArdYLsndgcQsbUmOKf"
+   }
+  },
+  "4882157": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/gib-mir-xukah-single/1737715446",
+    "spotify": "https://open.spotify.com/album/0u2ehwAnfATEynUCadXaw6"
+   },
+   "cover_by": "Daniel Matysiak"
+  },
+  "4551170": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/your-eyes-so-bright-single/1724515204",
+    "spotify": "https://open.spotify.com/album/1KsQSsdnPki36dquk6q3tf"
+   }
+  },
+  "4785129": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/your-eyes-so-bright-sped-up-single/1724514993",
+    "spotify": "https://open.spotify.com/album/1Fv1LDgyd73gPva9GQjaKI"
+   }
+  },
+  "4742850": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/baumhaus-feat-kiki4ewa-single/1718494535",
+    "spotify": "https://open.spotify.com/album/7JxgTE54bPYO5JNr41sRse"
+   }
+  },
+  "4742259": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/bye-baye-fail-feat-hasiboi-ep/1729278579",
+    "spotify": "https://open.spotify.com/album/7JEgfp1Li4heU4Ol8B10e7"
+   }
+  },
+  "4358344": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/wagmi-vibe-pt-4-single/1677503320",
+    "spotify": "https://open.spotify.com/album/6j4FhcooMgoXGmmkAalbnV"
+   }
+  },
+  "4250726": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/rub-a-dub-sundays-no-3-ep/1662328067",
+    "spotify": "https://open.spotify.com/album/4brr32rI5mhmO3wrAO3DOC"
+   }
+  },
+  "4220638": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/rub-a-dub-sundays-no-2-feat-grime-dub-soundsystem-single/1662327305",
+    "spotify": "https://open.spotify.com/album/2LBIbWEW3BSoWyHpdjeJ9H"
+   }
+  },
+  "4219072": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/rub-a-dub-sundays-no-3-ep/1662328067",
+    "spotify": "https://open.spotify.com/album/0aRoLg6fu5VRXrSij1eA44"
+   }
+  },
+  "4164003": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/afro-rave-feat-kiki4ewa-single/1655633679",
+    "spotify": "https://open.spotify.com/album/1nQhqHU3GknHqfgYxR6o0c"
+   }
+  },
+  "4185847": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/obrunis-cave-feat-bass-juicey-808-ep/1654137901",
+    "spotify": "https://open.spotify.com/album/2OCAiL910MR0AB0gTHos0e"
+   }
+  },
+  "3873579": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/wagmi-vibe-pt-3-feat-kingali-030-single/1630638129",
+    "spotify": "https://open.spotify.com/album/0TOTxQqBbCjhCnCctCmAyG"
+   }
+  },
+  "3457928": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/tears-love-aint-that-way/1611143448",
+    "spotify": "https://open.spotify.com/album/3KxmcZcouFoOis7WH01rBp"
+   },
+   "cover_by": "Daniel Matysiak"
+  },
+  "2630344": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/14karat-bokondi-dub-single/1612671079",
+    "spotify": "https://open.spotify.com/album/6HjnhkYTJbluWOiPClTSO0"
+   },
+   "hidden": true,
+   "cover_by": "Daniel Matysiak"
+  },
+  "3648357": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/wagmi-vibe-pt-2-ep/1611319939",
+    "spotify": "https://open.spotify.com/album/78QY8h6IdCmgQ0bxQgkjIE"
+   }
+  },
+  "3648356": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/wagmi-vibe-pt-1-single/1611170160",
+    "spotify": "https://open.spotify.com/album/5bTfSbDD2P3qCIT0LjfqRG"
+   }
+  },
+  "3648270": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/wagmi-vibe-sketches-feat-kiki4ewa-ep/1611363253",
+    "spotify": "https://open.spotify.com/album/2N4XgR71LiMy5ElkensoeI"
+   }
+  },
+  "2630355": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/summertyme-single/1611170295",
+    "spotify": "https://open.spotify.com/album/7caMp1NYcsMe7y9sGF0TrV"
+   },
+   "hidden": true,
+   "cover_by": "Daniel Matysiak"
+  },
+  "2630531": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/cat-in-the-oven-single/1611175943",
+    "spotify": "https://open.spotify.com/album/4slDWnbqlkBcGUAP0fZB7Q"
+   },
+   "hidden": true,
+   "cover_by": "Daniel Matysiak"
+  },
+  "2794885": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/keep-your-secret-single/1611170093",
+    "spotify": "https://open.spotify.com/album/00J1JIVpxBd8UhewSzzC4J"
+   },
+   "hidden": true
+  },
+  "3313630": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/jeden-tag-2021-quarantine-dub-single/1561978793",
+    "spotify": "https://open.spotify.com/album/16AWizCRuKKlTkOCX3muxj"
+   }
+  },
+  "2794878": {
+   "links": {
+    "spotify": "https://open.spotify.com/album/2ajH0cILgiaQKOhGOC4vJM"
+   },
+   "hidden": true
+  },
+  "2794882": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/who-fi-frighten-single/1501123071",
+    "spotify": "https://open.spotify.com/album/0wKaH8wV5vD2x6lQpkDMEO"
+   },
+   "hidden": true
+  },
+  "2794883": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/duppy-know-single/1501123903",
+    "spotify": "https://open.spotify.com/album/4HqSUWkPBxSobYrlTqA3Pi"
+   },
+   "hidden": true
+  },
+  "2652978": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/die-gedanken-sind-frei-feat-olga-lilly-single/1479317767",
+    "spotify": "https://open.spotify.com/album/0FGkj1AqAlKro5YQ2CnVPh"
+   },
+   "cover_by": "Daniel Matysiak"
+  },
+  "2658347": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/the-yellow-king-single/1477121958",
+    "spotify": "https://open.spotify.com/album/0S70qNoC5Aga7cOwkfWgMe"
+   }
+  },
+  "2658350": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/nite-berry-bokondi-dub-single/1475729900",
+    "spotify": "https://open.spotify.com/album/5oJUGnppoxPk9ngbZrf5Dq"
+   }
+  },
+  "2658352": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/im-wald-feat-kaia-av%C3%A9h-single/1477537622",
+    "spotify": "https://open.spotify.com/album/0frC5hQsHOdxAVpweVHUTq"
+   },
+   "cover_by": "Daniel Matysiak"
+  },
+  "2621752": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/the-lost-tapes-ep/1463460693",
+    "spotify": "https://open.spotify.com/album/6OblrY2HsAbHJpVXQJUqEo"
+   },
+   "cover_by": "Daniel Matysiak"
+  },
+  "2622094": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/lost-riddim-feat-seth-deeken-nina-asseng-daniel-matysiak/1463487364",
+    "spotify": "https://open.spotify.com/album/4RRbqxpotQ6jzBuCGifcqN"
+   },
+   "cover_by": "Daniel Matysiak"
+  },
+  "2582408": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/auroras-mood-feat-kingali-030-single/1460550405",
+    "spotify": "https://open.spotify.com/album/5fMTHidoriZJYeIvB4XzaM"
+   }
+  },
+  "2582797": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/protect-me-feat-kingali-030-single/1454249559",
+    "spotify": "https://open.spotify.com/album/5nHhSnchcCVDs68IBOckjM"
+   }
+  },
+  "2582371": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/crystal-ship-single/1454249989",
+    "spotify": "https://open.spotify.com/album/4EXmGSmQo732pVY6SCz9DV"
+   }
+  },
+  "2547314": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/daylight-single/1448754879",
+    "spotify": "https://open.spotify.com/album/0QpQMagxQE5hRqAjcJmQHg"
+   }
+  },
+  "2546880": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/the-chase-single/1448375735",
+    "spotify": "https://open.spotify.com/album/7pI8auscm1d7AcsFbK4u2C"
+   }
+  },
+  "2545874": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/mombasa-single/1448376275",
+    "spotify": "https://open.spotify.com/album/0UM8c5JxukIedhMDWZxHAw"
+   }
+  },
+  "2544479": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/waiting-for-ticks/1448761801",
+    "spotify": "https://open.spotify.com/album/2fn2cOVBV8FUuX1SKK1wcB"
+   },
+   "cover_by": "Daniel Matysiak"
+  },
+  "2544376": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/the-road/1449334936",
+    "spotify": "https://open.spotify.com/album/0gtW02sDiqaxktzz3qZHh0"
+   }
+  },
+  "2545750": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/monday-blizzard-single/1448760380",
+    "spotify": "https://open.spotify.com/album/5BR497R0LObu08f6m1xV0z"
+   }
+  },
+  "2541175": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/vicious-circle/1447643585",
+    "spotify": "https://open.spotify.com/album/7oUi8jy9b564IOjD371TKo"
+   }
+  },
+  "2530963": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/tunka-tun-ka-single/1445872417",
+    "spotify": "https://open.spotify.com/album/285PeSebvEjz2ZePjQUD9S"
+   },
+   "cover_by": "Daniel Matysiak"
+  },
+  "2530958": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/kinshasa-single/1445945878",
+    "spotify": "https://open.spotify.com/album/1I7mLkABzLRs3qFXjEr1iv"
+   }
+  },
+  "2515398": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/all-good/1443552944",
+    "spotify": "https://open.spotify.com/album/08u8LIeov3QE8G0iwX139Q"
+   },
+   "artist": "Ete & Ali",
+   "cover_by": "Daniel Matysiak"
+  },
+  "2494563": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/congo-at-nite-single/1441146479",
+    "spotify": "https://open.spotify.com/album/3IQ8GvSspRlTo4US2bmtm5"
+   }
+  },
+  "2495668": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/ciclo-de-mexico-ep/1441308306",
+    "spotify": "https://open.spotify.com/album/5ugVud6zmDfCWkO6TTSfvf"
+   },
+   "cover_by": "Daniel Matysiak"
+  },
+  "2215975": {
+   "links": {
+    "spotify": "https://open.spotify.com/album/2FBlDsvev3KvozbNTFBmJL"
+   },
+   "cover_by": "Daniel Matysiak"
+  },
+  "2215976": {
+   "links": {
+    "apple": "https://music.apple.com/de/album/grime-dub-ep/182852368",
+    "spotify": "https://open.spotify.com/album/1CTCgoGtLI6KAz7SiwNrsJ"
+   },
+   "cover_by": "Daniel Matysiak"
+  }
+ },
+ "videos_zuordnung_vorschlag": {
+  "4185847": [
+   "4195033",
+   "4195096",
+   "4195144"
+  ],
+  "2658347": [
+   "2683263"
+  ]
+ },
+ "videos_zuordnung_hinweis": "Vorschlag nur nach Tracktiteln (Obruni's Cave EP enthält Dragon Fruit/Elderflower; The Yellow King enthält Out My Way). Noch nicht aktiv, URLs fehlen."
+}
