@@ -40,21 +40,24 @@ def tile_artists(r):
     names = [n.strip() for n in (r["artist"] + "," + (r.get("featuring") or "")).split(",") if n.strip()]
     return " ".join(dict.fromkeys(a for a in (aslug(n) for n in names) if a in ARTISTS))
 def make_photo(slug, fname):
-    """assets/<fname> -> img/artists/<slug>-photo-{900,1600}.webp; liefert die Pfade oder None"""
+    """assets/<fname> -> img/artists/<slug>-photo-<breite>.webp (900 und 1600, nie größer als das Original); liefert Pfade und Maße oder None"""
     src = ROOT / "assets" / fname
     if not src.exists(): return None
     import subprocess, tempfile
+    o = subprocess.run(["sips", "-g", "pixelWidth", "-g", "pixelHeight", str(src)], capture_output=True, text=True).stdout.split()
+    W, H = int(o[-3]), int(o[-1])
+    widths = sorted({min(w, W) for w in (900, 1600)})
     out = SITE / "img/artists"; out.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as td:
         png = pathlib.Path(td) / "p.png"
         subprocess.run(["sips", "-s", "format", "png", str(src), "--out", str(png)], check=True, capture_output=True)
-        for w in (900, 1600):
+        for w in widths:
             t = out / f"{slug}-photo-{w}.webp"
             if t.exists(): continue
             tmp = pathlib.Path(td) / f"r{w}.png"
             subprocess.run(["sips", "-s", "format", "png", "--resampleWidth", str(w), str(png), "--out", str(tmp)], check=True, capture_output=True)
             subprocess.run(["cwebp", "-q", "82", "-m", "6", str(tmp), "-o", str(t)], check=True, capture_output=True)
-    return {"s": f"img/artists/{slug}-photo-900.webp", "l": f"img/artists/{slug}-photo-1600.webp"}
+    return {"s": f"img/artists/{slug}-photo-{widths[0]}.webp", "l": f"img/artists/{slug}-photo-{widths[-1]}.webp", "sw": widths[0], "lw": widths[-1], "w": W, "h": H}
 ARTIST_LIST = []
 for _slug, _name in sorted(ARTISTS.items(), key=lambda kv: kv[1].lower()):
     _info = ARTIST_INFO.get(_slug, {})

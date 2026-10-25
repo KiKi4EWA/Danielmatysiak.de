@@ -283,7 +283,7 @@
     const pb = intro.querySelector('.artist-intro-photo'), pi = pb.querySelector('img');
     pb.hidden = !a.photo;
     if (a.photo) {
-      pi.src = a.photo.s; pi.srcset = `${a.photo.s} 900w, ${a.photo.l} 1600w`; pi.sizes = '(max-width: 800px) 92vw, 40vw';
+      pi.src = a.photo.s; if (a.photo.s !== a.photo.l) pi.srcset = `${a.photo.s} ${a.photo.sw}w, ${a.photo.l} ${a.photo.lw}w`; else pi.removeAttribute('srcset'); pi.sizes = '(max-width: 800px) 92vw, 40vw';
       pi.alt = (en ? a.photoAltEn : a.photoAlt) || a.name;
       pb.setAttribute('aria-label', en ? 'Show photo large' : 'Foto groß anzeigen');
     }
@@ -348,7 +348,8 @@
     const pb = intro.querySelector('.artist-intro-photo'), tx = intro.querySelector('.artist-intro-text');
     if (pb.hidden) return;
     if (matchMedia('(max-width: 800px)').matches) { pb.style.removeProperty('width'); pb.style.removeProperty('height'); return; }
-    const h = Math.round(tx.getBoundingClientRect().height);
+    const lh = parseFloat(getComputedStyle(tx).lineHeight) || 26;
+    const h = Math.round(Math.max(tx.getBoundingClientRect().height, lh * 8));   // mindestens acht Zeilen hoch, auch bei kurzem Text
     if (h > 0) { pb.style.height = h + 'px'; pb.style.width = Math.round(h * 4 / 3) + 'px'; }
   }
   if (intro && 'ResizeObserver' in window) new ResizeObserver(fitPhoto).observe(intro.querySelector('.artist-intro-text'));
@@ -357,12 +358,15 @@
     intro.querySelector('.artist-intro-photo').addEventListener('click', e => {
       const a = ARTISTS.find(x => x.slug === activeArtist); if (!a || !a.photo) return;
       lb.classList.add('is-photo');
-      lbImg.src = a.photo.l; lbImg.srcset = `${a.photo.s} 900w, ${a.photo.l} 1600w`; lbImg.sizes = 'min(92vw, 112dvh)';
+      const art = lb.querySelector('.lightbox-art');
+      art.style.setProperty('--ar', (a.photo.w / a.photo.h).toFixed(4)); art.style.maxWidth = Math.round(a.photo.w * 1.6) + 'px';   // kleine Fotos nicht unscharf aufblasen
+      lbImg.src = a.photo.l; if (a.photo.s !== a.photo.l) lbImg.srcset = `${a.photo.s} ${a.photo.sw}w, ${a.photo.l} ${a.photo.lw}w`; else lbImg.removeAttribute('srcset');
+      lbImg.sizes = 'min(92vw, 112dvh)';
       lbImg.alt = (lang() === 'en' ? a.photoAltEn : a.photoAlt) || a.name;
       lbCap.textContent = shown(a.name);
       lbOpener = e.currentTarget; lb.showModal();
     });
-    lb.addEventListener('close', () => lb.classList.remove('is-photo'));
+    lb.addEventListener('close', () => { lb.classList.remove('is-photo'); const art = lb.querySelector('.lightbox-art'); art.style.removeProperty('--ar'); art.style.removeProperty('max-width'); });
   }
   if (intro) intro.querySelector('.artist-intro-reset').addEventListener('click', () => { setArtist(null, true); if (menuBtn) menuBtn.focus({ preventScroll: true }); });
   // Bei aktivem Filter fehlt oft der Jahresanker: zur ersten sichtbaren Kachel des Jahres springen
