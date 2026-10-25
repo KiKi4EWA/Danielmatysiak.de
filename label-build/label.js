@@ -9,8 +9,8 @@
   const closeLbl = document.getElementById('panel-close-label');
   const root = document.documentElement;
   const T = {
-    de: { close: 'Schließen', listen: 'Anhören', soon: 'Streaming-Link folgt.', hide: 'Player schließen', consent: n => `Player von ${n}. Beim Laden werden Daten an ${n} übertragen.`, open: 'Öffnen in', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
-    en: { close: 'Close', listen: 'Listen', soon: 'Streaming link coming soon.', hide: 'Close player', consent: n => `Player from ${n}. Loading it sends data to ${n}.`, open: 'Open in', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
+    de: { close: 'Schließen', listen: 'Anhören', soon: 'Streaming-Link folgt.', hide: 'Player schließen', consent: n => `Player von ${n}. Beim Laden werden Daten an ${n} übertragen.`, open: 'Öffnen in', revoke: 'Spotify-Einwilligung widerrufen', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
+    en: { close: 'Close', listen: 'Listen', soon: 'Streaming link coming soon.', hide: 'Close player', consent: n => `Player from ${n}. Loading it sends data to ${n}.`, open: 'Open in', revoke: 'Withdraw Spotify consent', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
   };
   const PLATFORMS = [['spotify', 'Spotify'], ['apple', 'Apple Music'], ['bandcamp', 'Bandcamp'], ['youtube', 'YouTube'], ['soundcloud', 'SoundCloud'], ['other', 'Web']];
   const lang = () => (root.lang === 'en' ? 'en' : 'de');
@@ -116,12 +116,18 @@
         }
         box.hidden = !show; btn.setAttribute('aria-expanded', String(show)); btn.textContent = show ? t.hide : t.listen;
       };
+      // Widerruf: gespeicherte Zustimmung löschen, Player entfernen
+      const revoke = el('button', 'panel-revoke', t.revoke); revoke.type = 'button'; revoke.hidden = !ok;
+      revoke.addEventListener('click', () => {
+        ok = false; try { localStorage.removeItem(KEY); } catch (e) {}
+        box.replaceChildren(); setOpen(false); revoke.hidden = true;
+      });
       btn.addEventListener('click', () => {
         const show = box.hidden;
         if (show && !ok) { ok = true; try { localStorage.setItem(KEY, '1'); } catch (e) {} }
-        setOpen(show);
+        setOpen(show); revoke.hidden = !ok;
       });
-      act.append(box); row.append(btn);
+      act.append(box); row.append(btn); act.append(revoke);
       setOpen(ok);
     } else if (links.length) {
       const a = el('a', 'btn'); a.href = links[0][1]; a.target = '_blank'; a.rel = 'noopener';
