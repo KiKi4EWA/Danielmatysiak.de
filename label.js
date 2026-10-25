@@ -161,7 +161,7 @@
 
   // Desktop: Seitenpanel ohne Sperre (Wand und Jahresleiste bleiben bedienbar). Handy: bildschirmfüllend und modal.
   const wide = window.matchMedia('(min-width: 701px)');
-  // Seitenpanel: beginnt unter dem Hero und dem Menü und endet über dem Footer
+  // Seitenpanel: beginnt auf der Oberkante der Cover (nie im Hero, nie über dem Menü) und endet über dem Footer
   const siteNav = document.querySelector('.site-nav');
   const siteFooter = document.querySelector('footer');
   let syncQueued = false;
@@ -171,8 +171,9 @@
     if (!document.body.classList.contains('panel-side')) { panel.style.removeProperty('--panel-top'); panel.style.removeProperty('--panel-bottom'); if (rail) rail.classList.remove('behind-hero'); return; }
     // Jahresleiste ausblenden, solange sie über dem Hero (und dessen Infobox) läge
     if (rail && hero) rail.classList.toggle('behind-hero', hero.getBoundingClientRect().bottom > rail.getBoundingClientRect().top);
-    // Oberkante: Unterkante des Menüs, oder Unterkante des Heros, wenn der noch im Bild ist (das Panel ragt nie in den Hero)
-    const navBottom = Math.max(siteNav ? Math.max(0, siteNav.getBoundingClientRect().bottom) : 0, hero ? hero.getBoundingClientRect().bottom : 0);
+    // Oberkante: Oberkante der Coverreihen, mindestens aber die Unterkante des Menüs
+    const grid = document.querySelector('.release-grid');
+    const navBottom = Math.max(siteNav ? Math.max(0, siteNav.getBoundingClientRect().bottom) : 0, grid ? grid.getBoundingClientRect().top : 0);
     const footTop = siteFooter ? siteFooter.getBoundingClientRect().top : innerHeight;
     panel.style.setProperty('--panel-top', navBottom + 'px');
     panel.style.setProperty('--panel-bottom', Math.max(0, innerHeight - footTop) + 'px');
@@ -202,6 +203,19 @@
     lb.addEventListener('close', () => { lbImg.removeAttribute('src'); lbImg.removeAttribute('srcset'); if (lbOpener && document.contains(lbOpener)) lbOpener.focus({ preventScroll: true }); lbOpener = null; });
   }
 
+  // Beim Öffnen die Wand so schieben, dass das Panel genug Platz hat und die gewählte Kachel im Bild bleibt
+  function placeAfterOpen(from) {
+    const grid = document.querySelector('.release-grid'); if (!grid) return;
+    const navB = siteNav ? siteNav.getBoundingClientRect().bottom : 0, vh = innerHeight;
+    const gridTop = grid.getBoundingClientRect().top;
+    let target = scrollY;
+    if (vh - Math.max(navB, gridTop) < vh * 0.6) target = scrollY + gridTop - (navB + 16);   // Panel wäre zu kurz
+    const r = from.getBoundingClientRect(), top = r.top + scrollY;
+    if (top - target < navB + 8 || top + r.height - target > vh - 8) target = top - navB - 24;   // Kachel nicht verlieren
+    target = Math.max(0, Math.min(target, document.documentElement.scrollHeight - vh));
+    if (Math.abs(target - scrollY) > 2) window.scrollTo({ top: target, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }
+
   function open(id, from) {
     currentId = id; opener = from || null;
     render(id);
@@ -210,7 +224,7 @@
       if (wide.matches) { panel.show(); closeBtn.focus({ preventScroll: true }); } else panel.showModal();
       document.body.classList.toggle('panel-side', wide.matches);
       syncTop();
-      if (wide.matches && from) requestAnimationFrame(() => from.scrollIntoView({ block: 'nearest' })); // Kachel bleibt nach dem Umbruch im Bild
+      if (wide.matches && from) placeAfterOpen(from);
     }
     try { history.replaceState(null, '', '#r-' + id); } catch (e) {}
   }
