@@ -91,9 +91,13 @@
     }
     body.appendChild(head);
 
+    const desc = lang() === 'en' && r.descriptionEn ? r.descriptionEn : r.description;
+    if (desc) body.appendChild(el('p', 'panel-desc', desc));
+
     const links = r.links ? PLATFORMS.map(([k, n]) => [n, safeUrl(r.links[k])]).filter(x => x[1]) : [];
     const emb = embedOf(r);
     const act = el('div', 'panel-actions');
+    const row = el('div', 'panel-row');   // eine Zeile unter dem Player: Schalter + „Öffnen in …“
     if (emb) {
       const btn = el('button', 'btn', t.listen); btn.type = 'button';
       const box = el('div', 'panel-player'); box.id = 'panel-player';
@@ -117,25 +121,24 @@
         if (show && !ok) { ok = true; try { localStorage.setItem(KEY, '1'); } catch (e) {} }
         setOpen(show);
       });
-      act.append(btn, box);
+      act.append(box); row.append(btn);
       setOpen(ok);
     } else if (links.length) {
       const a = el('a', 'btn'); a.href = links[0][1]; a.target = '_blank'; a.rel = 'noopener';
       a.append(el('span', null, t.listen), el('span', 'visually-hidden', ` – ${links[0][0]}`));
-      act.appendChild(a);
+      row.appendChild(a);
     } else {
       const b = el('span', 'btn btn-disabled', t.listen); b.setAttribute('aria-disabled', 'true');
-      act.append(b, el('p', 'panel-note', t.soon));
+      row.append(b); act.append(el('p', 'panel-note', t.soon));
     }
     if (links.length) {
       const p = el('p', 'panel-open', `${t.open} `);
       links.forEach(([n, u]) => { const l = el('a', null, `${n} ↗`); l.href = u; l.target = '_blank'; l.rel = 'noopener'; p.appendChild(l); });
-      act.appendChild(p);
+      row.appendChild(p);
     }
+    act.appendChild(row);
     body.appendChild(act);
 
-    const desc = lang() === 'en' && r.descriptionEn ? r.descriptionEn : r.description;
-    if (desc) body.appendChild(el('p', 'panel-desc', desc));
     if (r.tracks && r.tracks.length) {
       body.appendChild(el('h3', 'panel-h', t.tracks));
       const ol = el('ol', 'panel-tracks');

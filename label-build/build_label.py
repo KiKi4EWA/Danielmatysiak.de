@@ -305,6 +305,17 @@ sub("about.html", "03 — About", "04 — About")
 sub("faq.html", "04 — FAQ", "05 — FAQ")
 sub("kontakt.html", 'data-en="05 — Contact">05 — Kontakt', 'data-en="06 — Contact">06 — Kontakt')
 
+# ---- Audio-Seite: Streaming-Widgets (Spotify, Audius, SoundCloud) entfernen, stattdessen Verweis aufs Label
+_p = SITE / "leistungen.html"; _s = _p.read_text()
+if 'class="releases-block"' in _s:
+    _i = _s.index('<div class="releases-block">'); _j = _s.index("</section>", _i)
+    _s = _s[:_i] + '''<p class="section-intro" data-en="Releases and studio productions are published on 4Spur Records, the independent label from Berlin. The full catalog is on the label page.">Veröffentlichungen und Studio-Produktionen erscheinen auf 4Spur Records, dem unabhängigen Label aus Berlin. Den ganzen Katalog findest du auf der Label-Seite.</p>
+      <div class="cta-row">
+        <a class="btn" href="label.html"><span data-en="To the label">Zum Label</span></a>
+      </div>
+    ''' + _s[_j:]
+    _p.write_text(_s)
+
 # ---- Startseite: Kapitelliste 01–06
 s = (SITE / "index.html").read_text()
 chap = re.search(r'(        <a class="chapter-item" href="about\.html">.*?)(?=      </nav>)', s, re.S).group(1)
