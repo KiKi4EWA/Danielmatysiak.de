@@ -82,7 +82,13 @@
     meta.append(time, document.createTextNode(` · ${r.format}`));
     if (r.duration) meta.append(document.createTextNode(` · ${r.duration}`));
     head.append(artist, title, meta);
-    if (r.art) { const art = el('p', 'panel-art'); art.append(el('span', null, lang() === 'en' ? 'Cover art' : 'Cover'), document.createTextNode(' ' + r.art)); head.appendChild(art); }
+    if (r.art) {
+      const art = el('p', 'panel-art'); art.appendChild(el('span', null, lang() === 'en' ? 'Cover art' : 'Cover'));
+      const ab = el('button', 'art-open', r.art); ab.type = 'button'; ab.setAttribute('aria-haspopup', 'dialog');
+      ab.title = lang() === 'en' ? 'Show cover large' : 'Cover groß anzeigen';
+      ab.addEventListener('click', () => openLightbox(r, ab));
+      art.append(' ', ab); head.appendChild(art);
+    }
     body.appendChild(head);
 
     const links = r.links ? PLATFORMS.map(([k, n]) => [n, safeUrl(r.links[k])]).filter(x => x[1]) : [];
@@ -174,6 +180,27 @@
   window.addEventListener('scroll', queueSync, { passive: true });
   window.addEventListener('resize', queueSync);
 
+  // Großansicht des Covers (Klick auf den Bildtitel)
+  const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightbox-img'), lbCap = document.getElementById('lightbox-cap');
+  let lbOpener = null;
+  function openLightbox(r, from) {
+    if (!lb || !r.cover) return;
+    const size = r.cover.includes(1440) ? 1440 : Math.max(...r.cover);
+    lbImg.src = `img/covers/${r.id}-${size}.webp`;
+    lbImg.srcset = r.cover.map(s => `img/covers/${r.id}-${s}.webp ${s}w`).join(', ');
+    lbImg.sizes = 'min(92vw, 84dvh)';
+    lbImg.alt = `${r.art}: ${r.title}, ${r.artist}`;
+    const who = r.artist + (r.feat ? ' feat. ' + r.feat : '');
+    lbCap.textContent = `${who}. ${r.title}. ${r.cline}`;
+    lbOpener = from || null;
+    lb.showModal();
+  }
+  if (lb) {
+    lb.addEventListener('click', e => { if (e.target !== lbImg) lb.close(); });
+    document.getElementById('lightbox-close').addEventListener('click', () => lb.close());
+    lb.addEventListener('close', () => { lbImg.removeAttribute('src'); lbImg.removeAttribute('srcset'); if (lbOpener && document.contains(lbOpener)) lbOpener.focus({ preventScroll: true }); lbOpener = null; });
+  }
+
   function open(id, from) {
     currentId = id; opener = from || null;
     render(id);
@@ -199,7 +226,7 @@
     opener = null;
   }
   function close() { if (panel.open) { panel.close(); cleanup(); } }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel.open) { e.preventDefault(); close(); } });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel.open && !(lb && lb.open)) { e.preventDefault(); close(); } });
   panel.addEventListener('close', cleanup);
   closeBtn.addEventListener('click', close);
   panel.addEventListener('click', e => { if (e.target === panel) close(); }); // Klick auf Backdrop
