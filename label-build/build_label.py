@@ -446,7 +446,7 @@ s += "\n" + (ROOT / "label.css").read_text()
 
 # ---- Sitemap / llms.txt
 s = (SITE / "sitemap.xml").read_text()
-s = s.replace('  <url><loc>https://danielmatysiak.de/about.html', '  <url><loc>https://danielmatysiak.de/label.html</loc><priority>0.7</priority></url>\n  <url><loc>https://danielmatysiak.de/about.html')
+s = s.replace('  <url><loc>https://danielmatysiak.de/about.html', '  <url><loc>https://danielmatysiak.de/label.html</loc><priority>0.7</priority></url>\n  <url><loc>https://danielmatysiak.de/produktionen.html</loc><priority>0.6</priority></url>\n  <url><loc>https://danielmatysiak.de/about.html')
 (SITE / "sitemap.xml").write_text(s)
 s = (SITE / "llms.txt").read_text()
 _names = collections.Counter()
