@@ -1,5 +1,5 @@
 {
- "_hinweis": "Optionale Zusatzdaten je product_id. Nur belegte Angaben eintragen. \"hidden\": true blendet ein Release auf der Seite aus (bleibt im Register).",
+ "_hinweis": "Optionale Zusatzdaten je product_id. Nur belegte Angaben eintragen. \"hidden\": true blendet ein Release aus, \"artist\" überschreibt den Artist aus dem Register (bis der Orchard-Eintrag korrigiert ist).",
  "_beispiel": {
   "0000000": {
    "highlight": true,
@@ -84,8 +84,8 @@
     "apple": "https://music.apple.com/de/album/machen-was-sie-wollen-rap-feat-ete-ali-single/1896220849",
     "spotify": "https://open.spotify.com/album/4m90eqfnF2hn40nyB1aEeJ"
    },
-   "description": "Ein Freestyle von Eli und ihrem Papa Martin.",
-   "description_en": "A freestyle by Eli and her dad Martin."
+   "description": "Ein Freestyle von Eli und ihrem Papa.",
+   "description_en": "A freestyle by Eli and her dad."
   },
   "5806400": {
    "links": {
@@ -361,7 +361,8 @@
    "links": {
     "apple": "https://music.apple.com/de/album/all-good/1443552944",
     "spotify": "https://open.spotify.com/album/08u8LIeov3QE8G0iwX139Q"
-   }
+   },
+   "artist": "Ete & Ali"
   },
   "2494563": {
    "links": {

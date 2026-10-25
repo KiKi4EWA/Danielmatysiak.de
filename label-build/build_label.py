@@ -20,6 +20,9 @@ def art_title(pid):
     stem = os.path.splitext(ASSIGN.get(pid, ""))[0]
     return "#oban_" + stem if re.fullmatch(r"\d{7,8}", stem) else None
 
+# Artist-Korrekturen aus den Extras (z. B. bis der Orchard-Eintrag angepasst ist)
+for _r in reg["releases"]:
+    if extras.get(_r["product_id"], {}).get("artist"): _r["artist"] = extras[_r["product_id"]]["artist"]
 REL = sorted((r for r in reg["releases"] if r["label"] == "4Spur Records" and not extras.get(r["product_id"], {}).get("hidden")),
              key=lambda r: (r["release_date"], r["product_id"]), reverse=True)
 SIZES = (320, 640, 960, 1440)
