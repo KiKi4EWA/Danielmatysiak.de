@@ -83,7 +83,7 @@
     if (r.duration) meta.append(document.createTextNode(` · ${r.duration}`));
     head.append(artist, title, meta);
     if (r.art) {
-      const art = el('p', 'panel-art'); art.appendChild(el('span', null, lang() === 'en' ? 'Cover art' : 'Cover'));
+      const art = el('p', 'panel-art'); art.appendChild(el('span', null, 'Cover Art'));
       const ab = el('button', 'art-open', r.art); ab.type = 'button'; ab.setAttribute('aria-haspopup', 'dialog');
       ab.title = lang() === 'en' ? 'Show cover large' : 'Cover groß anzeigen';
       ab.addEventListener('click', () => openLightbox(r, ab));
