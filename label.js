@@ -75,7 +75,9 @@
     if (r.feat) artist.appendChild(el('span', 'release-feat', ` ${t.feat} ${r.feat}`));
     // Die Display-Schrift hat keine brauchbaren Klammern: Versionszusatz "(…)" in Textschrift setzen
     const tm = r.title.match(/^(.*?)\s*(\([^)]*\))\s*$/);
-    const title = el('h2', 'panel-title', tm ? tm[1] : r.title); title.id = 'panel-title';
+    const title = el('h2', 'panel-title'); title.id = 'panel-title';
+    // Die Display-Schrift hat keinen Schrägstrich: „/“ in Textschrift setzen
+    (tm ? tm[1] : r.title).split('/').forEach((part, i) => { if (i) title.appendChild(el('span', 'title-slash', '/')); title.appendChild(document.createTextNode(part)); });
     if (tm) title.appendChild(el('span', 'title-ver', tm[2]));
     const meta = el('p', 'panel-meta');
     const time = el('time', null, fmtDate(r.date)); time.dateTime = r.date;
