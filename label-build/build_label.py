@@ -39,10 +39,27 @@ for _r in REL:
 def tile_artists(r):
     names = [n.strip() for n in (r["artist"] + "," + (r.get("featuring") or "")).split(",") if n.strip()]
     return " ".join(dict.fromkeys(a for a in (aslug(n) for n in names) if a in ARTISTS))
+def make_photo(slug, fname):
+    """assets/<fname> -> img/artists/<slug>-photo-{900,1600}.webp; liefert die Pfade oder None"""
+    src = ROOT / "assets" / fname
+    if not src.exists(): return None
+    import subprocess, tempfile
+    out = SITE / "img/artists"; out.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory() as td:
+        png = pathlib.Path(td) / "p.png"
+        subprocess.run(["sips", "-s", "format", "png", str(src), "--out", str(png)], check=True, capture_output=True)
+        for w in (900, 1600):
+            t = out / f"{slug}-photo-{w}.webp"
+            if t.exists(): continue
+            tmp = pathlib.Path(td) / f"r{w}.png"
+            subprocess.run(["sips", "-s", "format", "png", "--resampleWidth", str(w), str(png), "--out", str(tmp)], check=True, capture_output=True)
+            subprocess.run(["cwebp", "-q", "82", "-m", "6", str(tmp), "-o", str(t)], check=True, capture_output=True)
+    return {"s": f"img/artists/{slug}-photo-900.webp", "l": f"img/artists/{slug}-photo-1600.webp"}
 ARTIST_LIST = []
 for _slug, _name in sorted(ARTISTS.items(), key=lambda kv: kv[1].lower()):
     _info = ARTIST_INFO.get(_slug, {})
     ARTIST_LIST.append({k: v for k, v in {"slug": _slug, "name": _name, "bio": _info.get("bio"), "bioEn": _info.get("bioEn"), "spotify": _info.get("spotify"),
+                                          "photo": make_photo(_slug, _info["photo"]) if _info.get("photo") else None, "photoAlt": _info.get("photoAlt"), "photoAltEn": _info.get("photoAltEn"),
                                           "count": sum(1 for r in REL if _slug in tile_artists(r).split())}.items() if v})
 artist_json = json.dumps(ARTIST_LIST, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 ARTIST_LIST.sort(key=lambda a: (-a["count"], a["name"].lower()))   # nach Release-Anzahl, bei Gleichstand alphabetisch
@@ -276,10 +293,13 @@ page = f'''<!DOCTYPE html>
     </div>
 
     <section class="artist-intro" id="artist-intro" aria-live="polite" hidden>
-      <p class="eyebrow">Artist</p>
-      <h2 class="artist-intro-name"></h2>
-      <p class="artist-intro-text"></p>
-      <p class="artist-intro-meta"><span class="artist-intro-count"></span><a class="artist-intro-link" target="_blank" rel="noopener" hidden>Spotify ↗</a><button type="button" class="artist-intro-reset"></button></p>
+      <div class="artist-intro-copy">
+        <p class="eyebrow">Artist</p>
+        <h2 class="artist-intro-name"></h2>
+        <p class="artist-intro-text"></p>
+        <p class="artist-intro-meta"><span class="artist-intro-count"></span><a class="artist-intro-link" target="_blank" rel="noopener" hidden>Spotify ↗</a><button type="button" class="artist-intro-reset"></button></p>
+      </div>
+      <button type="button" class="artist-intro-photo" aria-haspopup="dialog" hidden><img alt="" loading="lazy" decoding="async" width="900" height="675"></button>
     </section>
 
     <section class="section release-wall" id="archiv">

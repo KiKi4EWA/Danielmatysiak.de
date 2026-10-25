@@ -280,6 +280,13 @@
     const link = intro.querySelector('.artist-intro-link');
     const u = a.spotify && safeUrl(a.spotify); link.hidden = !u; if (u) link.href = u;
     intro.querySelector('.artist-intro-reset').textContent = t.all;
+    const pb = intro.querySelector('.artist-intro-photo'), pi = pb.querySelector('img');
+    pb.hidden = !a.photo;
+    if (a.photo) {
+      pi.src = a.photo.s; pi.srcset = `${a.photo.s} 900w, ${a.photo.l} 1600w`; pi.sizes = '(max-width: 800px) 92vw, 40vw';
+      pi.alt = (en ? a.photoAltEn : a.photoAlt) || a.name;
+      pb.setAttribute('aria-label', en ? 'Show photo large' : 'Foto groß anzeigen');
+    }
   }
 
   function setArtist(slug, scroll) {
@@ -332,6 +339,18 @@
       else if (e.key === 'End') { e.preventDefault(); items[items.length - 1].focus(); }
     });
     window.addEventListener('resize', () => { if (menu.matches(':popover-open')) menu.hidePopover(); });
+  }
+  // Großansicht des Artist-Fotos: dieselbe Lightbox wie bei den Covern, nur im Querformat
+  if (intro && lb) {
+    intro.querySelector('.artist-intro-photo').addEventListener('click', e => {
+      const a = ARTISTS.find(x => x.slug === activeArtist); if (!a || !a.photo) return;
+      lb.classList.add('is-photo');
+      lbImg.src = a.photo.l; lbImg.srcset = `${a.photo.s} 900w, ${a.photo.l} 1600w`; lbImg.sizes = 'min(92vw, 112dvh)';
+      lbImg.alt = (lang() === 'en' ? a.photoAltEn : a.photoAlt) || a.name;
+      lbCap.textContent = shown(a.name);
+      lbOpener = e.currentTarget; lb.showModal();
+    });
+    lb.addEventListener('close', () => lb.classList.remove('is-photo'));
   }
   if (intro) intro.querySelector('.artist-intro-reset').addEventListener('click', () => { setArtist(null, true); if (menuBtn) menuBtn.focus({ preventScroll: true }); });
   // Bei aktivem Filter fehlt oft der Jahresanker: zur ersten sichtbaren Kachel des Jahres springen
