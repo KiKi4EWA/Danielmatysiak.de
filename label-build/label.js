@@ -40,6 +40,8 @@
 
   // Player-Einbettung: nur Spotify (Album-Link nötig). Alle anderen Plattformen bleiben normale Links.
   function embedOf(r) {
+    // Einzelner Titel statt ganzem Album (z. B. bei Produktionen, an denen nur ein Titel beteiligt war)
+    if (r.embedTrack && /^[A-Za-z0-9]+$/.test(r.embedTrack)) return { name: 'Spotify', src: `https://open.spotify.com/embed/track/${r.embedTrack}?utm_source=generator`, h: 152 };
     const u = safeUrl((r.links || {}).spotify), m = u && u.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?album\/([A-Za-z0-9]+)/);
     return m ? { name: 'Spotify', src: `https://open.spotify.com/embed/album/${m[1]}?utm_source=generator`, h: 152 } : null;
   }
