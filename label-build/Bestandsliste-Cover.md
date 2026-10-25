@@ -46,7 +46,7 @@ Sichtbar: 45 mit echtem Cover, 5 mit Platzhalter.
 | 2019-05-31 | The Lost Tapes | Debbie Parker INC. | 2621752 | ja | echtes Cover | `lost tapes cover.jpg` | Cover Art Daniel Matysiak |  |
 | 2019-05-24 | Lost Riddim | The Afterhour | 2622094 | ja | echtes Cover | `the Afterhour_lost riddim_cover_002.jpg` | Cover Art Daniel Matysiak |  |
 | 2019-05-03 | Aurora's Mood | The Afterhour | 2582408 | ja | echtes Cover | `1203213.jpg` | #oban_1203213 |  |
-| 2019-03-08 | Protect Me | The Afterhour | 2582797 | ja | echtes Cover | `rottluff.jpg` | #oban_rottluff |  |
+| 2019-03-08 | Protect Me | The Afterhour | 2582797 | ja | echtes Cover | `protect-me.jpg` | Cover Art Obruni Antwi | Cover als Bild geliefert (1500 x 1500 px), Künstlerin angenommen |
 | 2019-03-08 | Crystal Ship | The Afterhour | 2582371 | ja | Platzhalter |  |  | noch kein Original; k12.jpg war bei Crystal Ship zugeordnet, ist jetzt frei (Zuordnung offen) |
 | 2019-01-18 | Daylight | The Afterhour | 2547314 | ja | echtes Cover | `n78.jpg` | #oban_n78 |  |
 | 2019-01-11 | The Chase | KiKi4EWA | 2546880 | ja | echtes Cover | `1202292.jpg` | #oban_1202292 |  |
