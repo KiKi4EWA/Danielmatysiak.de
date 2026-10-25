@@ -27,6 +27,47 @@ REL = sorted((r for r in reg["releases"] if r["label"] == "4Spur Records" and no
              key=lambda r: (r["release_date"], r["product_id"]), reverse=True)
 SIZES = (320, 640, 960, 1440)
 
+# ---- Artists (Menü + Filter): Hauptkünstler aller sichtbaren Releases; Featuring zählt zur Zuordnung, erzeugt aber keinen Eintrag
+def aslug(n): return re.sub(r"[^a-z0-9]+", "-", n.lower()).strip("-")
+_NAME_FIX = {"kingali-030": "KingAli 030", "debbie-parker-inc": "Debbie Parker INC."}
+_AD = ROOT / "data/artists.json"
+ARTIST_INFO = json.loads(_AD.read_text()) if _AD.exists() else {}
+ARTISTS = {}
+for _r in REL:
+    for _n in (n.strip() for n in _r["artist"].split(",") if n.strip()):
+        ARTISTS.setdefault(aslug(_n), _NAME_FIX.get(aslug(_n), _n))
+def tile_artists(r):
+    names = [n.strip() for n in (r["artist"] + "," + (r.get("featuring") or "")).split(",") if n.strip()]
+    return " ".join(dict.fromkeys(a for a in (aslug(n) for n in names) if a in ARTISTS))
+def make_photo(slug, fname):
+    """assets/<fname> -> img/artists/<slug>-photo-<breite>.webp (900 und 1600, nie größer als das Original); liefert Pfade und Maße oder None"""
+    src = ROOT / "assets" / fname
+    if not src.exists(): return None
+    import subprocess, tempfile
+    o = subprocess.run(["sips", "-g", "pixelWidth", "-g", "pixelHeight", str(src)], capture_output=True, text=True).stdout.split()
+    W, H = int(o[-3]), int(o[-1])
+    widths = sorted({min(w, W) for w in (900, 1600)})
+    out = SITE / "img/artists"; out.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory() as td:
+        png = pathlib.Path(td) / "p.png"
+        subprocess.run(["sips", "-s", "format", "png", str(src), "--out", str(png)], check=True, capture_output=True)
+        for w in widths:
+            t = out / f"{slug}-photo-{w}.webp"
+            if t.exists(): continue
+            tmp = pathlib.Path(td) / f"r{w}.png"
+            subprocess.run(["sips", "-s", "format", "png", "--resampleWidth", str(w), str(png), "--out", str(tmp)], check=True, capture_output=True)
+            subprocess.run(["cwebp", "-q", "82", "-m", "6", str(tmp), "-o", str(t)], check=True, capture_output=True)
+    return {"s": f"img/artists/{slug}-photo-{widths[0]}.webp", "l": f"img/artists/{slug}-photo-{widths[-1]}.webp", "sw": widths[0], "lw": widths[-1], "w": W, "h": H}
+ARTIST_LIST = []
+for _slug, _name in sorted(ARTISTS.items(), key=lambda kv: kv[1].lower()):
+    _info = ARTIST_INFO.get(_slug, {})
+    ARTIST_LIST.append({k: v for k, v in {"slug": _slug, "name": _name, "bio": _info.get("bio"), "bioEn": _info.get("bioEn"), "spotify": _info.get("spotify"),
+                                          "photo": make_photo(_slug, _info["photo"]) if _info.get("photo") else None, "photoAlt": _info.get("photoAlt"), "photoAltEn": _info.get("photoAltEn"),
+                                          "count": sum(1 for r in REL if _slug in tile_artists(r).split())}.items() if v})
+artist_json = json.dumps(ARTIST_LIST, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+ARTIST_LIST.sort(key=lambda a: (-a["count"], a["name"].lower()))   # nach Release-Anzahl, bei Gleichstand alphabetisch
+menu_items = "\n".join(f'          <li><button type="button" data-artist="{a["slug"]}">{html.escape(a["name"])}<span class="menu-count">{a["count"]}</span></button></li>' for a in ARTIST_LIST)
+
 # Große Kacheln: je Jahr das jüngste Release, abwechselnd links/rechts gesetzt.
 # Redaktionelle Übersteuerung: "highlight": true/false in data/release-extras.json.
 HL = set()
@@ -71,7 +112,7 @@ def tile(r):
         SEEN.add(y); anchor = f' id="y{y}"'
     artist = html.escape(r["artist"]) + (f' <span class="release-feat">feat. {html.escape(r["featuring"])}</span>' if r.get("featuring") else "")
     cls = f"release is-highlight {SIDE[pid]}" if is_hl(pid) else "release"
-    return (f'<li class="{cls}" data-year="{y}"{anchor}><button type="button" class="release-open" data-id="{pid}" aria-haspopup="dialog">'
+    return (f'<li class="{cls}" data-year="{y}" data-artists="{tile_artists(r)}"{anchor}><button type="button" class="release-open" data-id="{pid}" aria-haspopup="dialog">'
             f'{cover_html(r)}'
             f'<span class="meta"><span class="release-artist">{artist}</span>'
             f'<span class="release-title">{html.escape(r["title"])}</span>'
@@ -230,7 +271,7 @@ page = f'''<!DOCTYPE html>
         <div class="hero-copy">
           <p class="lede" data-en="Independent label for dub, reggae, hip-hop, electronic, ambient and house music. Here you will find every release at a glance.">Unabhängiges Label für Dub, Reggae, Hip-Hop, Electronic, Ambient und House Music. Hier findest du alle Releases im Überblick.</p>
           <div class="cta-row">
-            <a class="btn" href="#archiv"><span data-en="To the archive">Zum Archiv</span></a>
+            <button type="button" class="btn btn-menu" id="artist-btn" popovertarget="artist-menu" aria-haspopup="true" aria-expanded="false"><span data-en="Label artists">Label-Künstler</span><span class="caret" aria-hidden="true"></span></button>
             <a class="btn-ghost" href="kontakt.html"><span data-en="Contact">Kontakt</span></a>
           </div>
         </div>
@@ -245,6 +286,23 @@ page = f'''<!DOCTYPE html>
         </aside>
       </div>
       <img class="hero-deco-img hero-deco-full" src="img/audio_neve.webp" alt="" aria-hidden="true">
+    </section>
+
+    <div id="artist-menu" popover class="artist-menu">
+      <ul>
+        <li><button type="button" data-artist="" data-en="All artists">Alle Künstler</button></li>
+{menu_items}
+      </ul>
+    </div>
+
+    <section class="artist-intro" id="artist-intro" aria-live="polite" hidden>
+      <p class="eyebrow">Artist</p>
+      <h2 class="artist-intro-name"></h2>
+      <div class="artist-intro-body">
+        <p class="artist-intro-text"></p>
+        <button type="button" class="artist-intro-photo" aria-haspopup="dialog" hidden><img alt="" loading="lazy" decoding="async" width="900" height="675"></button>
+      </div>
+      <p class="artist-intro-meta"><span class="artist-intro-count"></span><a class="artist-intro-link" target="_blank" rel="noopener" hidden>Spotify ↗</a><button type="button" class="artist-intro-reset"></button></p>
     </section>
 
     <section class="section release-wall" id="archiv">
@@ -280,6 +338,7 @@ page = f'''<!DOCTYPE html>
   </dialog>
 
   <script type="application/json" id="release-data">{data_json}</script>
+  <script type="application/json" id="artist-data">{artist_json}</script>
 
 {foot}
   <script src="main.js"></script>
@@ -302,6 +361,29 @@ for f in ["index","leistungen","lab","about","faq","kontakt"]:
 def sub(f, a, b):
     p = SITE / f; s = p.read_text(); assert a in s, (f, a); p.write_text(s.replace(a, b))
 sub("about.html", "03 — About", "04 — About")
+# Rechtliches (Kontakt-Seite: Impressum + Datenschutz) an die Label-Seite anpassen
+sub("kontakt.html", "Angaben gemäß § 5 TMG", "Angaben gemäß § 5 DDG")
+sub("kontakt.html", """          <h3>Haftung für Inhalte</h3>""", """          <h3>Label</h3>
+          <p>4Spur Records ist das Label von Daniel Matysiak (Anschrift wie oben). Der Vertrieb der Releases erfolgt über The Orchard.</p>
+          <h3>Haftung für Inhalte</h3>""")
+sub("kontakt.html", """          <p>Für Inhalte verlinkter externer Seiten bin ich nicht verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar.</p>""", """          <p>Für Inhalte verlinkter externer Seiten bin ich nicht verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar.</p>
+          <h3>Urheberrecht und Bildnachweis</h3>
+          <p>Die Cover der Releases auf der Label-Seite stammen von Obruni Antwi oder von Daniel Matysiak (Angabe jeweils beim Cover). Die Rechte an den Fotos der Artists liegen bei Daniel Matysiak; die Abgebildeten sind mit der Veröffentlichung einverstanden. Die Rechte an Musik und Covern liegen bei den jeweiligen Urheberinnen und Urhebern. Eine Nutzung über die Wiedergabe auf dieser Seite hinaus bedarf der Zustimmung.</p>""")
+sub("kontakt.html", """Diese Website verwendet keine Cookies, kein Tracking und keine Analyse-Dienste. Es werden keine personenbezogenen Daten gespeichert, außer wenn du das Kontaktformular nutzt.</p>""", """Diese Website setzt selbst keine Cookies und verwendet kein Tracking und keine Analyse-Dienste. Es werden keine personenbezogenen Daten gespeichert, außer wenn du das Kontaktformular nutzt. Eine Ausnahme ist der optionale Spotify-Player auf der Label-Seite (siehe unten).</p>
+          <h3>Hosting</h3>
+          <p>Diese Website wird über GitHub Pages (GitHub Inc., USA) bereitgestellt. Beim Aufruf verarbeitet der Hosting-Anbieter technisch notwendige Verbindungsdaten, insbesondere deine IP-Adresse. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (sicherer und stabiler Betrieb der Website).</p>
+          <h3>Lokale Speicherung im Browser</h3>
+          <p>Die Seite speichert in deinem Browser (localStorage bzw. sessionStorage) ausschließlich technisch notwendige Einstellungen: deine Sprachwahl (Deutsch/Englisch) und die Richtung der Seitenübergänge. Diese Werte verlassen dein Gerät nicht. Rechtsgrundlage: § 25 Abs. 2 Nr. 2 TDDDG. Zusätzlich merkt sich die Label-Seite deine Zustimmung zum Spotify-Player (siehe unten).</p>
+          <h3>Spotify-Player (Label-Seite)</h3>
+          <p>Auf der Label-Seite kannst du in den Details eines Releases einen Player von Spotify (Spotify AB, Regeringsgatan 19, 111 53 Stockholm, Schweden) einblenden. Der Player wird erst geladen, wenn du auf „Anhören“ klickst. Erst dann wird eine Verbindung zu Spotify hergestellt, dabei werden unter anderem deine IP-Adresse und Geräteinformationen übertragen, und Spotify kann Cookies oder ähnliche Technologien auf deinem Gerät einsetzen. Auf die weitere Verarbeitung durch Spotify habe ich keinen Einfluss; es gilt die Datenschutzerklärung von Spotify. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG), die du mit dem Klick erteilst. Damit du nicht jedes Mal neu zustimmen musst, wird die Zustimmung in deinem Browser gespeichert (Eintrag „4spur-spotify-player“ im localStorage); bei weiteren Releases erscheint der Player dann direkt. Du kannst die Einwilligung jederzeit widerrufen: im Detailfenster des Releases über „Spotify-Einwilligung widerrufen“ oder indem du die Website-Daten dieser Seite in deinem Browser löschst. Wer den Player nicht nutzen möchte, kann die Releases über die Links zu Spotify und Apple Music anhören.</p>
+          <h3>Links zu Streaming-Plattformen und sozialen Netzwerken</h3>
+          <p>Die Seite enthält Links zu Spotify, Apple Music, SoundCloud, LinkedIn, X und weiteren Seiten. Beim bloßen Anzeigen der Links werden keine Daten an diese Anbieter übertragen. Erst wenn du einen Link anklickst, gelten die Datenschutzbestimmungen des jeweiligen Anbieters.</p>""")
+sub("kontakt.html", """Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung. Kontakt: hallo@danielmatysiak.de</p>""", """Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch sowie das Recht, erteilte Einwilligungen mit Wirkung für die Zukunft zu widerrufen. Kontakt: hallo@danielmatysiak.de. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Berliner Beauftragten für Datenschutz und Informationsfreiheit.</p>""")
+# Über-mich-Seite: Labelarbeit erwähnen + Verweis aufs Label unten
+sub("about.html", '            <p data-en="My tool is sound.',
+    '            <p data-en="I have been making music for over 20 years and release it on my own label, 4Spur Records.">Seit über 20 Jahren mache ich Musik und veröffentliche sie auf meinem Label 4Spur Records.</p>\n            <p data-en="My tool is sound.')
+sub("about.html", '<a class="btn-ghost" href="leistungen.html"><span data-en="Services & Pricing">Leistungen &amp; Preise</span></a>',
+    '<a class="btn-ghost" href="leistungen.html"><span data-en="Services & Pricing">Leistungen &amp; Preise</span></a>\n        <a class="btn-ghost" href="label.html"><span data-en="To the label 4Spur Records">Zum Label 4Spur Records</span></a>')
 sub("faq.html", "04 — FAQ", "05 — FAQ")
 sub("kontakt.html", 'data-en="05 — Contact">05 — Kontakt', 'data-en="06 — Contact">06 — Kontakt')
 
@@ -381,4 +463,27 @@ if "4Spur" not in s:
     s = s.replace("\n## FAQ (Kurzfassung)", add + "\n## FAQ (Kurzfassung)", 1)
 s = s.replace("- [About](https://danielmatysiak.de/about.html)", "- [Label: 4Spur Records](https://danielmatysiak.de/label.html)\n- [About](https://danielmatysiak.de/about.html)", 1)
 (SITE / "llms.txt").write_text(s)
+# ---- Reihenfolge: Audio, Label, About, Lab, FAQ, Kontakt (Menü, Footer, Startseite, Wischreihenfolge, Kapitelnummern)
+_NAV = re.compile(r'(?P<lab><li><a href="lab\.html"(?: class="active")?>Lab</a></li>)\s*(?P<label><li><a href="label\.html"(?: class="active")?>Label</a></li>)\s*(?P<about><li><a href="about\.html"(?: class="active")?>About</a></li>)')
+_FOOT = re.compile(r'(?P<lab><a href="lab\.html">Lab</a>)(?P<w1>\s*)(?P<label><a href="label\.html">Label</a>)(?P<w2>\s*)(?P<about><a href="about\.html">About</a>)')
+for _p in SITE.glob("*.html"):
+    _t = _p.read_text()
+    _t = _NAV.sub(lambda m: m["label"] + "\n        " + m["about"] + "\n        " + m["lab"], _t)
+    _t = _FOOT.sub(lambda m: m["label"] + m["w1"] + m["about"] + m["w2"] + m["lab"], _t)
+    _p.write_text(_t)
+sub("label.html", '<p class="hero-kicker" data-en="03 — Label">03 — Label</p>', '<p class="hero-kicker" data-en="02 — Label">02 — Label</p>')
+sub("about.html", "04 — About", "03 — About")
+sub("lab.html", "02 — Collective Sound Lab", "04 — Collective Sound Lab")
+_i = (SITE / "index.html").read_text()
+_blocks = re.findall(r'        <a class="chapter-item" href="[a-z]+\.html">.*?</a>\n', _i, re.S)
+_by = {re.search(r'href="([a-z]+)\.html"', b).group(1): b for b in _blocks}
+_order = ["leistungen", "label", "about", "lab", "faq", "kontakt"]
+assert set(_order) == set(_by), _by.keys()
+_new = "".join(re.sub(r'(<span class="chapter-num">)\d\d', lambda m, n=n: m[1] + f"{n:02d}", _by[k]) for n, k in enumerate(_order, 1))
+_i = _i.replace("".join(_blocks), _new)
+(SITE / "index.html").write_text(_i)
+_m = (SITE / "main.js").read_text()
+_m = _m.replace("'leistungen.html', 'lab.html', 'label.html', 'about.html', 'faq.html'", "'leistungen.html', 'label.html', 'about.html', 'lab.html', 'faq.html'", 1)
+(SITE / "main.js").write_text(_m)
+
 print("ok", N, "releases,", len(by_year), "Jahre")

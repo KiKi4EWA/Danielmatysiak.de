@@ -9,8 +9,8 @@
   const closeLbl = document.getElementById('panel-close-label');
   const root = document.documentElement;
   const T = {
-    de: { close: 'Schließen', listen: 'Anhören', soon: 'Streaming-Link folgt.', hide: 'Player schließen', consent: n => `Player von ${n}. Beim Laden werden Daten an ${n} übertragen.`, open: 'Öffnen in', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
-    en: { close: 'Close', listen: 'Listen', soon: 'Streaming link coming soon.', hide: 'Close player', consent: n => `Player from ${n}. Loading it sends data to ${n}.`, open: 'Open in', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
+    de: { close: 'Schließen', listen: 'Anhören', soon: 'Streaming-Link folgt.', hide: 'Player schließen', consent: n => `Player von ${n}. Beim Laden werden Daten an ${n} übertragen.`, open: 'Öffnen in', revoke: 'Spotify-Einwilligung widerrufen', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
+    en: { close: 'Close', listen: 'Listen', soon: 'Streaming link coming soon.', hide: 'Close player', consent: n => `Player from ${n}. Loading it sends data to ${n}.`, open: 'Open in', revoke: 'Withdraw Spotify consent', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
   };
   const PLATFORMS = [['spotify', 'Spotify'], ['apple', 'Apple Music'], ['bandcamp', 'Bandcamp'], ['youtube', 'YouTube'], ['soundcloud', 'SoundCloud'], ['other', 'Web']];
   const lang = () => (root.lang === 'en' ? 'en' : 'de');
@@ -24,7 +24,7 @@
   const safeUrl = u => { try { const x = new URL(u); return x.protocol === 'https:' ? x.href : null; } catch (e) { return null; } };
   const linkItem = (name, url) => { const li = el('li'); const a = el('a', null, name); a.href = url; a.target = '_blank'; a.rel = 'noopener'; li.appendChild(a); return li; };
 
-  let opener = null, currentId = null;
+  let opener = null, currentId = null, activeArtist = null;
 
   function coverEl(r) {
     if (!r.cover) return el('div', 'panel-cover cover-ph');
@@ -116,12 +116,18 @@
         }
         box.hidden = !show; btn.setAttribute('aria-expanded', String(show)); btn.textContent = show ? t.hide : t.listen;
       };
+      // Widerruf: gespeicherte Zustimmung löschen, Player entfernen
+      const revoke = el('button', 'panel-revoke', t.revoke); revoke.type = 'button'; revoke.hidden = !ok;
+      revoke.addEventListener('click', () => {
+        ok = false; try { localStorage.removeItem(KEY); } catch (e) {}
+        box.replaceChildren(); setOpen(false); revoke.hidden = true;
+      });
       btn.addEventListener('click', () => {
         const show = box.hidden;
         if (show && !ok) { ok = true; try { localStorage.setItem(KEY, '1'); } catch (e) {} }
-        setOpen(show);
+        setOpen(show); revoke.hidden = !ok;
       });
-      act.append(box); row.append(btn);
+      act.append(box); row.append(btn); act.append(revoke);
       setOpen(ok);
     } else if (links.length) {
       const a = el('a', 'btn'); a.href = links[0][1]; a.target = '_blank'; a.rel = 'noopener';
@@ -238,7 +244,7 @@
     document.body.classList.remove('panel-side');
     panel.style.removeProperty('--panel-top'); panel.style.removeProperty('--panel-bottom');
     body.replaceChildren();
-    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    try { history.replaceState(null, '', location.pathname + location.search + (activeArtist ? '#a-' + activeArtist : '')); } catch (e) {}
     const o = opener;
     if (o && document.contains(o)) { o.focus({ preventScroll: true }); requestAnimationFrame(() => o.scrollIntoView({ block: 'nearest' })); }
     opener = null;
@@ -252,11 +258,135 @@
 
   // Sprache: Datum und offenes Panel neu rendern
   const refreshDates = () => document.querySelectorAll('.release-date').forEach(t => { t.textContent = fmtDate(t.getAttribute('datetime')); });
-  new MutationObserver(() => { refreshDates(); if (currentId) render(currentId); }).observe(root, { attributes: true, attributeFilter: ['lang'] });
+  new MutationObserver(() => { refreshDates(); if (currentId) render(currentId); renderIntro(); }).observe(root, { attributes: true, attributeFilter: ['lang'] });
   refreshDates();
+
+  // Artists: Menü im Hero filtert die Wand; ein Textblock zwischen Hero und Wand stellt den Artist vor
+  const ARTISTS = (() => { try { return JSON.parse(document.getElementById('artist-data').textContent); } catch (e) { return []; } })();
+  const intro = document.getElementById('artist-intro');
+  const menu = document.getElementById('artist-menu');
+  const menuBtn = document.getElementById('artist-btn');
+  const AT = {
+    de: { all: 'Alle Künstler anzeigen', one: 'Release', many: 'Releases', soon: n => `Zu ${n} folgt in Kürze ein Text.` },
+    en: { all: 'Show all artists', one: 'release', many: 'releases', soon: n => `A text about ${n} is coming soon.` },
+  };
+  const shown = n => n.replace(/\s*&\s*/g, ' y ');   // die Display-Schrift hat für „&“ nur einen Schnörkel
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function renderIntro() {
+    if (!intro) return;
+    const a = ARTISTS.find(x => x.slug === activeArtist);
+    intro.hidden = !a;
+    if (!a) return;
+    const t = AT[lang()], en = lang() === 'en';
+    intro.querySelector('.artist-intro-name').textContent = shown(a.name);
+    intro.querySelector('.artist-intro-text').textContent = (en ? a.bioEn : a.bio) || t.soon(a.name);
+    const n = [...document.querySelectorAll('.release[data-artists]')].filter(li => !li.hidden).length;
+    intro.querySelector('.artist-intro-count').textContent = `${n} ${n === 1 ? t.one : t.many}`;
+    const link = intro.querySelector('.artist-intro-link');
+    const u = a.spotify && safeUrl(a.spotify); link.hidden = !u; if (u) link.href = u;
+    intro.querySelector('.artist-intro-reset').textContent = t.all;
+    const pb = intro.querySelector('.artist-intro-photo'), pi = pb.querySelector('img');
+    pb.hidden = !a.photo;
+    if (a.photo) {
+      pi.src = a.photo.s; if (a.photo.s !== a.photo.l) pi.srcset = `${a.photo.s} ${a.photo.sw}w, ${a.photo.l} ${a.photo.lw}w`; else pi.removeAttribute('srcset'); pi.sizes = '(max-width: 800px) 92vw, 40vw';
+      pi.alt = (en ? a.photoAltEn : a.photoAlt) || a.name;
+      pb.setAttribute('aria-label', en ? 'Show photo large' : 'Foto groß anzeigen');
+    }
+    requestAnimationFrame(fitPhoto);
+  }
+
+  function setArtist(slug, scroll) {
+    const a = ARTISTS.find(x => x.slug === slug); slug = a ? slug : null;
+    if (panel.open) close();
+    activeArtist = slug;
+    document.body.classList.toggle('filtered', !!slug);
+    document.querySelectorAll('.release').forEach(li => { li.hidden = !!slug && !(li.dataset.artists || '').split(' ').includes(slug); });
+    // Jahresleiste: nur Jahre mit sichtbaren Kacheln
+    document.querySelectorAll('#year-nav li').forEach(li => {
+      const y = li.querySelector('a').getAttribute('href').slice(2);
+      li.hidden = !!slug && !document.querySelector(`.release[data-year="${y}"]:not([hidden])`);
+    });
+    if (menu) menu.querySelectorAll('button[data-artist]').forEach(b => { const on = b.dataset.artist === (slug || ''); if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+    renderIntro();
+    if (intro && slug) { intro.classList.remove('is-in'); void intro.offsetWidth; intro.classList.add('is-in'); }
+    try { history.replaceState(null, '', location.pathname + location.search + (slug ? '#a-' + slug : '')); } catch (e) {}
+    if (scroll) {
+      const target = slug ? intro : document.getElementById('archiv');
+      if (target) target.scrollIntoView({ block: 'start', behavior: reduced() ? 'auto' : 'smooth' });
+    }
+  }
+
+  if (menu && menuBtn) {
+    // Das Menü liegt im Top-Layer (Popover) und wird unter dem Knopf platziert; so schneidet der Hero es nicht ab
+    menu.addEventListener('beforetoggle', e => {
+      if (e.newState === 'open') {
+        const r = menuBtn.getBoundingClientRect();
+        menu.style.top = (r.bottom + scrollY + 8) + 'px';
+        menu.style.left = Math.max(8, Math.min(r.left + scrollX, scrollX + innerWidth - 8 - Math.min(320, innerWidth * 0.92))) + 'px';
+        menu.style.minWidth = Math.min(r.width, 320) + 'px';
+      }
+    });
+    menu.addEventListener('toggle', e => {
+      menuBtn.setAttribute('aria-expanded', String(e.newState === 'open'));
+      if (e.newState === 'open') {
+        const cur = menu.querySelector('[aria-current]') || menu.querySelector('button'); cur && cur.focus({ preventScroll: true });
+        const b = menu.getBoundingClientRect(); if (b.bottom > innerHeight - 8) scrollBy({ top: Math.min(b.bottom - innerHeight + 16, b.top - 80), behavior: reduced() ? 'auto' : 'smooth' });   // Menü ganz ins Bild holen
+      }
+    });
+    menu.addEventListener('click', e => {
+      const b = e.target.closest('button[data-artist]'); if (!b) return;
+      menu.hidePopover(); setArtist(b.dataset.artist || null, true);
+    });
+    menu.addEventListener('keydown', e => {
+      const items = [...menu.querySelectorAll('button')], i = items.indexOf(document.activeElement);
+      if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+      else if (e.key === 'Home') { e.preventDefault(); items[0].focus(); }
+      else if (e.key === 'End') { e.preventDefault(); items[items.length - 1].focus(); }
+    });
+    window.addEventListener('resize', () => { if (menu.matches(':popover-open')) menu.hidePopover(); });
+  }
+  // Großansicht des Artist-Fotos: dieselbe Lightbox wie bei den Covern, nur im Querformat
+  // Foto so hoch wie der Text (4:3), im Abstand der Cover direkt neben dem Absatz
+  function fitPhoto() {
+    if (!intro || intro.hidden) return;
+    const pb = intro.querySelector('.artist-intro-photo'), tx = intro.querySelector('.artist-intro-text');
+    if (pb.hidden) return;
+    if (matchMedia('(max-width: 800px)').matches) { pb.style.removeProperty('width'); pb.style.removeProperty('height'); return; }
+    const lh = parseFloat(getComputedStyle(tx).lineHeight) || 26;
+    const h = Math.round(Math.max(tx.getBoundingClientRect().height, lh * 8));   // mindestens acht Zeilen hoch, auch bei kurzem Text
+    if (h > 0) { pb.style.height = h + 'px'; pb.style.width = Math.round(h * 4 / 3) + 'px'; }
+  }
+  if (intro && 'ResizeObserver' in window) new ResizeObserver(fitPhoto).observe(intro.querySelector('.artist-intro-text'));
+  window.addEventListener('resize', fitPhoto);
+  if (intro && lb) {
+    intro.querySelector('.artist-intro-photo').addEventListener('click', e => {
+      const a = ARTISTS.find(x => x.slug === activeArtist); if (!a || !a.photo) return;
+      lb.classList.add('is-photo');
+      const art = lb.querySelector('.lightbox-art');
+      art.style.setProperty('--ar', (a.photo.w / a.photo.h).toFixed(4)); art.style.maxWidth = Math.round(a.photo.w * 1.6) + 'px';   // kleine Fotos nicht unscharf aufblasen
+      lbImg.src = a.photo.l; if (a.photo.s !== a.photo.l) lbImg.srcset = `${a.photo.s} ${a.photo.sw}w, ${a.photo.l} ${a.photo.lw}w`; else lbImg.removeAttribute('srcset');
+      lbImg.sizes = 'min(92vw, 112dvh)';
+      lbImg.alt = (lang() === 'en' ? a.photoAltEn : a.photoAlt) || a.name;
+      lbCap.textContent = shown(a.name);
+      lbOpener = e.currentTarget; lb.showModal();
+    });
+    lb.addEventListener('close', () => { lb.classList.remove('is-photo'); const art = lb.querySelector('.lightbox-art'); art.style.removeProperty('--ar'); art.style.removeProperty('max-width'); });
+  }
+  if (intro) intro.querySelector('.artist-intro-reset').addEventListener('click', () => { setArtist(null, true); if (menuBtn) menuBtn.focus({ preventScroll: true }); });
+  // Bei aktivem Filter fehlt oft der Jahresanker: zur ersten sichtbaren Kachel des Jahres springen
+  document.querySelectorAll('#year-nav a').forEach(a => a.addEventListener('click', e => {
+    if (!activeArtist) return;
+    e.preventDefault();
+    const t = document.querySelector(`.release[data-year="${a.getAttribute('href').slice(2)}"]:not([hidden])`);
+    if (t) t.scrollIntoView({ block: 'start', behavior: reduced() ? 'auto' : 'smooth' });
+  }));
 
   // Deep-Link #r-<id> beim Laden und bei Klick auf einen Link innerhalb der Seite (z. B. „Cover Art by“)
   const openFromHash = scroll => {
+    const am = location.hash.match(/^#a-([\w-]+)$/);
+    if (am) { if (ARTISTS.some(a => a.slug === am[1]) && am[1] !== activeArtist) setArtist(am[1], scroll); return; }
     const m = location.hash.match(/^#r-([\w-]+)$/);
     if (!m || !DATA[m[1]]) return;
     const b = document.querySelector(`.release-open[data-id="${m[1]}"]`);
