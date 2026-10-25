@@ -2378,7 +2378,7 @@ html:has(dialog:modal) { overflow: hidden; scrollbar-gutter: stable; }
 .artist-intro.is-in { animation: intro-in 260ms var(--ease-out); }
 @keyframes intro-in { from { opacity: 0; transform: translateY(8px); } }
 .artist-intro-name { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.02; margin: 0 0 1rem; text-wrap: balance; }
-.artist-intro-text { flex: 0 1 68ch; min-width: 0; font-size: clamp(16px, 1.5vw, 18px); line-height: 1.6; margin: 0; }
+.artist-intro-text { flex: 0 1 50ch; min-width: 0; font-size: clamp(16px, 1.5vw, 18px); line-height: 1.6; margin: 0; }
 .artist-intro-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 22px; margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .artist-intro-link { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
 .artist-intro-reset { background: none; border: 0; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--accent); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; transition: color 160ms ease, transform 100ms var(--ease-out); }
