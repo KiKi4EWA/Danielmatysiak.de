@@ -1,5 +1,5 @@
 {
- "_hinweis": "Optionale Zusatzdaten je product_id. Nur belegte Angaben eintragen. \"hidden\": true blendet ein Release aus, \"artist\" überschreibt den Artist aus dem Register (bis der Orchard-Eintrag korrigiert ist).",
+ "_hinweis": "Optionale Zusatzdaten je product_id. Nur belegte Angaben eintragen. \"hidden\": true blendet ein Release aus, \"artist\" überschreibt den Artist aus dem Register (bis der Orchard-Eintrag korrigiert ist). \"cover_by\" nennt den Cover-Künstler, wenn es nicht Obruni Antwi ist (dann kein Bildtitel #oban_…).",
  "_beispiel": {
   "0000000": {
    "highlight": true,
@@ -103,7 +103,8 @@
    "links": {
     "apple": "https://music.apple.com/de/album/gib-mir-xukah-single/1737715446",
     "spotify": "https://open.spotify.com/album/0u2ehwAnfATEynUCadXaw6"
-   }
+   },
+   "cover_by": "Daniel Matysiak"
   },
   "4551170": {
    "links": {
@@ -175,14 +176,16 @@
    "links": {
     "apple": "https://music.apple.com/de/album/tears-love-aint-that-way/1611143448",
     "spotify": "https://open.spotify.com/album/3KxmcZcouFoOis7WH01rBp"
-   }
+   },
+   "cover_by": "Daniel Matysiak"
   },
   "2630344": {
    "links": {
     "apple": "https://music.apple.com/de/album/14karat-bokondi-dub-single/1612671079",
     "spotify": "https://open.spotify.com/album/6HjnhkYTJbluWOiPClTSO0"
    },
-   "hidden": true
+   "hidden": true,
+   "cover_by": "Daniel Matysiak"
   },
   "3648357": {
    "links": {
@@ -207,14 +210,16 @@
     "apple": "https://music.apple.com/de/album/summertyme-single/1611170295",
     "spotify": "https://open.spotify.com/album/7caMp1NYcsMe7y9sGF0TrV"
    },
-   "hidden": true
+   "hidden": true,
+   "cover_by": "Daniel Matysiak"
   },
   "2630531": {
    "links": {
     "apple": "https://music.apple.com/de/album/cat-in-the-oven-single/1611175943",
     "spotify": "https://open.spotify.com/album/4slDWnbqlkBcGUAP0fZB7Q"
    },
-   "hidden": true
+   "hidden": true,
+   "cover_by": "Daniel Matysiak"
   },
   "2794885": {
    "links": {
@@ -253,7 +258,8 @@
    "links": {
     "apple": "https://music.apple.com/de/album/die-gedanken-sind-frei-feat-olga-lilly-single/1479317767",
     "spotify": "https://open.spotify.com/album/0FGkj1AqAlKro5YQ2CnVPh"
-   }
+   },
+   "cover_by": "Daniel Matysiak"
   },
   "2658347": {
    "links": {
@@ -325,7 +331,8 @@
    "links": {
     "apple": "https://music.apple.com/de/album/waiting-for-ticks/1448761801",
     "spotify": "https://open.spotify.com/album/2fn2cOVBV8FUuX1SKK1wcB"
-   }
+   },
+   "cover_by": "Daniel Matysiak"
   },
   "2544376": {
    "links": {
@@ -349,7 +356,8 @@
    "links": {
     "apple": "https://music.apple.com/de/album/tunka-tun-ka-single/1445872417",
     "spotify": "https://open.spotify.com/album/285PeSebvEjz2ZePjQUD9S"
-   }
+   },
+   "cover_by": "Daniel Matysiak"
   },
   "2530958": {
    "links": {
@@ -362,7 +370,8 @@
     "apple": "https://music.apple.com/de/album/all-good/1443552944",
     "spotify": "https://open.spotify.com/album/08u8LIeov3QE8G0iwX139Q"
    },
-   "artist": "Ete & Ali"
+   "artist": "Ete & Ali",
+   "cover_by": "Daniel Matysiak"
   },
   "2494563": {
    "links": {
@@ -374,18 +383,21 @@
    "links": {
     "apple": "https://music.apple.com/de/album/ciclo-de-mexico-ep/1441308306",
     "spotify": "https://open.spotify.com/album/5ugVud6zmDfCWkO6TTSfvf"
-   }
+   },
+   "cover_by": "Daniel Matysiak"
   },
   "2215975": {
    "links": {
     "spotify": "https://open.spotify.com/album/2FBlDsvev3KvozbNTFBmJL"
-   }
+   },
+   "cover_by": "Daniel Matysiak"
   },
   "2215976": {
    "links": {
     "apple": "https://music.apple.com/de/album/grime-dub-ep/182852368",
     "spotify": "https://open.spotify.com/album/1CTCgoGtLI6KAz7SiwNrsJ"
-   }
+   },
+   "cover_by": "Daniel Matysiak"
   }
  },
  "videos_zuordnung_vorschlag": {

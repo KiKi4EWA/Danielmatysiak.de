@@ -147,7 +147,7 @@ for r in REL:
         "id": pid, "title": r["title"], "artist": r["artist"], "feat": r.get("featuring"),
         "date": r["release_date"], "format": r["format"], "cover": cover_sizes(pid) or None,
         "links": x.get("links"), "tracks": x.get("tracks"), "duration": x.get("duration"),
-        "art": art_title(pid), "cline": (f'{CLINE[pid]} 4Spur Records' if pid in CLINE else f'{r["release_date"][:4]} 4Spur Records'), "description": x.get("description"), "descriptionEn": x.get("description_en"), "credits": x.get("credits"), "videos": x.get("videos"),
+        "art": (None if x.get("cover_by") else art_title(pid)), "artBy": (x.get("cover_by") if (pid in ASSIGN and cover_sizes(pid)) else None), "cline": (f'{CLINE[pid]} 4Spur Records' if pid in CLINE else f'{r["release_date"][:4]} 4Spur Records'), "description": x.get("description"), "descriptionEn": x.get("description_en"), "credits": x.get("credits"), "videos": x.get("videos"),
     }.items() if v}
 data_json = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 

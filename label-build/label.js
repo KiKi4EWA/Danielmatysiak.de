@@ -82,9 +82,9 @@
     meta.append(time, document.createTextNode(` · ${r.format}`));
     if (r.duration) meta.append(document.createTextNode(` · ${r.duration}`));
     head.append(artist, title, meta);
-    if (r.art) {
+    if ((r.art || r.artBy) && r.cover) {
       const art = el('p', 'panel-art'); art.appendChild(el('span', null, 'Cover Art'));
-      const ab = el('button', 'art-open', r.art); ab.type = 'button'; ab.setAttribute('aria-haspopup', 'dialog');
+      const ab = el('button', 'art-open', r.art || r.artBy); ab.type = 'button'; ab.setAttribute('aria-haspopup', 'dialog');
       ab.title = lang() === 'en' ? 'Show cover large' : 'Cover groß anzeigen';
       ab.addEventListener('click', () => openLightbox(r, ab));
       art.append(' ', ab); head.appendChild(art);
@@ -194,7 +194,7 @@
     lbImg.src = `img/covers/${r.id}-${size}.webp`;
     lbImg.srcset = r.cover.map(s => `img/covers/${r.id}-${s}.webp ${s}w`).join(', ');
     lbImg.sizes = 'min(92vw, 84dvh)';
-    lbImg.alt = `${r.art}: ${r.title}, ${r.artist}`;
+    lbImg.alt = `${r.art || r.artBy}: ${r.title}, ${r.artist}`;
     const who = r.artist + (r.feat ? ' feat. ' + r.feat : '');
     lbCap.textContent = `${who} \u00b7 ${r.title} \u00b7 ${r.cline}`;   // Trennpunkte in Zeilenmitte
     lbOpener = from || null;
