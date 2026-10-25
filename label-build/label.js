@@ -272,6 +272,11 @@
   };
   const shown = n => n.replace(/\s*&\s*/g, ' y ');   // die Display-Schrift hat für „&“ nur einen Schnörkel
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Die „808“ der Display-Schrift hat den dicken Bauch oben: vertikal gespiegelt steht er unten, wie beim 808-Logo
+  const withFlip808 = (node, text) => {
+    node.textContent = '';
+    text.split('808').forEach((part, i) => { if (i) node.appendChild(el('span', 'n808', '808')); if (part) node.appendChild(document.createTextNode(part)); });
+  };
 
   function renderIntro() {
     if (!intro) return;
@@ -279,7 +284,7 @@
     intro.hidden = !a;
     if (!a) return;
     const t = AT[lang()], en = lang() === 'en';
-    intro.querySelector('.artist-intro-name').textContent = shown(a.name);
+    withFlip808(intro.querySelector('.artist-intro-name'), shown(a.name));
     intro.querySelector('.artist-intro-text').textContent = (en ? a.bioEn : a.bio) || t.soon(a.name);
     const n = [...document.querySelectorAll('.release[data-artists]')].filter(li => !li.hidden).length;
     intro.querySelector('.artist-intro-count').textContent = `${n} ${n === 1 ? t.one : t.many}`;

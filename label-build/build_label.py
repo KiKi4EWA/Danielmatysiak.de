@@ -96,7 +96,7 @@ def de_date(iso):
 
 def cover_html(r):
     pid = r["product_id"]; have = cover_sizes(pid)
-    veil = f'<span class="cover-info" aria-hidden="true"><span class="cover-artist">{html.escape(r["artist"]).replace("&amp;", "y")}</span></span>'
+    veil = f'<span class="cover-info" aria-hidden="true"><span class="cover-artist">{html.escape(r["artist"]).replace("&amp;", "y").replace("808", '<span class="n808">808</span>')}</span></span>'
     if not have:
         return f'<span class="cover cover-ph" aria-hidden="true">{veil}</span>'
     srcset = ", ".join(f"img/covers/{pid}-{s}.webp {s}w" for s in have)
