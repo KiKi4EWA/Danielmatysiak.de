@@ -92,7 +92,9 @@ years = sorted({r["date"][:4] for r in D}, reverse=True)
 cut(r'(?<=<nav class="year-nav" id="year-nav" aria-label="Jahre" data-no-swipe>\n)\s*<ul>', r'</ul>', "    <ul>\n" + "\n".join(f'      <li><a href="#y{y}">{y}</a></li>' for y in years) + "\n    </ul>")
 # Daten
 data = {r["id"]: {"id": r["id"], "title": r["title"], "artist": r["artist"], "date": r["date"], "format": r["format"], "cover": [320, 640],
-                  "links": {"spotify": f'https://open.spotify.com/album/{r["id"]}'}, "cline": r["date"][:4]} for r in D}
+                  "links": {"spotify": f'https://open.spotify.com/album/{r["id"]}'}, "cline": r["date"][:4],
+                  "credits": r.get("credits"), "description": r.get("description"), "descriptionEn": r.get("description_en")} for r in D}
+data = {k: {a: b for a, b in v.items() if b} for k, v in data.items()}
 dj = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 cut(r'<script type="application/json" id="release-data">', r'</script>', f'<script type="application/json" id="release-data">{dj}</script>')
 s = re.sub(r'\s*<script type="application/json" id="artist-data">.*?</script>', "", s, 1, flags=re.S)
