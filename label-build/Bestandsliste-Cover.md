@@ -42,9 +42,9 @@ Sichtbar: 45 mit echtem Cover, 5 mit Platzhalter.
 | 2019-09-09 | Die Gedanken Sind Frei | Daniel Matysiak | 2652978 | ja | echtes Cover | `dgsf_003.jpg` | Cover Art Daniel Matysiak |  |
 | 2019-08-08 | NITE BERRY (Bokondi Dub) | KingAli 030 | 2658350 | ja | echtes Cover | `n74.jpg` | #oban_n74 |  |
 | 2019-08-08 | The Yellow King | Kingali 030 | 2658347 | ja | echtes Cover | `1111226.jpg` | #oban_1111226 |  |
-| 2019-08-01 | Im Wald | Dr. OmniChord | 2658352 | ja | echtes Cover | `dromnichord.jpg` | #oban_dromnichord |  |
-| 2019-05-31 | The Lost Tapes | Debbie Parker INC. | 2621752 | ja | echtes Cover | `lost tapes cover.jpg` | kein Titel (Name mit Leerzeichen/Sonderzeichen) |  |
-| 2019-05-24 | Lost Riddim | The Afterhour | 2622094 | ja | echtes Cover | `the Afterhour_lost riddim_cover_002.jpg` | kein Titel (Name mit Leerzeichen/Sonderzeichen) |  |
+| 2019-08-01 | Im Wald | Dr. OmniChord | 2658352 | ja | echtes Cover | `dromnichord.jpg` | Cover Art Daniel Matysiak |  |
+| 2019-05-31 | The Lost Tapes | Debbie Parker INC. | 2621752 | ja | echtes Cover | `lost tapes cover.jpg` | Cover Art Daniel Matysiak |  |
+| 2019-05-24 | Lost Riddim | The Afterhour | 2622094 | ja | echtes Cover | `the Afterhour_lost riddim_cover_002.jpg` | Cover Art Daniel Matysiak |  |
 | 2019-05-03 | Aurora's Mood | The Afterhour | 2582408 | ja | echtes Cover | `1203213.jpg` | #oban_1203213 |  |
 | 2019-03-08 | Protect Me | The Afterhour | 2582797 | ja | echtes Cover | `rottluff.jpg` | #oban_rottluff |  |
 | 2019-03-08 | Crystal Ship | The Afterhour | 2582371 | ja | Platzhalter |  |  | k12.jpg bleibt bei LiQUiDROM |
