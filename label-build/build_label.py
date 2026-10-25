@@ -25,6 +25,9 @@ for _r in reg["releases"]:
     if extras.get(_r["product_id"], {}).get("artist"): _r["artist"] = extras[_r["product_id"]]["artist"]
 REL = sorted((r for r in reg["releases"] if r["label"] == "4Spur Records" and not extras.get(r["product_id"], {}).get("hidden")),
              key=lambda r: (r["release_date"], r["product_id"]), reverse=True)
+# Redaktionelle Reihenfolge: DUB du PHONK und AUGENLIED tauschen die Plätze (DUB du PHONK nach vorn, damit sein Cover groß erscheint)
+_i, _j = (next(k for k, r in enumerate(REL) if r["product_id"] == p) for p in ("7018769", "6564352"))
+REL[_i], REL[_j] = REL[_j], REL[_i]
 SIZES = (320, 640, 960, 1440)
 
 # ---- Artists (Menü + Filter): Hauptkünstler aller sichtbaren Releases; Featuring zählt zur Zuordnung, erzeugt aber keinen Eintrag
