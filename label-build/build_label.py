@@ -4,7 +4,7 @@ Läuft auf einer frischen Kopie des Repos (nicht idempotent):
     rm -rf site && mkdir site && cp -R <repo>/. site/ && rm -rf site/.git && python3 build_label.py
 Daten: data/4spur-release-register.json (Orchard-Register) + data/release-extras.json (optionale Redaktionsdaten je product_id).
 Cover: site/img/covers/<product_id>-{320,640,960,1440}.webp (siehe tools/make_covers.py); fehlt die Datei, erscheint ein Platzhalter."""
-import os, re, html, json, pathlib, collections
+import shutil, os, re, html, json, pathlib, collections
 
 ROOT = pathlib.Path(__file__).parent
 import sys
@@ -244,7 +244,7 @@ page = f'''<!DOCTYPE html>
           </ul>
         </aside>
       </div>
-      <img class="hero-deco-img hero-deco-full" src="img/audio_neve.webp" alt="" aria-hidden="true">
+      <img class="hero-deco-img hero-deco-full" src="img/label_hero.webp" alt="" aria-hidden="true">
     </section>
 
     <section class="section release-wall" id="archiv">
@@ -334,7 +334,8 @@ label = '''        <a class="chapter-item" href="label.html">
 s = (SITE / "main.js").read_text()
 s = s.replace("'lab.html', 'about.html'", "'lab.html', 'label.html', 'about.html'")
 _m = re.search(r"    'page-audio':   \[[^\n]*\],\n", s)
-s = s.replace(_m.group(0), _m.group(0) + _m.group(0).replace("'page-audio':  ", "'page-label':  "), 1)
+s = s.replace(_m.group(0), _m.group(0) + "    'page-label':   ['img/label_hero.webp'],\n", 1)
+shutil.copy(ROOT / "assets/label_hero.webp", SITE / "img/label_hero.webp")
 s = s.replace("if (key === 'page-audio') {", "if (key === 'page-audio' || key === 'page-label') {", 1)
 s = s.replace("const parallaxPages = ['page-home', 'page-audio', 'page-lab'];", "const parallaxPages = ['page-home', 'page-audio', 'page-label', 'page-lab'];", 1)
 s = s.replace("    'page-lab':     'lab.html',\n", "    'page-lab':     'lab.html',\n    'page-label':   'label.html',\n")
