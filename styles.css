@@ -2183,3 +2183,23 @@ html:has(dialog:modal) { overflow: hidden; scrollbar-gutter: stable; }
 .n808 { display: inline-block; transform: translateY(-0.115em) scaleY(-1); transform-origin: 50% 50%; }   /* Spiegelachse liegt mittig im Zeilenkasten, die Ziffer sitzt tiefer: um 0,115 em anheben */
 
 .title-slash { font-family: var(--sans); font-weight: 500; }   /* Schrägstrich fehlt in der Display-Schrift */
+
+/* Hörzugang ohne Anmeldung (The Orchard): Aktion groß, Anbieter als kleiner Zusatz */
+.panel-listen { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 12px 0 0; }
+.panel-listen a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; white-space: nowrap; transition: color 160ms ease, transform 100ms var(--ease-out); }
+.panel-listen a:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .panel-listen a:hover { color: var(--accent); } }
+.panel-listen a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.listen-by { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+/* Eigener Tooltip in der Schrift der Seite (statt des System-Tooltips) */
+[data-tip] { position: relative; }
+[data-tip]::after {
+  content: attr(data-tip); position: absolute; left: 0; top: calc(100% + 8px); z-index: 40; white-space: nowrap; pointer-events: none;
+  font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: 0.06em; text-transform: none; line-height: 1.2; color: var(--text);
+  background: rgba(237, 232, 219, 0.97); padding: 7px 10px;
+  opacity: 0; transform: translateY(-4px); transition: opacity 100ms var(--ease-out), transform 100ms var(--ease-out);   /* Ausblenden schnell */
+}
+@media (hover: hover) and (pointer: fine) { [data-tip]:hover::after { opacity: 1; transform: none; transition: opacity 160ms var(--ease-out) 350ms, transform 160ms var(--ease-out) 350ms; } }   /* kurze Verzögerung gegen versehentliches Aufpoppen */
+[data-tip]:focus-visible::after { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { [data-tip]::after { transition: none; transform: none; } }
