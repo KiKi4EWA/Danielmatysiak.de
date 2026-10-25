@@ -1894,18 +1894,25 @@ html:has(dialog:modal) { overflow: hidden; scrollbar-gutter: stable; }
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(clamp(150px, 13.2vw, 240px), 1fr));
-  gap: 34px 14px;
+  /* Raster-Rechnung: gleiche Abstände waagerecht und senkrecht (--g), feste Beschriftungshöhe (--cap).
+     Zwei Zeilen = 2·(s + cap) + g. Ein großes Cover ist 2·s + g breit und hoch, seine Beschriftung 2·cap hoch:
+     2·s + g + 2·cap, also genau so hoch wie zwei Zeilen. Oberkante und Unterkante liegen auf denselben Linien. */
+  --g: clamp(14px, 1.4vw, 22px);
+  --cap: 112px;
+  gap: var(--g);
   align-items: start;
 }
 
 @media (max-width: 600px) {
-  .release-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 10px; }
+  .release-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); --g: 12px; --cap: 128px; }
   .release.is-highlight.hl-left,
   .release.is-highlight.hl-right { grid-row: auto; grid-column: 1 / -1; }
 }
 
 .release { margin: 0; min-width: 0; }
 .release.is-highlight { grid-column: span 2; grid-row: span 2; }
+.meta { display: flow-root; min-height: var(--cap); }  /* flow-root: Außenabstand der ersten Zeile bleibt im Block */
+.release.is-highlight .meta { min-height: calc(2 * var(--cap)); }
 
 .release-open {
   display: block;
@@ -2062,7 +2069,7 @@ html:has(dialog:modal) { overflow: hidden; scrollbar-gutter: stable; }
 /* Detailpanel: Glas wie die Navigation, ohne Rand */
 .release-panel {
   position: fixed;
-  inset: var(--panel-top, 0px) 0 0 auto;   /* Desktop: beginnt unter dem Hero, nie darüber */
+  inset: var(--panel-top, 0px) 0 var(--panel-bottom, 0px) auto;   /* Desktop: unter dem Menü, über dem Footer */
   margin: 0;
   padding: 0;
   width: min(520px, 44vw);
@@ -2231,12 +2238,6 @@ html:has(dialog:modal) { overflow: hidden; scrollbar-gutter: stable; }
   .cover-artist { transform: none; transition: none; }
 }
 
-/* Label: Geschichte der Cover */
-.label-story { border-top: none; padding-top: 8px; padding-bottom: 8px; padding-left: clamp(12px, 3vw, 40px); }
-.story-text { max-width: 640px; }
-.story-text p { font-size: clamp(16px, 1.5vw, 18px); line-height: 1.7; color: var(--text); margin: 0 0 1rem; }
-.story-link { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
-  text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); text-underline-offset: 4px; }
 .page-label .release-wall { padding-left: 0; }
 
 /* Plattform-Links in einer Zeile */
@@ -2246,36 +2247,10 @@ html:has(dialog:modal) { overflow: hidden; scrollbar-gutter: stable; }
   text-decoration-color: var(--accent); text-underline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) { .panel-open a:hover { color: var(--accent); } }
 
-.story-links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; font-family: var(--mono); font-size: 11px;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 1.25rem; }
-.story-links .story-link { white-space: nowrap; }
-@media (hover: hover) and (pointer: fine) { .story-link:hover { color: var(--accent-h); } }
-
-.story-text .story-links { font-size: 11px; line-height: 1.5; color: var(--muted); }
-
 /* Kopfbereich wie bei Audio: gleiche Breite wie die übrigen Seiten; nur die Plattenwand nutzt die volle Breite */
-.page-label .hero-deco,
-.page-label .label-story { max-width: calc(var(--max) - 2 * var(--gutter)); margin-left: auto; margin-right: auto; }
-.page-label .label-story { padding-left: clamp(12px, 3vw, 40px); }
+.page-label .hero-deco { max-width: calc(var(--max) - 2 * var(--gutter)); margin-left: auto; margin-right: auto; }
 
-/* Akkordeon „Über die Cover“ unter der Archiv-Einleitung */
-.release-wall .section-intro { margin-bottom: 0.5rem; }
-.cover-story { margin: 0 0 clamp(16px, 2.5vw, 32px); max-width: 640px; }
-.story-toggle {
-  background: none; border: none; padding: 6px 0; cursor: pointer; color: var(--accent);
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); text-underline-offset: 4px;
-}
-.story-toggle::after { content: "▾"; display: inline-block; margin-left: 0.5em; transition: transform 200ms var(--ease-out); }
-.story-toggle[aria-expanded="true"]::after { transform: rotate(180deg); }
-.story-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.story-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 260ms var(--ease-out); }
-.story-body.open { grid-template-rows: 1fr; }
-.story-inner { overflow: hidden; min-height: 0; }
-.story-body:not(.open) .story-inner { visibility: hidden; transition: visibility 0s linear 260ms; }
-.story-body.open .story-inner { visibility: visible; }
-.cover-story .story-text { padding-top: 14px; }
-@media (prefers-reduced-motion: reduce) { .story-body, .story-toggle::after { transition: none; } }
+.release-wall .section-intro { margin-bottom: 1.25rem; }
 
 /* Seitenpanel offen: die Wand weicht aus und ordnet sich neu, nichts liegt darunter */
 @media (min-width: 701px) { .panel-side .release-wall { padding-right: calc(min(520px, 44vw) + 16px); } }
@@ -2288,10 +2263,28 @@ html:has(dialog:modal) { overflow: hidden; scrollbar-gutter: stable; }
 .page-label .hero-copy .cta-row { margin-top: 1.5rem; }
 
 /* Druck-Feedback für alle klickbaren Elemente */
-.story-toggle { transition: transform 100ms var(--ease-out); }
-.story-toggle:active, .panel-actions button.btn:active { transform: scale(0.97); }
+.panel-actions button.btn:active { transform: scale(0.97); }
 
 /* Typografie: Fließtext ohne Waisen und Witwen, Mischtext in Meta-Zeilen nicht gesperrt */
-.story-text p, .panel-desc, .panel-note { text-wrap: pretty; }
+.panel-desc, .panel-note { text-wrap: pretty; }
 .panel-title { text-wrap: balance; }
 .panel-meta { letter-spacing: 0.04em; }
+
+/* Künstlerkachel: gleiche Größe wie ein Cover; Porträt im Panel im Originalformat */
+.artist-tile { grid-row: span 2; align-self: stretch; }
+.artist-tile .release-open { display: flex; flex-direction: column; height: 100%; }
+.artist-tile .cover { flex: 1 1 0; min-height: 0; aspect-ratio: auto; }   /* Höhe = zwei Zeilen minus Beschriftung */
+.artist-tile .cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+.artist-tile .meta { flex: none; }
+.artist-tile .release-artist { text-transform: uppercase; }
+.panel-cover.is-portrait { aspect-ratio: auto; width: auto; max-width: 100%; background: none; }
+.panel-cover.is-portrait img { width: auto; max-width: 100%; height: auto; max-height: 42dvh; object-fit: contain; }
+
+.year-nav.behind-hero { opacity: 0; pointer-events: none; }
+
+@media (max-width: 600px) { .release.is-highlight .meta { min-height: var(--cap); } }
+
+/* Quellenangabe unter der Wand */
+.cover-credit { margin-top: clamp(28px, 4vw, 56px); font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.cover-credit a { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) { .cover-credit a:hover { color: var(--accent); } }

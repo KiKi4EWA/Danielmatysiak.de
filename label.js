@@ -1,12 +1,5 @@
 // 4Spur Records: Detailpanel, Jahresnavigation, Datumsformat
 (function () {
-  // Akkordeon „Über die Cover“
-  const tg = document.getElementById('story-toggle'), sb = document.getElementById('story-body');
-  if (tg && sb) tg.addEventListener('click', () => {
-    const o = tg.getAttribute('aria-expanded') !== 'true';
-    tg.setAttribute('aria-expanded', String(o)); sb.classList.toggle('open', o);
-  });
-
   const dataEl = document.getElementById('release-data');
   const panel = document.getElementById('release-panel');
   if (!dataEl || !panel) return;
@@ -51,8 +44,28 @@
     return m ? { name: 'Spotify', src: `https://open.spotify.com/embed/album/${m[1]}?utm_source=generator`, h: 152 } : null;
   }
 
+  function renderArtist(r) {
+    const t = T[lang()], en = lang() === 'en';
+    body.replaceChildren();
+    const wrap = el('div', 'panel-cover is-portrait');
+    const img = document.createElement('img');
+    img.src = r.imageSmall; img.srcset = `${r.imageSmall} 480w, ${r.image} 960w`; img.sizes = '(max-width: 700px) 70vw, 300px';
+    img.alt = en ? 'Self-portrait of ' + r.name : 'Selbstporträt von ' + r.name; img.width = 480; img.height = 739;
+    wrap.appendChild(img); body.appendChild(wrap);
+    const head = el('div', 'panel-head');
+    head.appendChild(el('p', 'panel-artist', en ? r.roleEn : r.role));
+    const title = el('h2', 'panel-title', r.name); title.id = 'panel-title';
+    head.appendChild(title); body.appendChild(head);
+    (en ? r.bioEn : r.bio).forEach(p => body.appendChild(el('p', 'panel-desc', p)));
+    const p = el('p', 'panel-open', `${en ? 'More from her' : 'Mehr von ihr'} `);
+    r.links.forEach(([n, u]) => { const l = el('a', null, `${n} ↗`); l.href = u; l.target = '_blank'; l.rel = 'noopener'; p.appendChild(l); });
+    body.appendChild(p);
+    closeBtn.setAttribute('aria-label', t.close); closeLbl.textContent = t.close;
+  }
+
   function render(id) {
     const r = DATA[id]; if (!r) return;
+    if (r.kind === 'artist') return renderArtist(r);
     const t = T[lang()];
     body.replaceChildren();
     body.appendChild(coverEl(r));
@@ -114,7 +127,8 @@
     }
     body.appendChild(act);
 
-    if (r.description) body.appendChild(el('p', 'panel-desc', r.description));
+    const desc = lang() === 'en' && r.descriptionEn ? r.descriptionEn : r.description;
+    if (desc) body.appendChild(el('p', 'panel-desc', desc));
     if (r.tracks && r.tracks.length) {
       body.appendChild(el('h3', 'panel-h', t.tracks));
       const ol = el('ol', 'panel-tracks');
@@ -140,15 +154,20 @@
 
   // Desktop: Seitenpanel ohne Sperre (Wand und Jahresleiste bleiben bedienbar). Handy: bildschirmfüllend und modal.
   const wide = window.matchMedia('(min-width: 701px)');
-  // Seitenpanel nie in den Hero: Oberkante = Unterkante der Navigation oder Oberkante der Wand, je nachdem was tiefer liegt
-  const wallEl = document.getElementById('archiv');
+  // Seitenpanel: darf über den Hero, bleibt aber immer unter dem Menü und über dem Footer frei
   const siteNav = document.querySelector('.site-nav');
+  const siteFooter = document.querySelector('footer');
   let syncQueued = false;
   function syncTop() {
     syncQueued = false;
-    if (!document.body.classList.contains('panel-side') || !wallEl) { panel.style.removeProperty('--panel-top'); return; }
-    const navBottom = siteNav ? siteNav.getBoundingClientRect().bottom : 0;
-    panel.style.setProperty('--panel-top', Math.max(navBottom, wall.getBoundingClientRect().top) + 'px');
+    const rail = document.getElementById('year-nav'), hero = document.querySelector('.hero-deco');
+    if (!document.body.classList.contains('panel-side')) { panel.style.removeProperty('--panel-top'); panel.style.removeProperty('--panel-bottom'); if (rail) rail.classList.remove('behind-hero'); return; }
+    // Jahresleiste ausblenden, solange sie über dem Hero (und dessen Infobox) läge
+    if (rail && hero) rail.classList.toggle('behind-hero', hero.getBoundingClientRect().bottom > rail.getBoundingClientRect().top);
+    const navBottom = siteNav ? Math.max(0, siteNav.getBoundingClientRect().bottom) : 0;
+    const footTop = siteFooter ? siteFooter.getBoundingClientRect().top : innerHeight;
+    panel.style.setProperty('--panel-top', navBottom + 'px');
+    panel.style.setProperty('--panel-bottom', Math.max(0, innerHeight - footTop) + 'px');
   }
   const queueSync = () => { if (!syncQueued) { syncQueued = true; requestAnimationFrame(syncTop); } };
   window.addEventListener('scroll', queueSync, { passive: true });
@@ -171,7 +190,7 @@
     if (currentId === null && !document.body.classList.contains('panel-side')) return;
     currentId = null;
     document.body.classList.remove('panel-side');
-    panel.style.removeProperty('--panel-top');
+    panel.style.removeProperty('--panel-top'); panel.style.removeProperty('--panel-bottom');
     body.replaceChildren();
     try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
     const o = opener;
@@ -190,9 +209,16 @@
   new MutationObserver(() => { refreshDates(); if (currentId) render(currentId); }).observe(root, { attributes: true, attributeFilter: ['lang'] });
   refreshDates();
 
-  // Deep-Link #r-<id>
-  const m = location.hash.match(/^#r-(\d+)$/);
-  if (m && DATA[m[1]]) open(m[1], document.querySelector(`.release-open[data-id="${m[1]}"]`));
+  // Deep-Link #r-<id> beim Laden und bei Klick auf einen Link innerhalb der Seite (z. B. „Cover Art by“)
+  const openFromHash = scroll => {
+    const m = location.hash.match(/^#r-([\w-]+)$/);
+    if (!m || !DATA[m[1]]) return;
+    const b = document.querySelector(`.release-open[data-id="${m[1]}"]`);
+    open(m[1], b);
+    if (scroll && b) b.scrollIntoView({ block: 'center' });
+  };
+  openFromHash(false);
+  window.addEventListener('hashchange', () => openFromHash(true));
 
   // Jahresnavigation: erst ab Archiv sichtbar, aktives Jahr markieren
   const nav = document.getElementById('year-nav');
@@ -202,14 +228,19 @@
     new IntersectionObserver(([e]) => nav.classList.toggle('visible', e.isIntersecting), { rootMargin: '-30% 0px -10% 0px' }).observe(wall);
     const links = new Map([...nav.querySelectorAll('a')].map(a => [a.getAttribute('href').slice(1), a]));
     const vis = new Set();
+    let lockUntil = 0;                       // nach einem Klick auf die Leiste gilt das angeklickte Jahr, bis das Scrollen zur Ruhe kommt
+    const setActive = id => links.forEach((a, k) => {
+      const on = k === id;
+      a.classList.toggle('active', on);
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+    links.forEach((a, id) => a.addEventListener('click', () => { lockUntil = Date.now() + 1500; setActive(id); }));
     const io = new IntersectionObserver(es => {
       es.forEach(e => (e.isIntersecting ? vis.add(e.target) : vis.delete(e.target)));
-      const firstTile = tiles.find(t => vis.has(t)); const first = firstTile && { id: 'y' + firstTile.dataset.year };
-      links.forEach((a, id) => {
-        const on = !!first && first.id === id;
-        a.classList.toggle('active', on);
-        if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
-      });
+      if (Date.now() < lockUntil) return;
+      const firstTile = tiles.find(t => vis.has(t));
+      const first = firstTile && { id: 'y' + firstTile.dataset.year };
+      setActive(first ? first.id : null);
       const act = first && links.get(first.id);
       if (act && getComputedStyle(nav.querySelector('ul')).flexDirection === 'row') act.scrollIntoView({ inline: 'center', block: 'nearest' });
     }, { rootMargin: '-15% 0px -70% 0px' });
