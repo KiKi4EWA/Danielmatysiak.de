@@ -43,9 +43,26 @@ Die Cover stammen von Obruni Antwi, freier Künstlerin aus Berlin (geboren in Sc
 
 Katalog: https://danielmatysiak.de/label.html
 
+Die Label-Seite ist nach Künstlern filterbar. Zu jedem Release gibt es ein Detailfenster mit Cover, Datum, Format, Titelliste mit Laufzeiten, Spotify-Player (nach Einwilligung) und Links zu The Orchard (alle Titel ohne Anmeldung hören), Spotify und Apple Music.
+
+Artists auf 4Spur Records:
+- Ete & Ali: Produzenten-Duo aus Berlin, seit über 15 Jahren im elektronischen Underground, bekannt aus der Grime-Dub-Szene, Markenzeichen sind schwere 808s.
+- KiKi4EWA: Berliner Künstler zwischen Dub, Urban Sounds und afrikanischen Einflüssen; Bilder von Obruni Antwi.
+- KingAli 030: Projekt mit Wurzeln in den späten Neunzigern, nicht an Medium oder Genre gebunden, Sitz Berlin.
+- The Afterhour: lose Truppe für improvisierte Krautrock-Sessions im Berlin der 2000er Jahre, jahrelang live auf Festivals und in Clubs.
+
 ## Produktionen für andere Künstler
 
-Beats, Samples, Mix und Mastering für Releases anderer Künstler, darunter Nicolas Sosa, ANNA T, Tiita & Katerband und Wolfgang Tillmans. Mit Cover, Credits und Player: https://danielmatysiak.de/produktionen.html
+Daniel Matysiak produziert, mischt und mastert Releases anderer Künstler, außerhalb von 4Spur Records. Auswahl mit Cover, Credits und Player: https://danielmatysiak.de/produktionen.html
+
+- Tiita, Katerband: La Desconfianza (Live) (Single, 2025) — Rolle: Production, Mix — Spotify: https://open.spotify.com/album/0C9um67V8T5aKq8Pcnr7lp
+- Nicolas Sosa: CASI (Single, 2024) — Rolle: Production, Mix, Master — Spotify: https://open.spotify.com/album/1fOf8B4Vbh8c3gm1FGVdDk
+- ANNA T, Nicolas Sosa: Saturn Returns (EP, 2024) — Rolle: Mix, Master — Hören ohne Anmeldung: https://promo.theorchard.com/TPjCbQFuHXs3TTveIwRx
+- Nicolas Sosa: Ofrenda (Single, 2024) — Rolle: Production, Mix, Master — Spotify: https://open.spotify.com/album/7gr2fhrXXH9TYFevleKxl0
+- Nicolas Sosa: Corteza (Single, 2024) — Rolle: Production, Mix, Master — Spotify: https://open.spotify.com/album/3cgMjySC3hcQ6I4oThNnKx
+- Nicolas Sosa: Nossa (Single, 2024) — Rolle: Production, Mix, Master — Spotify: https://open.spotify.com/album/4OFzYGKC9ZW2EofX9VIVLy
+- Wolfgang Tillmans: Device Control EP (EP, 2016) — Rolle: Sample Design — Spotify: https://open.spotify.com/album/4SAsBFoNkgPqhAmxQOantK
+- Wolfgang Tillmans: 2016 / 1986 EP (EP, 2016) — Rolle: Beat Programming, Sample Arrangement — Spotify: https://open.spotify.com/album/1ev4qEazSSQEoSo9a7lHL4
 
 ## FAQ (Kurzfassung)
 
@@ -56,6 +73,9 @@ Audio:
 - Nur Mixing oder nur Mastering: beides einzeln buchbar.
 - Songwriting Session: Arbeit an Text, Melodie und Struktur, auf Wunsch mit Demo-Aufnahme.
 - Studio Session Dauer: meist 6 Stunden für Vocal Recording.
+- Studio Sessions & Workshops: Instrument Workshop (Loopstation, Ableton Live, MPC, Maschine, Signalfluss), Studio Session für Beats und Tracks im Hybrid-Setup, Studio Setup vor Ort, Vocal Chain Workshop für Vocalisten und MCs.
+- Produktionen für andere Künstler: Beats, Samples, Sample Design, Mix und Mastering; Beispiele auf https://danielmatysiak.de/produktionen.html
+- KI-Musik Cleanup: Suno-Exporte und andere KI-Songs werden von digitalen Artefakten befreit.
 - Online-Zusammenarbeit: ja, inkl. optionalem Video Feedback.
 - Podcast-Bearbeitung: einzelne Episoden oder monatliche Pakete, auch Abo-Modelle.
 - On-Location Recording: ja, mit mobilem Setup.
