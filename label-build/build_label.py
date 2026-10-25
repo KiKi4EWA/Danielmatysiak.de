@@ -421,4 +421,27 @@ if "4Spur" not in s:
     s = s.replace("\n## FAQ (Kurzfassung)", add + "\n## FAQ (Kurzfassung)", 1)
 s = s.replace("- [About](https://danielmatysiak.de/about.html)", "- [Label: 4Spur Records](https://danielmatysiak.de/label.html)\n- [About](https://danielmatysiak.de/about.html)", 1)
 (SITE / "llms.txt").write_text(s)
+# ---- Reihenfolge: Audio, Label, About, Lab, FAQ, Kontakt (Menü, Footer, Startseite, Wischreihenfolge, Kapitelnummern)
+_NAV = re.compile(r'(?P<lab><li><a href="lab\.html"(?: class="active")?>Lab</a></li>)\s*(?P<label><li><a href="label\.html"(?: class="active")?>Label</a></li>)\s*(?P<about><li><a href="about\.html"(?: class="active")?>About</a></li>)')
+_FOOT = re.compile(r'(?P<lab><a href="lab\.html">Lab</a>)(?P<w1>\s*)(?P<label><a href="label\.html">Label</a>)(?P<w2>\s*)(?P<about><a href="about\.html">About</a>)')
+for _p in SITE.glob("*.html"):
+    _t = _p.read_text()
+    _t = _NAV.sub(lambda m: m["label"] + "\n        " + m["about"] + "\n        " + m["lab"], _t)
+    _t = _FOOT.sub(lambda m: m["label"] + m["w1"] + m["about"] + m["w2"] + m["lab"], _t)
+    _p.write_text(_t)
+sub("label.html", '<p class="hero-kicker" data-en="03 — Label">03 — Label</p>', '<p class="hero-kicker" data-en="02 — Label">02 — Label</p>')
+sub("about.html", "04 — About", "03 — About")
+sub("lab.html", "02 — Collective Sound Lab", "04 — Collective Sound Lab")
+_i = (SITE / "index.html").read_text()
+_blocks = re.findall(r'        <a class="chapter-item" href="[a-z]+\.html">.*?</a>\n', _i, re.S)
+_by = {re.search(r'href="([a-z]+)\.html"', b).group(1): b for b in _blocks}
+_order = ["leistungen", "label", "about", "lab", "faq", "kontakt"]
+assert set(_order) == set(_by), _by.keys()
+_new = "".join(re.sub(r'(<span class="chapter-num">)\d\d', lambda m, n=n: m[1] + f"{n:02d}", _by[k]) for n, k in enumerate(_order, 1))
+_i = _i.replace("".join(_blocks), _new)
+(SITE / "index.html").write_text(_i)
+_m = (SITE / "main.js").read_text()
+_m = _m.replace("'leistungen.html', 'lab.html', 'label.html', 'about.html', 'faq.html'", "'leistungen.html', 'label.html', 'about.html', 'lab.html', 'faq.html'", 1)
+(SITE / "main.js").write_text(_m)
+
 print("ok", N, "releases,", len(by_year), "Jahre")
