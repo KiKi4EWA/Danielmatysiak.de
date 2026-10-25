@@ -191,7 +191,7 @@
     lbImg.sizes = 'min(92vw, 84dvh)';
     lbImg.alt = `${r.art}: ${r.title}, ${r.artist}`;
     const who = r.artist + (r.feat ? ' feat. ' + r.feat : '');
-    lbCap.textContent = `${who}. ${r.title}. ${r.cline}`;
+    lbCap.textContent = `${who} \u00b7 ${r.title} \u00b7 ${r.cline}`;   // Trennpunkte in Zeilenmitte
     lbOpener = from || null;
     lb.showModal();
   }
