@@ -46,13 +46,28 @@ N = len(D)
 s = re.sub(r"<title>.*?</title>", "<title>Produktionen für andere Künstler – Daniel Matysiak</title>", s, 1)
 DESC = "Produktionen für andere Künstler: Beats, Samples, Mix und Mastering von Daniel Matysiak für Releases von Nicolas Sosa, ANNA T, Tiita und Wolfgang Tillmans."
 s = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{DESC}">', s, 1)
-s = s.replace('content="index, follow"', 'content="noindex, follow"', 1)
 s = s.replace("https://danielmatysiak.de/label.html", "https://danielmatysiak.de/produktionen.html")
 s = re.sub(r'(<meta property="og:title" content=")[^"]*"', r'\1Produktionen für andere Künstler – Daniel Matysiak"', s, 1)
 s = re.sub(r'(<meta name="twitter:title" content=")[^"]*"', r'\1Produktionen für andere Künstler – Daniel Matysiak"', s, 1)
 s = re.sub(r'(<meta property="og:description" content=")[^"]*"', rf'\1{DESC}"', s, 1)
 s = re.sub(r'(<meta name="twitter:description" content=")[^"]*"', rf'\1{DESC}"', s, 1)
 s = re.sub(r'  <script type="application/ld\+json">.*?</script>\n', "", s, 1, flags=re.S)
+URL = "https://danielmatysiak.de/produktionen.html"
+ME = {"@type": "Person", "name": "Daniel Matysiak", "url": "https://danielmatysiak.de"}
+items = []
+for i, r in enumerate(D, 1):
+    al = {"@type": "MusicAlbum", "name": r["title"], "byArtist": [{"@type": "MusicGroup", "name": n.strip()} for n in r["artist"].split(",")],
+          "datePublished": r["date"], "albumReleaseType": "https://schema.org/" + {"Single": "SingleRelease", "EP": "EPRelease", "Album": "AlbumRelease"}.get(r["format"], "AlbumRelease"),
+          "sameAs": [f'https://open.spotify.com/album/{r["id"]}'] + ([r["orchard"]] if r.get("orchard") else [])}
+    cr = r.get("credits")
+    if cr: al["contributor"] = {**ME, "jobTitle": cr[0]["role"]}
+    items.append({"@type": "ListItem", "position": i, "item": al})
+LD = json.dumps({"@context": "https://schema.org", "@graph": [
+    {"@type": "CollectionPage", "@id": URL, "url": URL, "name": "Produktionen für andere Künstler", "description": DESC, "inLanguage": "de",
+     "author": ME, "about": "Beats, Samples, Mix und Mastering für Releases anderer Künstler"},
+    {"@type": "ItemList", "name": "Produktionen von Daniel Matysiak", "numberOfItems": len(items), "itemListOrder": "https://schema.org/ItemListOrderDescending", "itemListElement": items}]},
+    ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+s = s.replace('  <link rel="preconnect" href="https://fonts.googleapis.com">', f'  <script type="application/ld+json">{LD}</script>\n  <link rel="preconnect" href="https://fonts.googleapis.com">', 1)
 # Menü: Audio aktiv statt Label
 s = s.replace('<li><a href="label.html" class="active">Label</a></li>', '<li><a href="label.html">Label</a></li>', 1)
 s = s.replace('<li><a href="leistungen.html">Audio</a></li>', '<li><a href="leistungen.html" class="active">Audio</a></li>', 1)
