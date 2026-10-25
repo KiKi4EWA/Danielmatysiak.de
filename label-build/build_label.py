@@ -45,6 +45,7 @@ for _slug, _name in sorted(ARTISTS.items(), key=lambda kv: kv[1].lower()):
     ARTIST_LIST.append({k: v for k, v in {"slug": _slug, "name": _name, "bio": _info.get("bio"), "bioEn": _info.get("bioEn"), "spotify": _info.get("spotify"),
                                           "count": sum(1 for r in REL if _slug in tile_artists(r).split())}.items() if v})
 artist_json = json.dumps(ARTIST_LIST, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+ARTIST_LIST.sort(key=lambda a: (-a["count"], a["name"].lower()))   # nach Release-Anzahl, bei Gleichstand alphabetisch
 menu_items = "\n".join(f'          <li><button type="button" data-artist="{a["slug"]}">{html.escape(a["name"])}<span class="menu-count">{a["count"]}</span></button></li>' for a in ARTIST_LIST)
 
 # Große Kacheln: je Jahr das jüngste Release, abwechselnd links/rechts gesetzt.
