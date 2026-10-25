@@ -1,7 +1,7 @@
 # Bestandsliste Cover, 4Spur Records
 
 Stand 26.10.2026. 57 Releases im Register, davon 50 auf der Seite sichtbar und 7 ausgeblendet.
-Sichtbar: 44 mit echtem Cover, 6 mit Platzhalter.
+Sichtbar: 45 mit echtem Cover, 5 mit Platzhalter.
 
 | Datum | Release | Artist | Produkt-ID | Sichtbar | Cover | Originaldatei | Bildtitel / Credit | Anmerkung |
 |---|---|---|---|---|---|---|---|---|
@@ -12,9 +12,9 @@ Sichtbar: 44 mit echtem Cover, 6 mit Platzhalter.
 | 2026-07-19 | JERRY - EP | Ete & Ali | 6563692 | ja | echtes Cover | `1112091.jpg` | #oban_1112091 |  |
 | 2026-06-21 | Blaue Lichter | Ete & Ali | 6563697 | ja | echtes Cover | `1204246.jpg` | #oban_1204246 |  |
 | 2026-06-21 | 1Kopf | Ete & Ali | 6563658 | ja | echtes Cover | `1111113.jpg` | #oban_1111113 |  |
-| 2026-06-01 | Machen Was Sie Wollen (Rap) | Eli# | 6500088 | ja | echtes Cover | `1206125.jpg` | #oban_1206125 | Cover von Obruni Antwi |
-| 2025-04-17 | LiQUiDROM | KiKi4EWA | 5806400 | ja | echtes Cover | `k12.jpg` | #oban_k12 | k12.jpg (auch bei Crystal Ship zugeordnet gewesen) |
-| 2024-04-20 | Gib mir Xukah | Ete & Ali | 4882157 | ja | Platzhalter |  |  | Zuordnung zeigt auf die Platzhalter-Datei |
+| 2026-06-01 | Machen Was Sie Wollen (Rap) | Eli# | 6500088 | ja | echtes Cover | `1206125.jpg` | #oban_1206125 |  |
+| 2025-04-17 | LiQUiDROM | KiKi4EWA | 5806400 | ja | echtes Cover | `k12.jpg` | #oban_k12 |  |
+| 2024-04-20 | Gib mir Xukah | Ete & Ali | 4882157 | ja | echtes Cover | `gib-mir-xukah.jpg` | Cover Art Daniel Matysiak | Cover als Bild im Chat geliefert (1500 x 1500 px) |
 | 2024-04-20 | Obruni's Fear | KiKi4EWA | 4882087 | ja | echtes Cover | `1111245.jpg` | #oban_1111245 |  |
 | 2024-03-01 | Your Eyes so Bright | Kaia Avéh | 4551170 | ja | echtes Cover | `1201187.jpg` | #oban_1201187 |  |
 | 2024-02-02 | Your Eyes so Bright (Sped Up) | Kaia Avéh | 4785129 | ja | echtes Cover | `1203122.jpg` | #oban_1203122 |  |
@@ -65,7 +65,6 @@ Sichtbar: 44 mit echtem Cover, 6 mit Platzhalter.
 
 ## Noch Platzhalter (sichtbar)
 
-- Gib mir Xukah (4882157): Zuordnung zeigt auf die Platzhalter-Datei
 - Crystal Ship (2582371): k12.jpg bleibt bei LiQUiDROM
 - Tunka Tun Ka (2530963): Original nicht gefunden: 2AD57D04-E956-4855-B573-C5E0702714E2_1_105_c.jpeg
 - Ciclo de Mexico EP (2495668): Original nicht gefunden: C57BC319-4248-44F7-8DD0-38846AE44ABF_1_105_c.jpeg
