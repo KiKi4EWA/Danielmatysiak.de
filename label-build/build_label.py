@@ -337,6 +337,11 @@ for f in ["index","leistungen","lab","about","faq","kontakt"]:
 def sub(f, a, b):
     p = SITE / f; s = p.read_text(); assert a in s, (f, a); p.write_text(s.replace(a, b))
 sub("about.html", "03 — About", "04 — About")
+# Über-mich-Seite: Labelarbeit erwähnen + Verweis aufs Label unten
+sub("about.html", '            <p data-en="My tool is sound.',
+    '            <p data-en="I have been making music for over 20 years and release it on my own label, 4Spur Records.">Seit über 20 Jahren mache ich Musik und veröffentliche sie auf meinem Label 4Spur Records.</p>\n            <p data-en="My tool is sound.')
+sub("about.html", '<a class="btn-ghost" href="leistungen.html"><span data-en="Services & Pricing">Leistungen &amp; Preise</span></a>',
+    '<a class="btn-ghost" href="leistungen.html"><span data-en="Services & Pricing">Leistungen &amp; Preise</span></a>\n        <a class="btn-ghost" href="label.html"><span data-en="To the label 4Spur Records">Zum Label 4Spur Records</span></a>')
 sub("faq.html", "04 — FAQ", "05 — FAQ")
 sub("kontakt.html", 'data-en="05 — Contact">05 — Kontakt', 'data-en="06 — Contact">06 — Kontakt')
 
