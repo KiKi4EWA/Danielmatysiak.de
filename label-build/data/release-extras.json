@@ -58,10 +58,30 @@
   "6563692": {
    "links": {
     "apple": "https://music.apple.com/de/album/jerry-ep/6777901433",
-    "spotify": "https://open.spotify.com/album/0seVNwtVfGYK54JgYh5h00"
+    "spotify": "https://open.spotify.com/album/0seVNwtVfGYK54JgYh5h00",
+    "orchard": "https://promo.theorchard.com/fZidQQMMaz2K7qv7hf1P"
    },
    "description": "Eine musikalische Reise mit viel Spielfreude, 808s und funkigen Synthesizern.",
-   "description_en": "A musical journey full of playfulness, 808s and funky synthesizers."
+   "description_en": "A musical journey full of playfulness, 808s and funky synthesizers.",
+   "tracks": [
+    {
+     "title": "Entri",
+     "duration": "0:42"
+    },
+    {
+     "title": "Jerry",
+     "duration": "2:28"
+    },
+    {
+     "title": "Wayne",
+     "duration": "2:52"
+    },
+    {
+     "title": "Flow wie Dalí",
+     "duration": "4:16"
+    }
+   ],
+   "duration": "10:18"
   },
   "6564352": {
    "links": {
