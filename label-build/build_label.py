@@ -4,13 +4,19 @@ Läuft auf einer frischen Kopie des Repos (nicht idempotent):
     rm -rf site && mkdir site && cp -R <repo>/. site/ && rm -rf site/.git && python3 build_label.py
 Daten: data/4spur-release-register.json (Orchard-Register) + data/release-extras.json (optionale Redaktionsdaten je product_id).
 Cover: site/img/covers/<product_id>-{320,640,960,1440}.webp (siehe tools/make_covers.py); fehlt die Datei, erscheint ein Platzhalter."""
-import re, html, json, pathlib, collections
+import os, re, html, json, pathlib, collections
 
 ROOT = pathlib.Path(__file__).parent
 import sys
 SITE = pathlib.Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT / "site"
 reg = json.loads((ROOT / "data/4spur-release-register.json").read_text())
 extras = json.loads((ROOT / "data/release-extras.json").read_text()).get("releases", {})
+_ca = ROOT / "data/cover-assignments.json"
+ASSIGN = json.loads(_ca.read_text()).get("covers", {}) if _ca.exists() else {}
+def art_title(pid):
+    """Dateiname JJMMTTN(N).jpg -> #obruni_JJ.MM.TT.N (z. B. 1204242.jpg -> #obruni_12.04.24.2)"""
+    m = re.fullmatch(r"(\d{2})(\d{2})(\d{2})(\d{1,2})", os.path.splitext(ASSIGN.get(pid, ""))[0])
+    return "#obruni_" + ".".join(m.groups()) if m else None
 
 REL = sorted((r for r in reg["releases"] if r["label"] == "4Spur Records" and not extras.get(r["product_id"], {}).get("hidden")),
              key=lambda r: (r["release_date"], r["product_id"]), reverse=True)
@@ -136,7 +142,7 @@ for r in REL:
         "id": pid, "title": r["title"], "artist": r["artist"], "feat": r.get("featuring"),
         "date": r["release_date"], "format": r["format"], "cover": cover_sizes(pid) or None,
         "links": x.get("links"), "tracks": x.get("tracks"), "duration": x.get("duration"),
-        "description": x.get("description"), "descriptionEn": x.get("description_en"), "credits": x.get("credits"), "videos": x.get("videos"),
+        "art": art_title(pid), "description": x.get("description"), "descriptionEn": x.get("description_en"), "credits": x.get("credits"), "videos": x.get("videos"),
     }.items() if v}
 data_json = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 

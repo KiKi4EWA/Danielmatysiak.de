@@ -82,6 +82,7 @@
     meta.append(time, document.createTextNode(` · ${r.format}`));
     if (r.duration) meta.append(document.createTextNode(` · ${r.duration}`));
     head.append(artist, title, meta);
+    if (r.art) { const art = el('p', 'panel-art'); art.append(el('span', null, lang() === 'en' ? 'Cover art' : 'Cover'), document.createTextNode(' ' + r.art)); head.appendChild(art); }
     body.appendChild(head);
 
     const links = r.links ? PLATFORMS.map(([k, n]) => [n, safeUrl(r.links[k])]).filter(x => x[1]) : [];
