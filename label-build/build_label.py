@@ -16,9 +16,9 @@ CLINE = json.loads(_cl.read_text()).get("years", {}) if _cl.exists() else {}
 _ca = ROOT / "data/cover-assignments.json"
 ASSIGN = json.loads(_ca.read_text()).get("covers", {}) if _ca.exists() else {}
 def art_title(pid):
-    """Dateiname 1203122.jpg -> #oban_1203122 (JJMMTT + laufende Nummer, unverändert aus dem Dateinamen)"""
+    """Dateiname 1203122.jpg -> #oban_1203122, k37.jpg -> #oban_k37 (Name unverändert; Leerzeichen und Sonderzeichen gelten als Abweichler: kein Titel)"""
     stem = os.path.splitext(ASSIGN.get(pid, ""))[0]
-    return "#oban_" + stem if re.fullmatch(r"\d{7,8}", stem) else None
+    return "#oban_" + stem if re.fullmatch(r"[A-Za-z0-9_]+", stem) else None
 
 # Artist-Korrekturen aus den Extras (z. B. bis der Orchard-Eintrag angepasst ist)
 for _r in reg["releases"]:
