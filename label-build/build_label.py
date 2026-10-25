@@ -99,7 +99,7 @@ def cover_html(r):
     veil = f'<span class="cover-info" aria-hidden="true"><span class="cover-artist">{html.escape(r["artist"]).replace("&amp;", "y").replace("808", '<span class="n808">808</span>')}</span></span>'
     if not have:
         return f'<span class="cover cover-ph" aria-hidden="true">{veil}</span>'
-    srcset = ", ".join(f"img/covers/{pid}-{s}.webp {s}w" for s in have)
+    srcset = ", ".join(f"img/covers/{pid}-{s}.webp {s}w" for s in have if s <= 960)   # 1440 nur für Detailfenster und Großansicht
     sizes = "(max-width: 600px) 50vw, (max-width: 1100px) 25vw, 17vw"
     if is_hl(pid):
         sizes = "(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 34vw"
