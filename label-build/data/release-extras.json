@@ -35,7 +35,9 @@
    "links": {
     "apple": "https://music.apple.com/de/album/augenlied-single/6810388041",
     "spotify": "https://open.spotify.com/album/1AOdwvLBbswHBB9LYHOUOH"
-   }
+   },
+   "description": "Ein dunkles Dub-Stück, digital produziert mit MPC, 808 und Juno, getragen von weiten Delay-Räumen.",
+   "description_en": "A dark dub piece, produced digitally with MPC, 808 and Juno, carried by wide delay spaces."
   },
   "7004136": {
    "links": {
@@ -50,14 +52,16 @@
     "apple": "https://music.apple.com/de/album/nk44-feat-kingali-030-single/6783938315",
     "spotify": "https://open.spotify.com/album/6e6O2id7xkwFCSh92RGHrP"
    },
-   "description": "NK44 steht für Neukölln 44, den Ort, an dem die Stücke entstanden sind. Die drei Tracks Pannier, Donau und Ecke Reuter spiegeln jeweils ihren eigenen Vibe.",
-   "description_en": "NK44 stands for Neukölln 44, the place where the pieces were made. The three tracks Pannier, Donau and Ecke Reuter each reflect their own vibe."
+   "description": "NK44 steht für Neukölln 44, den Ort, an dem die Stücke entstanden sind. Pannier, Donau und Ecke Reuter sind die drei Straßen, die dort zusammenkommen; die drei Tracks greifen sie auf und geben jeder ihren eigenen Vibe.",
+   "description_en": "NK44 stands for Neukölln 44, the place where the pieces were made. Pannier, Donau and Ecke Reuter are the three streets that meet there; the three tracks take them up and give each its own vibe."
   },
   "6563692": {
    "links": {
     "apple": "https://music.apple.com/de/album/jerry-ep/6777901433",
     "spotify": "https://open.spotify.com/album/0seVNwtVfGYK54JgYh5h00"
-   }
+   },
+   "description": "Eine musikalische Reise mit viel Spielfreude, 808s und funkigen Synthesizern.",
+   "description_en": "A musical journey full of playfulness, 808s and funky synthesizers."
   },
   "6564352": {
    "links": {
