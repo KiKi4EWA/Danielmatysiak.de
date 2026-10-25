@@ -261,8 +261,8 @@
   const menu = document.getElementById('artist-menu');
   const menuBtn = document.getElementById('artist-btn');
   const AT = {
-    de: { all: 'Alle Releases anzeigen', one: 'Release', many: 'Releases', soon: n => `Zu ${n} folgt in Kürze ein Text.` },
-    en: { all: 'Show all releases', one: 'release', many: 'releases', soon: n => `A text about ${n} is coming soon.` },
+    de: { all: 'Alle Künstler anzeigen', one: 'Release', many: 'Releases', soon: n => `Zu ${n} folgt in Kürze ein Text.` },
+    en: { all: 'Show all artists', one: 'release', many: 'releases', soon: n => `A text about ${n} is coming soon.` },
   };
   const shown = n => n.replace(/\s*&\s*/g, ' y ');   // die Display-Schrift hat für „&“ nur einen Schnörkel
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;

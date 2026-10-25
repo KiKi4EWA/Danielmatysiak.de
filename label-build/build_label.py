@@ -269,7 +269,7 @@ page = f'''<!DOCTYPE html>
 
     <div id="artist-menu" popover class="artist-menu">
       <ul>
-        <li><button type="button" data-artist="" data-en="All releases">Alle Releases</button></li>
+        <li><button type="button" data-artist="" data-en="All artists">Alle Künstler</button></li>
 {menu_items}
       </ul>
     </div>
