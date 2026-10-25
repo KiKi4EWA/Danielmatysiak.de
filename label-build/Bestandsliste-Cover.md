@@ -13,7 +13,7 @@ Sichtbar: 45 mit echtem Cover, 5 mit Platzhalter.
 | 2026-06-21 | Blaue Lichter | Ete & Ali | 6563697 | ja | echtes Cover | `1204246.jpg` | #oban_1204246 |  |
 | 2026-06-21 | 1Kopf | Ete & Ali | 6563658 | ja | echtes Cover | `1111113.jpg` | #oban_1111113 |  |
 | 2026-06-01 | Machen Was Sie Wollen (Rap) | Eli# | 6500088 | ja | echtes Cover | `1206125.jpg` | #oban_1206125 |  |
-| 2025-04-17 | LiQUiDROM | KiKi4EWA | 5806400 | ja | echtes Cover | `k12.jpg` | #oban_k12 |  |
+| 2025-04-17 | LiQUiDROM | KiKi4EWA | 5806400 | ja | echtes Cover | `liquidrom.jpg` | Cover Art Obruni Antwi | Cover als Bild geliefert (1500 x 1500 px), Künstlerin angenommen |
 | 2024-04-20 | Gib mir Xukah | Ete & Ali | 4882157 | ja | echtes Cover | `gib-mir-xukah.jpg` | Cover Art Daniel Matysiak | Cover als Bild geliefert (1500 x 1500 px) |
 | 2024-04-20 | Obruni's Fear | KiKi4EWA | 4882087 | ja | echtes Cover | `1111245.jpg` | #oban_1111245 |  |
 | 2024-03-01 | Your Eyes so Bright | Kaia Avéh | 4551170 | ja | echtes Cover | `1201187.jpg` | #oban_1201187 |  |
@@ -47,7 +47,7 @@ Sichtbar: 45 mit echtem Cover, 5 mit Platzhalter.
 | 2019-05-24 | Lost Riddim | The Afterhour | 2622094 | ja | echtes Cover | `the Afterhour_lost riddim_cover_002.jpg` | Cover Art Daniel Matysiak |  |
 | 2019-05-03 | Aurora's Mood | The Afterhour | 2582408 | ja | echtes Cover | `1203213.jpg` | #oban_1203213 |  |
 | 2019-03-08 | Protect Me | The Afterhour | 2582797 | ja | echtes Cover | `rottluff.jpg` | #oban_rottluff |  |
-| 2019-03-08 | Crystal Ship | The Afterhour | 2582371 | ja | Platzhalter |  |  | noch kein Original; k12.jpg bleibt bei LiQUiDROM |
+| 2019-03-08 | Crystal Ship | The Afterhour | 2582371 | ja | Platzhalter |  |  | noch kein Original; k12.jpg war bei Crystal Ship zugeordnet, ist jetzt frei (Zuordnung offen) |
 | 2019-01-18 | Daylight | The Afterhour | 2547314 | ja | echtes Cover | `n78.jpg` | #oban_n78 |  |
 | 2019-01-11 | The Chase | KiKi4EWA | 2546880 | ja | echtes Cover | `1202292.jpg` | #oban_1202292 |  |
 | 2019-01-11 | Mombasa | KingAli 030 | 2545874 | ja | echtes Cover | `1111283.jpg` | #oban_1111283 |  |
@@ -65,7 +65,7 @@ Sichtbar: 45 mit echtem Cover, 5 mit Platzhalter.
 
 ## Noch Platzhalter (sichtbar)
 
-- Crystal Ship (2582371): noch kein Original; k12.jpg bleibt bei LiQUiDROM
+- Crystal Ship (2582371): noch kein Original; k12.jpg war bei Crystal Ship zugeordnet, ist jetzt frei (Zuordnung offen)
 - Tunka Tun Ka (2530963): noch kein Original
 - Ciclo de Mexico EP (2495668): noch kein Original
 - Birds (2215975): noch kein Original

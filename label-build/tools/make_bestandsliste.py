@@ -7,7 +7,7 @@ reg = [r for r in json.load(open(f"{ROOT}/data/4spur-release-register.json"))["r
 ex = json.load(open(f"{ROOT}/data/release-extras.json"))["releases"]
 asg = json.load(open(f"{ROOT}/data/cover-assignments.json"))["covers"]
 reg.sort(key=lambda r: (r["release_date"], r["product_id"]), reverse=True)
-NOTES = {"2582371": "k12.jpg bleibt bei LiQUiDROM", "4882157": "Cover als Bild geliefert (1500 x 1500 px)", "2545750": "Cover als Bild geliefert (1125 x 1125 px), Künstlerin angenommen",
+NOTES = {"2582371": "k12.jpg war bei Crystal Ship zugeordnet, ist jetzt frei (Zuordnung offen)", "5806400": "Cover als Bild geliefert (1500 x 1500 px), Künstlerin angenommen", "4882157": "Cover als Bild geliefert (1500 x 1500 px)", "2545750": "Cover als Bild geliefert (1125 x 1125 px), Künstlerin angenommen",
          "4185847": "k47.jpg war 1876x1866, mittig auf 1866x1866 beschnitten", "2515398": "Artist auf der Seite ohne KingAli 030 (Orchard noch ändern)", "4220638": "C-Line 2023 angenommen"}
 rows = []
 for r in reg:
