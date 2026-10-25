@@ -8,7 +8,7 @@ Sichtbar: 46 mit echtem Cover, 4 mit Platzhalter.
 | 2026-09-13 | AUGENLIED | Ete & Ali | 7018769 | ja | echtes Cover | `1204242.jpg` | #oban_1204242 |  |
 | 2026-09-09 | Olga Mein Herz | KiKi4EWA | 7004136 | ja | echtes Cover | `12022310.jpg` | #oban_12022310 |  |
 | 2026-07-19 | NK44 | KiKi4EWA | 6583184 | ja | echtes Cover | `1111032.jpg` | #oban_1111032 |  |
-| 2026-07-19 | DUB du PHONK | KiKi4EWA | 6564352 | ja | echtes Cover | `1110241.jpg` | #oban_1110241 |  |
+| 2026-07-19 | DUB du PHONK | KiKi4EWA | 6564352 | ja | echtes Cover | `dub-du-phonk.jpg` | Cover Art Obruni Antwi | Cover als Bild geliefert (1125 x 1125 px, um 90° gedreht), Künstlerin angenommen |
 | 2026-07-19 | JERRY - EP | Ete & Ali | 6563692 | ja | echtes Cover | `1112091.jpg` | #oban_1112091 |  |
 | 2026-06-21 | Blaue Lichter | Ete & Ali | 6563697 | ja | echtes Cover | `1204246.jpg` | #oban_1204246 |  |
 | 2026-06-21 | 1Kopf | Ete & Ali | 6563658 | ja | echtes Cover | `1111113.jpg` | #oban_1111113 |  |
