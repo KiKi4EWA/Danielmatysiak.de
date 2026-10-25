@@ -6,6 +6,7 @@ if (heroDecoEl) {
   const imgSets = {
     'page-home':    ['img/index_hero3.webp'],
     'page-audio':   ['img/audio_neve.webp', 'img/audio_hero3.webp', 'img/audio_hero4.webp', 'img/audio_hero5.webp', 'img/audio_hero6.webp'],
+    'page-label':   ['img/audio_neve.webp', 'img/audio_hero3.webp', 'img/audio_hero4.webp', 'img/audio_hero5.webp', 'img/audio_hero6.webp'],
     'page-lab':     ['img/lab_hero3.webp', 'img/lab_hero4.webp'],
     'page-faq':     ['img/faq_hero1.webp', 'img/faq_hero2.webp', 'img/faq_hero3.webp'],
     'page-contact': ['img/kontakt_hero1.webp', 'img/kontakt_hero3.webp', 'img/kontakt_hero5.webp'],
@@ -20,7 +21,7 @@ if (heroDecoEl) {
       heroDecoEl.style.objectPosition = Math.random() > 0.4 ? 'right center' : 'center';
     }
     // Für audio: feste Position je Bild; Pro Tools (hero5) zufällig left/right
-    if (key === 'page-audio') {
+    if (key === 'page-audio' || key === 'page-label') {
       const src = heroDecoEl.src;
       if (src.includes('audio_neve'))  heroDecoEl.style.objectPosition = 'center right';
       else if (src.includes('audio_hero3')) heroDecoEl.style.objectPosition = Math.random() > 0.5 ? 'center' : 'right top';
@@ -38,7 +39,7 @@ if (heroDecoEl) {
 
 // Parallax — subtiler Tiefeneffekt für home/audio/lab full-bleed hero (nur Desktop)
 (function () {
-  const parallaxPages = ['page-home', 'page-audio', 'page-lab'];
+  const parallaxPages = ['page-home', 'page-audio', 'page-label', 'page-lab'];
   if (!parallaxPages.some(k => document.body.classList.contains(k))) return;
   if (noMotionGlobal) return;
   if (window.matchMedia('(pointer: coarse)').matches) return; // kein Parallax auf Touch
@@ -63,11 +64,12 @@ if (heroDecoEl) {
 
 // Swipe navigation — spring-based drag (Emil: page follows finger, spring-snap on release)
 (function () {
-  const ORDER = ['index.html', 'leistungen.html', 'lab.html', 'about.html', 'faq.html', 'kontakt.html'];
+  const ORDER = ['index.html', 'leistungen.html', 'lab.html', 'label.html', 'about.html', 'faq.html', 'kontakt.html'];
   const CLASS_MAP = {
     'page-home':    'index.html',
     'page-audio':   'leistungen.html',
     'page-lab':     'lab.html',
+    'page-label':   'label.html',
     'page-about':   'about.html',
     'page-faq':     'faq.html',
     'page-contact': 'kontakt.html',
