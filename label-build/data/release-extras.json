@@ -34,89 +34,229 @@
   "7018769": {
    "links": {
     "apple": "https://music.apple.com/de/album/augenlied-single/6810388041",
-    "spotify": "https://open.spotify.com/album/1AOdwvLBbswHBB9LYHOUOH"
+    "spotify": "https://open.spotify.com/album/1AOdwvLBbswHBB9LYHOUOH",
+    "orchard": "https://promo.theorchard.com/4QKgoPzcQao6wGgUrmvk"
    },
    "description": "Ein dunkles Dub-Stück, digital produziert mit MPC, 808 und Juno, getragen von weiten Delay-Räumen.",
-   "description_en": "A dark dub piece, produced digitally with MPC, 808 and Juno, carried by wide delay spaces."
+   "description_en": "A dark dub piece, produced digitally with MPC, 808 and Juno, carried by wide delay spaces.",
+   "tracks": [
+    {
+     "title": "AUGENLIED",
+     "duration": "3:24"
+    },
+    {
+     "title": "AUGENLIED (DuB)",
+     "duration": "3:24"
+    }
+   ],
+   "duration": "6:48"
   },
   "7004136": {
    "links": {
     "apple": "https://music.apple.com/de/album/olga-mein-herz-single/6807667693",
-    "spotify": "https://open.spotify.com/album/649LD7GoTYvbrzCXUDzc3d"
+    "spotify": "https://open.spotify.com/album/649LD7GoTYvbrzCXUDzc3d",
+    "orchard": "https://promo.theorchard.com/jUWyg1HEMZ4SB7GR17bx"
    },
    "description": "Zwei Mbira-Stücke, die wie ein Gedicht als Haiku geschrieben sind.",
-   "description_en": "Two mbira pieces written as a haiku, like a poem."
+   "description_en": "Two mbira pieces written as a haiku, like a poem.",
+   "tracks": [
+    {
+     "title": "Olga mein Herz",
+     "duration": "1:36"
+    },
+    {
+     "title": "Olga mein Hertz",
+     "duration": "1:12"
+    }
+   ],
+   "duration": "2:48"
   },
   "6583184": {
    "links": {
     "apple": "https://music.apple.com/de/album/nk44-feat-kingali-030-single/6783938315",
-    "spotify": "https://open.spotify.com/album/6e6O2id7xkwFCSh92RGHrP"
+    "spotify": "https://open.spotify.com/album/6e6O2id7xkwFCSh92RGHrP",
+    "orchard": "https://promo.theorchard.com/kUWb2U25ZrU2bmHRHWpg"
    },
    "description": "NK44 steht für Neukölln 44, den Ort, an dem die Stücke entstanden sind. Pannier, Donau und Ecke Reuter sind die drei Straßen, die dort zusammenkommen; die drei Tracks greifen sie auf und geben jeder ihren eigenen Vibe.",
-   "description_en": "NK44 stands for Neukölln 44, the place where the pieces were made. Pannier, Donau and Ecke Reuter are the three streets that meet there; the three tracks take them up and give each its own vibe."
+   "description_en": "NK44 stands for Neukölln 44, the place where the pieces were made. Pannier, Donau and Ecke Reuter are the three streets that meet there; the three tracks take them up and give each its own vibe.",
+   "tracks": [
+    {
+     "title": "Pannier",
+     "duration": "2:51"
+    },
+    {
+     "title": "Donau",
+     "duration": "2:53"
+    },
+    {
+     "title": "Ecke Reuter",
+     "duration": "1:55"
+    }
+   ],
+   "duration": "7:39"
   },
   "6563692": {
    "links": {
     "apple": "https://music.apple.com/de/album/jerry-ep/6777901433",
-    "spotify": "https://open.spotify.com/album/0seVNwtVfGYK54JgYh5h00"
+    "spotify": "https://open.spotify.com/album/0seVNwtVfGYK54JgYh5h00",
+    "orchard": "https://promo.theorchard.com/fZidQQMMaz2K7qv7hf1P"
    },
    "description": "Eine musikalische Reise mit viel Spielfreude, 808s und funkigen Synthesizern.",
-   "description_en": "A musical journey full of playfulness, 808s and funky synthesizers."
+   "description_en": "A musical journey full of playfulness, 808s and funky synthesizers.",
+   "tracks": [
+    {
+     "title": "Entri",
+     "duration": "0:42"
+    },
+    {
+     "title": "Jerry",
+     "duration": "2:28"
+    },
+    {
+     "title": "Wayne",
+     "duration": "2:52"
+    },
+    {
+     "title": "Flow wie Dalí",
+     "duration": "4:16"
+    }
+   ],
+   "duration": "10:18"
   },
   "6564352": {
    "links": {
     "apple": "https://music.apple.com/de/album/dub-du-phonk-single/6781570641",
-    "spotify": "https://open.spotify.com/album/6YzDKBMbMkcyRicdmtoRsm"
+    "spotify": "https://open.spotify.com/album/6YzDKBMbMkcyRicdmtoRsm",
+    "orchard": "https://promo.theorchard.com/QbsQSgya2vMrSy8f0W5G"
    },
    "description": "Ein digitales Dub-Stück, das Phonk-Elemente verbindet. Eine Mbira spielt mit.",
-   "description_en": "A digital dub piece that blends phonk elements, with a mbira playing along."
+   "description_en": "A digital dub piece that blends phonk elements, with a mbira playing along.",
+   "tracks": [
+    {
+     "title": "DUB du PHONK",
+     "duration": "5:23"
+    },
+    {
+     "title": "GoodDayToday",
+     "duration": "2:00"
+    }
+   ],
+   "duration": "7:23"
   },
   "6563697": {
    "links": {
     "apple": "https://music.apple.com/de/album/blaue-lichter-single/6781570779",
-    "spotify": "https://open.spotify.com/album/5YBUaUAcHD5snCOgpqrKRO"
-   }
+    "spotify": "https://open.spotify.com/album/5YBUaUAcHD5snCOgpqrKRO",
+    "orchard": "https://promo.theorchard.com/RlA3PymFHxtRwawc8Nio"
+   },
+   "tracks": [
+    {
+     "title": "AUGENLIED",
+     "duration": "3:24"
+    },
+    {
+     "title": "1Kopf",
+     "duration": "0:40"
+    },
+    {
+     "title": "Der Tag",
+     "duration": "1:13"
+    }
+   ],
+   "duration": "5:17"
   },
   "6563658": {
    "links": {
     "apple": "https://music.apple.com/de/album/1kopf-single/6777971003",
-    "spotify": "https://open.spotify.com/album/6ufIaxwMYulK2ZGv1NrORn"
-   }
+    "spotify": "https://open.spotify.com/album/6ufIaxwMYulK2ZGv1NrORn",
+    "orchard": "https://promo.theorchard.com/q824uFopxConZGaVoyGI"
+   },
+   "tracks": [
+    {
+     "title": "1Kopf",
+     "duration": "0:40"
+    }
+   ],
+   "duration": "0:40"
   },
   "6500088": {
    "links": {
     "apple": "https://music.apple.com/de/album/machen-was-sie-wollen-rap-feat-ete-ali-single/1896220849",
-    "spotify": "https://open.spotify.com/album/4m90eqfnF2hn40nyB1aEeJ"
+    "spotify": "https://open.spotify.com/album/4m90eqfnF2hn40nyB1aEeJ",
+    "orchard": "https://promo.theorchard.com/VzfgPjHdWjBf3l8Hz1qq"
    },
    "description": "Ein Freestyle von Eli und ihrem Papa.",
-   "description_en": "A freestyle by Eli and her dad."
+   "description_en": "A freestyle by Eli and her dad.",
+   "tracks": [
+    {
+     "title": "Machen Was Sie Wollen (Rap)",
+     "duration": "4:03"
+    }
+   ],
+   "duration": "4:03"
   },
   "5806400": {
    "links": {
     "apple": "https://music.apple.com/de/album/liquidrom-feat-kingali-030-single/1801595619",
-    "spotify": "https://open.spotify.com/album/7JRjux3aD5cywnmEr4bVPs"
+    "spotify": "https://open.spotify.com/album/7JRjux3aD5cywnmEr4bVPs",
+    "orchard": "https://promo.theorchard.com/VKflJIqfzbiwQaaIh4G7"
    },
    "description": "Inspiriert von da.",
-   "description_en": "Inspired by that."
+   "description_en": "Inspired by that.",
+   "tracks": [
+    {
+     "title": "LiQUiDROM",
+     "duration": "2:30"
+    }
+   ],
+   "duration": "2:30"
   },
   "4882087": {
    "links": {
     "apple": "https://music.apple.com/de/album/obrunis-fear-feat-kingali-030-single/1741280608",
-    "spotify": "https://open.spotify.com/album/7wbnArdYLsndgcQsbUmOKf"
-   }
+    "spotify": "https://open.spotify.com/album/7wbnArdYLsndgcQsbUmOKf",
+    "orchard": "https://promo.theorchard.com/s2XcSWxgpUQbOE9pwBYJ"
+   },
+   "tracks": [
+    {
+     "title": "Obruni's Fear (Anxcious Dub)",
+     "duration": "1:21"
+    },
+    {
+     "title": "Elderflower (Obruni's Dub)",
+     "duration": "2:39"
+    }
+   ],
+   "duration": "4:00"
   },
   "4882157": {
    "links": {
     "apple": "https://music.apple.com/de/album/gib-mir-xukah-single/1737715446",
-    "spotify": "https://open.spotify.com/album/0u2ehwAnfATEynUCadXaw6"
+    "spotify": "https://open.spotify.com/album/0u2ehwAnfATEynUCadXaw6",
+    "orchard": "https://promo.theorchard.com/n2EpARhXX7tOhpFtRuZo"
    },
-   "cover_by": "Daniel Matysiak"
+   "cover_by": "Daniel Matysiak",
+   "tracks": [
+    {
+     "title": "Gib mir Xukah",
+     "duration": "2:00"
+    }
+   ],
+   "duration": "2:00"
   },
   "4551170": {
    "links": {
     "apple": "https://music.apple.com/de/album/your-eyes-so-bright-single/1724515204",
-    "spotify": "https://open.spotify.com/album/1KsQSsdnPki36dquk6q3tf"
-   }
+    "spotify": "https://open.spotify.com/album/1KsQSsdnPki36dquk6q3tf",
+    "orchard": "https://promo.theorchard.com/mhHgD5LUh7kLNO7NEbAG"
+   },
+   "tracks": [
+    {
+     "title": "Your Eyes so Bright",
+     "duration": "2:51"
+    }
+   ],
+   "duration": "2:51"
   },
   "4785129": {
    "links": {
@@ -127,63 +267,251 @@
   "4742850": {
    "links": {
     "apple": "https://music.apple.com/de/album/baumhaus-feat-kiki4ewa-single/1718494535",
-    "spotify": "https://open.spotify.com/album/7JxgTE54bPYO5JNr41sRse"
-   }
+    "spotify": "https://open.spotify.com/album/7JxgTE54bPYO5JNr41sRse",
+    "orchard": "https://promo.theorchard.com/BUG5K4cE33NE5LPtTv8r"
+   },
+   "tracks": [
+    {
+     "title": "Unterwegs",
+     "duration": "2:27"
+    },
+    {
+     "title": "Baumhaus",
+     "duration": "1:23"
+    },
+    {
+     "title": "Unterwegs (Acid Cut)",
+     "duration": "3:15"
+    }
+   ],
+   "duration": "7:05"
   },
   "4742259": {
    "links": {
     "apple": "https://music.apple.com/de/album/bye-baye-fail-feat-hasiboi-ep/1729278579",
-    "spotify": "https://open.spotify.com/album/7JEgfp1Li4heU4Ol8B10e7"
-   }
+    "spotify": "https://open.spotify.com/album/7JEgfp1Li4heU4Ol8B10e7",
+    "orchard": "https://promo.theorchard.com/UpkKbu2W19Z9xCJ83jLS"
+   },
+   "tracks": [
+    {
+     "title": "Gegenverkehr",
+     "duration": "2:21"
+    },
+    {
+     "title": "Kein Bock (Confessions)",
+     "duration": "4:51"
+    },
+    {
+     "title": "Komische Tage",
+     "duration": "2:47"
+    },
+    {
+     "title": "AKNM",
+     "duration": "2:46"
+    },
+    {
+     "title": "AKNM (Dub)",
+     "duration": "1:12"
+    }
+   ],
+   "duration": "13:57"
   },
   "4358344": {
    "links": {
     "apple": "https://music.apple.com/de/album/wagmi-vibe-pt-4-single/1677503320",
-    "spotify": "https://open.spotify.com/album/6j4FhcooMgoXGmmkAalbnV"
-   }
+    "spotify": "https://open.spotify.com/album/6j4FhcooMgoXGmmkAalbnV",
+    "orchard": "https://promo.theorchard.com/VCIFIuztOhxtgWTxoA0F"
+   },
+   "tracks": [
+    {
+     "title": "Black Cats",
+     "duration": "2:45"
+    },
+    {
+     "title": "On Synthesizers",
+     "duration": "0:40"
+    },
+    {
+     "title": "In Space",
+     "duration": "4:07"
+    }
+   ],
+   "duration": "7:32"
   },
   "4250726": {
    "links": {
     "apple": "https://music.apple.com/de/album/rub-a-dub-sundays-no-3-ep/1662328067",
-    "spotify": "https://open.spotify.com/album/4brr32rI5mhmO3wrAO3DOC"
-   }
+    "spotify": "https://open.spotify.com/album/4brr32rI5mhmO3wrAO3DOC",
+    "orchard": "https://promo.theorchard.com/HvF9gPmx2pJXV7ugUNGa"
+   },
+   "tracks": [
+    {
+     "title": "Zehen im Sand",
+     "duration": "2:52"
+    },
+    {
+     "title": "Regen (Rocky Beach Dub)",
+     "duration": "3:42"
+    },
+    {
+     "title": "Early Bird (Hermit's Dub)",
+     "duration": "8:16"
+    },
+    {
+     "title": "Der Bass",
+     "duration": "5:06"
+    },
+    {
+     "title": "Bam Bam",
+     "duration": "4:07"
+    }
+   ],
+   "duration": "24:03"
   },
   "4220638": {
    "links": {
     "apple": "https://music.apple.com/de/album/rub-a-dub-sundays-no-2-feat-grime-dub-soundsystem-single/1662327305",
-    "spotify": "https://open.spotify.com/album/2LBIbWEW3BSoWyHpdjeJ9H"
-   }
+    "spotify": "https://open.spotify.com/album/2LBIbWEW3BSoWyHpdjeJ9H",
+    "orchard": "https://promo.theorchard.com/4WqMiBUhe6uePnEEvvOY"
+   },
+   "tracks": [
+    {
+     "title": "Avéh's Intro",
+     "duration": "3:13"
+    },
+    {
+     "title": "Early Bird (Hermit's Dub)",
+     "duration": "8:16"
+    }
+   ],
+   "duration": "11:29"
   },
   "4219072": {
    "links": {
     "apple": "https://music.apple.com/de/album/rub-a-dub-sundays-no-3-ep/1662328067",
-    "spotify": "https://open.spotify.com/album/0aRoLg6fu5VRXrSij1eA44"
-   }
+    "spotify": "https://open.spotify.com/album/0aRoLg6fu5VRXrSij1eA44",
+    "orchard": "https://promo.theorchard.com/x82r5Ljx9uN9Da3pQq3d"
+   },
+   "tracks": [
+    {
+     "title": "Bam Bam",
+     "duration": "4:07"
+    },
+    {
+     "title": "Der Bass",
+     "duration": "5:06"
+    }
+   ],
+   "duration": "9:13"
   },
   "4164003": {
    "links": {
     "apple": "https://music.apple.com/de/album/afro-rave-feat-kiki4ewa-single/1655633679",
-    "spotify": "https://open.spotify.com/album/1nQhqHU3GknHqfgYxR6o0c"
-   }
+    "spotify": "https://open.spotify.com/album/1nQhqHU3GknHqfgYxR6o0c",
+    "orchard": "https://promo.theorchard.com/yMSUAKyHep29QGq2stCJ"
+   },
+   "tracks": [
+    {
+     "title": "Wagmi Vibe",
+     "duration": "2:42"
+    },
+    {
+     "title": "Afro Rave (Bokondi Dub)",
+     "duration": "2:10"
+    },
+    {
+     "title": "16YO (KiKi's Cut)",
+     "duration": "0:40"
+    }
+   ],
+   "duration": "5:32"
   },
   "4185847": {
    "links": {
     "apple": "https://music.apple.com/de/album/obrunis-cave-feat-bass-juicey-808-ep/1654137901",
-    "spotify": "https://open.spotify.com/album/2OCAiL910MR0AB0gTHos0e"
-   }
+    "spotify": "https://open.spotify.com/album/2OCAiL910MR0AB0gTHos0e",
+    "orchard": "https://promo.theorchard.com/cQ1sakLcvSVyJNVFuzVA"
+   },
+   "tracks": [
+    {
+     "title": "Obruni's Cave (Juicey's Slyde)",
+     "duration": "2:26"
+    },
+    {
+     "title": "Elderflower (Obruni's Dub)",
+     "duration": "2:39"
+    },
+    {
+     "title": "Uakari (Unrest)",
+     "duration": "0:51"
+    },
+    {
+     "title": "Dragon Fruit (KiKi's Ryde)",
+     "duration": "1:34"
+    }
+   ],
+   "duration": "7:30"
   },
   "3873579": {
    "links": {
     "apple": "https://music.apple.com/de/album/wagmi-vibe-pt-3-feat-kingali-030-single/1630638129",
-    "spotify": "https://open.spotify.com/album/0TOTxQqBbCjhCnCctCmAyG"
-   }
+    "spotify": "https://open.spotify.com/album/0TOTxQqBbCjhCnCctCmAyG",
+    "orchard": "https://promo.theorchard.com/Uq6qxxPaoRy4UwmrRTZi"
+   },
+   "tracks": [
+    {
+     "title": "el paraiso infernal",
+     "duration": "0:43"
+    },
+    {
+     "title": "tres O tres (Bokondi Dub)",
+     "duration": "4:10"
+    }
+   ],
+   "duration": "4:53"
   },
   "3457928": {
    "links": {
     "apple": "https://music.apple.com/de/album/tears-love-aint-that-way/1611143448",
-    "spotify": "https://open.spotify.com/album/3KxmcZcouFoOis7WH01rBp"
+    "spotify": "https://open.spotify.com/album/3KxmcZcouFoOis7WH01rBp",
+    "orchard": "https://promo.theorchard.com/fbspYGX5QjE247oox3PB"
    },
-   "cover_by": "Daniel Matysiak"
+   "cover_by": "Daniel Matysiak",
+   "tracks": [
+    {
+     "title": "Your Eyes",
+     "duration": "5:30"
+    },
+    {
+     "title": "Birds",
+     "duration": "5:19"
+    },
+    {
+     "title": "Gods Blessing",
+     "duration": "4:50"
+    },
+    {
+     "title": "Love Ain't That Way",
+     "duration": "4:24"
+    },
+    {
+     "title": "Good Ryde",
+     "duration": "4:19"
+    },
+    {
+     "title": "Maybe 1 Day",
+     "duration": "3:30"
+    },
+    {
+     "title": "Tears",
+     "duration": "5:27"
+    },
+    {
+     "title": "Tears (now we see ghosts)",
+     "duration": "1:14"
+    }
+   ],
+   "duration": "34:33"
   },
   "2630344": {
    "links": {
@@ -196,20 +524,88 @@
   "3648357": {
    "links": {
     "apple": "https://music.apple.com/de/album/wagmi-vibe-pt-2-ep/1611319939",
-    "spotify": "https://open.spotify.com/album/78QY8h6IdCmgQ0bxQgkjIE"
-   }
+    "spotify": "https://open.spotify.com/album/78QY8h6IdCmgQ0bxQgkjIE",
+    "orchard": "https://promo.theorchard.com/8d5Mb0L580KeNC93aQK7"
+   },
+   "tracks": [
+    {
+     "title": "303+808+909=2020",
+     "duration": "0:47"
+    },
+    {
+     "title": "Allee du Soleil",
+     "duration": "0:43"
+    },
+    {
+     "title": "Gaza Strip Aqui",
+     "duration": "0:45"
+    },
+    {
+     "title": "Disco Polo",
+     "duration": "1:31"
+    },
+    {
+     "title": "Sonnenallee",
+     "duration": "0:48"
+    },
+    {
+     "title": "Quarantine Session 13",
+     "duration": "1:49"
+    }
+   ],
+   "duration": "6:23"
   },
   "3648356": {
    "links": {
     "apple": "https://music.apple.com/de/album/wagmi-vibe-pt-1-single/1611170160",
-    "spotify": "https://open.spotify.com/album/5bTfSbDD2P3qCIT0LjfqRG"
-   }
+    "spotify": "https://open.spotify.com/album/5bTfSbDD2P3qCIT0LjfqRG",
+    "orchard": "https://promo.theorchard.com/8xu2cnexpzGFoAdl1K9B"
+   },
+   "tracks": [
+    {
+     "title": "ALi's DUBB",
+     "duration": "1:46"
+    },
+    {
+     "title": "Quarantine for my Valentine",
+     "duration": "1:05"
+    },
+    {
+     "title": "Disco Polo",
+     "duration": "1:31"
+    }
+   ],
+   "duration": "4:22"
   },
   "3648270": {
    "links": {
     "apple": "https://music.apple.com/de/album/wagmi-vibe-sketches-feat-kiki4ewa-ep/1611363253",
-    "spotify": "https://open.spotify.com/album/2N4XgR71LiMy5ElkensoeI"
-   }
+    "spotify": "https://open.spotify.com/album/2N4XgR71LiMy5ElkensoeI",
+    "orchard": "https://promo.theorchard.com/jgh2Q77dRwMOq1ceh1DP"
+   },
+   "tracks": [
+    {
+     "title": "Kein Bock",
+     "duration": "0:58"
+    },
+    {
+     "title": "Oncoming",
+     "duration": "0:37"
+    },
+    {
+     "title": "Hasiboi",
+     "duration": "0:41"
+    },
+    {
+     "title": "See Them",
+     "duration": "3:01"
+    },
+    {
+     "title": "Hannah",
+     "duration": "1:47"
+    }
+   ],
+   "duration": "7:04"
   },
   "2630355": {
    "links": {
@@ -237,8 +633,16 @@
   "3313630": {
    "links": {
     "apple": "https://music.apple.com/de/album/jeden-tag-2021-quarantine-dub-single/1561978793",
-    "spotify": "https://open.spotify.com/album/16AWizCRuKKlTkOCX3muxj"
-   }
+    "spotify": "https://open.spotify.com/album/16AWizCRuKKlTkOCX3muxj",
+    "orchard": "https://promo.theorchard.com/lNHs6YX64DUwtCmZDgrS"
+   },
+   "tracks": [
+    {
+     "title": "Jeden Tag (2021 Quarantine Dub)",
+     "duration": "7:42"
+    }
+   ],
+   "duration": "7:42"
   },
   "2794878": {
    "links": {
@@ -263,28 +667,64 @@
   "2652978": {
    "links": {
     "apple": "https://music.apple.com/de/album/die-gedanken-sind-frei-feat-olga-lilly-single/1479317767",
-    "spotify": "https://open.spotify.com/album/0FGkj1AqAlKro5YQ2CnVPh"
+    "spotify": "https://open.spotify.com/album/0FGkj1AqAlKro5YQ2CnVPh",
+    "orchard": "https://promo.theorchard.com/LDk5Z8vZqNiVgskNSvvc"
    },
-   "cover_by": "Daniel Matysiak"
+   "cover_by": "Daniel Matysiak",
+   "tracks": [
+    {
+     "title": "Die Gedanken sind frei",
+     "duration": "3:26"
+    }
+   ],
+   "duration": "3:26"
   },
   "2658347": {
    "links": {
     "apple": "https://music.apple.com/de/album/the-yellow-king-single/1477121958",
-    "spotify": "https://open.spotify.com/album/0S70qNoC5Aga7cOwkfWgMe"
-   }
+    "spotify": "https://open.spotify.com/album/0S70qNoC5Aga7cOwkfWgMe",
+    "orchard": "https://promo.theorchard.com/TRWC6R2tlsHPPGXBbUZg"
+   },
+   "tracks": [
+    {
+     "title": "Out My Way (Bokondi Dub)",
+     "duration": "2:50"
+    },
+    {
+     "title": "The Yellow King",
+     "duration": "2:33"
+    }
+   ],
+   "duration": "5:23"
   },
   "2658350": {
    "links": {
     "apple": "https://music.apple.com/de/album/nite-berry-bokondi-dub-single/1475729900",
-    "spotify": "https://open.spotify.com/album/5oJUGnppoxPk9ngbZrf5Dq"
-   }
+    "spotify": "https://open.spotify.com/album/5oJUGnppoxPk9ngbZrf5Dq",
+    "orchard": "https://promo.theorchard.com/nx0nRU9weBNg6pAM5krT"
+   },
+   "tracks": [
+    {
+     "title": "NITE BERRY (Bokondi Dub)",
+     "duration": "4:46"
+    }
+   ],
+   "duration": "4:46"
   },
   "2658352": {
    "links": {
     "apple": "https://music.apple.com/de/album/im-wald-feat-kaia-av%C3%A9h-single/1477537622",
-    "spotify": "https://open.spotify.com/album/0frC5hQsHOdxAVpweVHUTq"
+    "spotify": "https://open.spotify.com/album/0frC5hQsHOdxAVpweVHUTq",
+    "orchard": "https://promo.theorchard.com/WWLIBj5zySZRCxfb0dwS"
    },
-   "cover_by": "Daniel Matysiak"
+   "cover_by": "Daniel Matysiak",
+   "tracks": [
+    {
+     "title": "Im Wald",
+     "duration": "1:49"
+    }
+   ],
+   "duration": "1:49"
   },
   "2621752": {
    "links": {
@@ -296,15 +736,43 @@
   "2622094": {
    "links": {
     "apple": "https://music.apple.com/de/album/lost-riddim-feat-seth-deeken-nina-asseng-daniel-matysiak/1463487364",
-    "spotify": "https://open.spotify.com/album/4RRbqxpotQ6jzBuCGifcqN"
+    "spotify": "https://open.spotify.com/album/4RRbqxpotQ6jzBuCGifcqN",
+    "orchard": "https://promo.theorchard.com/F0882yTWWRGRCGOZGfya"
    },
-   "cover_by": "Daniel Matysiak"
+   "cover_by": "Daniel Matysiak",
+   "tracks": [
+    {
+     "title": "All Them Boys (In Warszawa)",
+     "duration": "0:36"
+    },
+    {
+     "title": "Lost (In Warszawa)",
+     "duration": "6:23"
+    },
+    {
+     "title": "Western Drugs (In Warszawa)",
+     "duration": "6:59"
+    }
+   ],
+   "duration": "13:58"
   },
   "2582408": {
    "links": {
     "apple": "https://music.apple.com/de/album/auroras-mood-feat-kingali-030-single/1460550405",
-    "spotify": "https://open.spotify.com/album/5fMTHidoriZJYeIvB4XzaM"
-   }
+    "spotify": "https://open.spotify.com/album/5fMTHidoriZJYeIvB4XzaM",
+    "orchard": "https://promo.theorchard.com/5l7JsFCvxrWiHXdbm7wo"
+   },
+   "tracks": [
+    {
+     "title": "Aurora's Mood",
+     "duration": "3:43"
+    },
+    {
+     "title": "Mantram Frágile",
+     "duration": "0:31"
+    }
+   ],
+   "duration": "4:14"
   },
   "2582797": {
    "links": {
@@ -321,92 +789,372 @@
   "2547314": {
    "links": {
     "apple": "https://music.apple.com/de/album/daylight-single/1448754879",
-    "spotify": "https://open.spotify.com/album/0QpQMagxQE5hRqAjcJmQHg"
-   }
+    "spotify": "https://open.spotify.com/album/0QpQMagxQE5hRqAjcJmQHg",
+    "orchard": "https://promo.theorchard.com/zN7hqMJvYTqGZCoQDSey"
+   },
+   "tracks": [
+    {
+     "title": "Daylight (Another Hour 808's Ryde)",
+     "duration": "4:30"
+    },
+    {
+     "title": "Daylite (Analog Breeze)",
+     "duration": "4:19"
+    }
+   ],
+   "duration": "8:49"
   },
   "2546880": {
    "links": {
     "apple": "https://music.apple.com/de/album/the-chase-single/1448375735",
-    "spotify": "https://open.spotify.com/album/7pI8auscm1d7AcsFbK4u2C"
-   }
+    "spotify": "https://open.spotify.com/album/7pI8auscm1d7AcsFbK4u2C",
+    "orchard": "https://promo.theorchard.com/YCdL6rntxuaXD5es1aft"
+   },
+   "tracks": [
+    {
+     "title": "The Chase",
+     "duration": "4:21"
+    },
+    {
+     "title": "Trapped",
+     "duration": "0:39"
+    }
+   ],
+   "duration": "5:00"
   },
   "2545874": {
    "links": {
     "apple": "https://music.apple.com/de/album/mombasa-single/1448376275",
-    "spotify": "https://open.spotify.com/album/0UM8c5JxukIedhMDWZxHAw"
-   }
+    "spotify": "https://open.spotify.com/album/0UM8c5JxukIedhMDWZxHAw",
+    "orchard": "https://promo.theorchard.com/JrXmK7vvRjDuqVWFiOik"
+   },
+   "tracks": [
+    {
+     "title": "Mombasa",
+     "duration": "1:25"
+    },
+    {
+     "title": "Heart Beat (Boom Boom)",
+     "duration": "1:22"
+    }
+   ],
+   "duration": "2:47"
   },
   "2544479": {
    "links": {
     "apple": "https://music.apple.com/de/album/waiting-for-ticks/1448761801",
-    "spotify": "https://open.spotify.com/album/2fn2cOVBV8FUuX1SKK1wcB"
+    "spotify": "https://open.spotify.com/album/2fn2cOVBV8FUuX1SKK1wcB",
+    "orchard": "https://promo.theorchard.com/g8UociSewXQXPU25V78f"
    },
-   "cover_by": "Daniel Matysiak"
+   "cover_by": "Daniel Matysiak",
+   "tracks": [
+    {
+     "title": "Fire Dust",
+     "duration": "6:56"
+    },
+    {
+     "title": "Mad Mountain (Nucleus)",
+     "duration": "0:56"
+    },
+    {
+     "title": "Night Shadow",
+     "duration": "6:43"
+    },
+    {
+     "title": "Circle",
+     "duration": "11:40"
+    },
+    {
+     "title": "Gathering",
+     "duration": "6:43"
+    },
+    {
+     "title": "One Note Heaven",
+     "duration": "9:18"
+    },
+    {
+     "title": "Dead End",
+     "duration": "7:40"
+    },
+    {
+     "title": "Tick",
+     "duration": "0:47"
+    }
+   ],
+   "duration": "50:43"
   },
   "2544376": {
    "links": {
     "apple": "https://music.apple.com/de/album/the-road/1449334936",
-    "spotify": "https://open.spotify.com/album/0gtW02sDiqaxktzz3qZHh0"
-   }
+    "spotify": "https://open.spotify.com/album/0gtW02sDiqaxktzz3qZHh0",
+    "orchard": "https://promo.theorchard.com/lNNosk9O0y47WzTnJNB2"
+   },
+   "tracks": [
+    {
+     "title": "The Road (At Nite Edit)",
+     "duration": "3:29"
+    },
+    {
+     "title": "Beuster",
+     "duration": "2:10"
+    },
+    {
+     "title": "Mon Day Blizzard",
+     "duration": "2:43"
+    },
+    {
+     "title": "Primavera (Athens AtNite)",
+     "duration": "4:40"
+    },
+    {
+     "title": "The Chase",
+     "duration": "4:30"
+    },
+    {
+     "title": "Drinkin' Alone Is Serious Business",
+     "duration": "5:20"
+    },
+    {
+     "title": "2016",
+     "duration": "5:01"
+    },
+    {
+     "title": "The Void (When He Was Gone)",
+     "duration": "0:44"
+    }
+   ],
+   "duration": "28:37"
   },
   "2545750": {
    "links": {
     "apple": "https://music.apple.com/de/album/monday-blizzard-single/1448760380",
-    "spotify": "https://open.spotify.com/album/5BR497R0LObu08f6m1xV0z"
-   }
+    "spotify": "https://open.spotify.com/album/5BR497R0LObu08f6m1xV0z",
+    "orchard": "https://promo.theorchard.com/3tkXiIg3WjjTSIWxyBTR"
+   },
+   "tracks": [
+    {
+     "title": "Monday Blizzard",
+     "duration": "2:43"
+    }
+   ],
+   "duration": "2:43"
   },
   "2541175": {
    "links": {
     "apple": "https://music.apple.com/de/album/vicious-circle/1447643585",
-    "spotify": "https://open.spotify.com/album/7oUi8jy9b564IOjD371TKo"
-   }
+    "spotify": "https://open.spotify.com/album/7oUi8jy9b564IOjD371TKo",
+    "orchard": "https://promo.theorchard.com/O4USNRFy4sF9TB4HDnYx"
+   },
+   "tracks": [
+    {
+     "title": "Traphole, Pt. 12 (Intro)",
+     "duration": "2:14"
+    },
+    {
+     "title": "Traphole, Pt. 20",
+     "duration": "1:43"
+    },
+    {
+     "title": "Seth 9",
+     "duration": "0:46"
+    },
+    {
+     "title": "Nocturnes",
+     "duration": "4:44"
+    },
+    {
+     "title": "Dawn Again (Analog Breeze)",
+     "duration": "4:20"
+    },
+    {
+     "title": "Traphole, Pt. 13",
+     "duration": "4:01"
+    },
+    {
+     "title": "ANice Project (atNite Edit)",
+     "duration": "5:26"
+    },
+    {
+     "title": "Aeroflot",
+     "duration": "2:19"
+    },
+    {
+     "title": "Nebukai",
+     "duration": "1:53"
+    }
+   ],
+   "duration": "27:26"
   },
   "2530963": {
    "links": {
     "apple": "https://music.apple.com/de/album/tunka-tun-ka-single/1445872417",
-    "spotify": "https://open.spotify.com/album/285PeSebvEjz2ZePjQUD9S"
+    "spotify": "https://open.spotify.com/album/285PeSebvEjz2ZePjQUD9S",
+    "orchard": "https://promo.theorchard.com/Bcyc8J8lsfwF9lhLfXCh"
    },
-   "cover_by": "Daniel Matysiak"
+   "cover_by": "Daniel Matysiak",
+   "tracks": [
+    {
+     "title": "Tunka Tun Ka",
+     "duration": "4:38"
+    },
+    {
+     "title": "Tun Ka Tunka (BoKoNDi DuB Version)",
+     "duration": "6:02"
+    }
+   ],
+   "duration": "10:40"
   },
   "2530958": {
    "links": {
     "apple": "https://music.apple.com/de/album/kinshasa-single/1445945878",
-    "spotify": "https://open.spotify.com/album/1I7mLkABzLRs3qFXjEr1iv"
-   }
+    "spotify": "https://open.spotify.com/album/1I7mLkABzLRs3qFXjEr1iv",
+    "orchard": "https://promo.theorchard.com/zyaSh63YwEqFiwaiZFBo"
+   },
+   "tracks": [
+    {
+     "title": "Kinshasa",
+     "duration": "6:14"
+    }
+   ],
+   "duration": "6:14"
   },
   "2515398": {
    "links": {
     "apple": "https://music.apple.com/de/album/all-good/1443552944",
-    "spotify": "https://open.spotify.com/album/08u8LIeov3QE8G0iwX139Q"
+    "spotify": "https://open.spotify.com/album/08u8LIeov3QE8G0iwX139Q",
+    "orchard": "https://promo.theorchard.com/M2FQTjEtps88uygicKhT"
    },
    "artist": "Ete & Ali",
-   "cover_by": "Daniel Matysiak"
+   "cover_by": "Daniel Matysiak",
+   "tracks": [
+    {
+     "title": "Ali's Intro – No Hip Hop",
+     "duration": "1:33"
+    },
+    {
+     "title": "Bikini",
+     "duration": "2:11"
+    },
+    {
+     "title": "Duppy Dew",
+     "duration": "3:53"
+    },
+    {
+     "title": "Bikini (Quality Street Dub)",
+     "duration": "4:42"
+    },
+    {
+     "title": "Im Dub Gefangen",
+     "duration": "5:02"
+    },
+    {
+     "title": "Sunshine",
+     "duration": "2:36"
+    },
+    {
+     "title": "Ete's Outro – Keine Zeit",
+     "duration": "3:29"
+    }
+   ],
+   "duration": "23:26"
   },
   "2494563": {
    "links": {
     "apple": "https://music.apple.com/de/album/congo-at-nite-single/1441146479",
-    "spotify": "https://open.spotify.com/album/3IQ8GvSspRlTo4US2bmtm5"
-   }
+    "spotify": "https://open.spotify.com/album/3IQ8GvSspRlTo4US2bmtm5",
+    "orchard": "https://promo.theorchard.com/9nbi6V3Xz6XlIGMesv2r"
+   },
+   "tracks": [
+    {
+     "title": "Congo at Nite",
+     "duration": "4:03"
+    }
+   ],
+   "duration": "4:03"
   },
   "2495668": {
    "links": {
     "apple": "https://music.apple.com/de/album/ciclo-de-mexico-ep/1441308306",
-    "spotify": "https://open.spotify.com/album/5ugVud6zmDfCWkO6TTSfvf"
+    "spotify": "https://open.spotify.com/album/5ugVud6zmDfCWkO6TTSfvf",
+    "orchard": "https://promo.theorchard.com/kWWOr8KLqBTig8BVqqjl"
    },
-   "cover_by": "Daniel Matysiak"
+   "cover_by": "Daniel Matysiak",
+   "tracks": [
+    {
+     "title": "Culiacán (Parano.Id Android Edit)",
+     "duration": "4:17"
+    },
+    {
+     "title": "Mazatlan (Bokondi Dub Edit)",
+     "duration": "2:47"
+    },
+    {
+     "title": "Oaxtepec (Atnight Edit)",
+     "duration": "3:13"
+    },
+    {
+     "title": "Yautepec (Atnight Edit)",
+     "duration": "0:42"
+    },
+    {
+     "title": "La Condesa (The Afterhour Edit)",
+     "duration": "4:06"
+    },
+    {
+     "title": "Bacalar (Atnight Edit)",
+     "duration": "2:25"
+    },
+    {
+     "title": "Benito Juarez International (Atnite Edit)",
+     "duration": "1:59"
+    }
+   ],
+   "duration": "19:29"
   },
   "2215975": {
    "links": {
-    "spotify": "https://open.spotify.com/album/2FBlDsvev3KvozbNTFBmJL"
+    "spotify": "https://open.spotify.com/album/2FBlDsvev3KvozbNTFBmJL",
+    "orchard": "https://promo.theorchard.com/WOWHfR4vW5OfZffrxv9B"
    },
-   "cover_by": "Daniel Matysiak"
+   "cover_by": "Daniel Matysiak",
+   "tracks": [
+    {
+     "title": "Birds",
+     "duration": "5:19"
+    }
+   ],
+   "duration": "5:19"
   },
   "2215976": {
    "links": {
     "apple": "https://music.apple.com/de/album/grime-dub-ep/182852368",
-    "spotify": "https://open.spotify.com/album/1CTCgoGtLI6KAz7SiwNrsJ"
+    "spotify": "https://open.spotify.com/album/1CTCgoGtLI6KAz7SiwNrsJ",
+    "orchard": "https://promo.theorchard.com/8AkG96uEnRMtAx4Xz236"
    },
-   "cover_by": "Daniel Matysiak"
+   "cover_by": "Daniel Matysiak",
+   "tracks": [
+    {
+     "title": "Mittegirl",
+     "duration": "5:52"
+    },
+    {
+     "title": "Champagne",
+     "duration": "5:06"
+    },
+    {
+     "title": "Grime City",
+     "duration": "3:44"
+    },
+    {
+     "title": "NK44 (Wavy Sonnenallee Grind)",
+     "duration": "1:46"
+    },
+    {
+     "title": "Rum Am Mittag",
+     "duration": "3:32"
+    }
+   ],
+   "duration": "20:00"
   }
  },
  "videos_zuordnung_vorschlag": {
