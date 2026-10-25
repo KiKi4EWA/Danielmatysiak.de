@@ -27,6 +27,26 @@ REL = sorted((r for r in reg["releases"] if r["label"] == "4Spur Records" and no
              key=lambda r: (r["release_date"], r["product_id"]), reverse=True)
 SIZES = (320, 640, 960, 1440)
 
+# ---- Artists (Menü + Filter): Hauptkünstler aller sichtbaren Releases; Featuring zählt zur Zuordnung, erzeugt aber keinen Eintrag
+def aslug(n): return re.sub(r"[^a-z0-9]+", "-", n.lower()).strip("-")
+_NAME_FIX = {"kingali-030": "KingAli 030", "debbie-parker-inc": "Debbie Parker INC."}
+_AD = ROOT / "data/artists.json"
+ARTIST_INFO = json.loads(_AD.read_text()) if _AD.exists() else {}
+ARTISTS = {}
+for _r in REL:
+    for _n in (n.strip() for n in _r["artist"].split(",") if n.strip()):
+        ARTISTS.setdefault(aslug(_n), _NAME_FIX.get(aslug(_n), _n))
+def tile_artists(r):
+    names = [n.strip() for n in (r["artist"] + "," + (r.get("featuring") or "")).split(",") if n.strip()]
+    return " ".join(dict.fromkeys(a for a in (aslug(n) for n in names) if a in ARTISTS))
+ARTIST_LIST = []
+for _slug, _name in sorted(ARTISTS.items(), key=lambda kv: kv[1].lower()):
+    _info = ARTIST_INFO.get(_slug, {})
+    ARTIST_LIST.append({k: v for k, v in {"slug": _slug, "name": _name, "bio": _info.get("bio"), "bioEn": _info.get("bioEn"), "spotify": _info.get("spotify"),
+                                          "count": sum(1 for r in REL if _slug in tile_artists(r).split())}.items() if v})
+artist_json = json.dumps(ARTIST_LIST, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+menu_items = "\n".join(f'          <li><button type="button" data-artist="{a["slug"]}">{html.escape(a["name"])}<span class="menu-count">{a["count"]}</span></button></li>' for a in ARTIST_LIST)
+
 # Große Kacheln: je Jahr das jüngste Release, abwechselnd links/rechts gesetzt.
 # Redaktionelle Übersteuerung: "highlight": true/false in data/release-extras.json.
 HL = set()
@@ -71,7 +91,7 @@ def tile(r):
         SEEN.add(y); anchor = f' id="y{y}"'
     artist = html.escape(r["artist"]) + (f' <span class="release-feat">feat. {html.escape(r["featuring"])}</span>' if r.get("featuring") else "")
     cls = f"release is-highlight {SIDE[pid]}" if is_hl(pid) else "release"
-    return (f'<li class="{cls}" data-year="{y}"{anchor}><button type="button" class="release-open" data-id="{pid}" aria-haspopup="dialog">'
+    return (f'<li class="{cls}" data-year="{y}" data-artists="{tile_artists(r)}"{anchor}><button type="button" class="release-open" data-id="{pid}" aria-haspopup="dialog">'
             f'{cover_html(r)}'
             f'<span class="meta"><span class="release-artist">{artist}</span>'
             f'<span class="release-title">{html.escape(r["title"])}</span>'
@@ -230,7 +250,7 @@ page = f'''<!DOCTYPE html>
         <div class="hero-copy">
           <p class="lede" data-en="Independent label for dub, reggae, hip-hop, electronic, ambient and house music. Here you will find every release at a glance.">Unabhängiges Label für Dub, Reggae, Hip-Hop, Electronic, Ambient und House Music. Hier findest du alle Releases im Überblick.</p>
           <div class="cta-row">
-            <a class="btn" href="#archiv"><span data-en="To the archive">Zum Archiv</span></a>
+            <button type="button" class="btn btn-menu" id="artist-btn" popovertarget="artist-menu" aria-haspopup="true" aria-expanded="false"><span data-en="Archive">Archiv</span><span class="caret" aria-hidden="true"></span></button>
             <a class="btn-ghost" href="kontakt.html"><span data-en="Contact">Kontakt</span></a>
           </div>
         </div>
@@ -245,6 +265,20 @@ page = f'''<!DOCTYPE html>
         </aside>
       </div>
       <img class="hero-deco-img hero-deco-full" src="img/audio_neve.webp" alt="" aria-hidden="true">
+    </section>
+
+    <div id="artist-menu" popover class="artist-menu">
+      <ul>
+        <li><button type="button" data-artist="" data-en="All releases">Alle Releases</button></li>
+{menu_items}
+      </ul>
+    </div>
+
+    <section class="artist-intro" id="artist-intro" aria-live="polite" hidden>
+      <p class="eyebrow">Artist</p>
+      <h2 class="artist-intro-name"></h2>
+      <p class="artist-intro-text"></p>
+      <p class="artist-intro-meta"><span class="artist-intro-count"></span><a class="artist-intro-link" target="_blank" rel="noopener" hidden>Spotify ↗</a><button type="button" class="artist-intro-reset"></button></p>
     </section>
 
     <section class="section release-wall" id="archiv">
@@ -280,6 +314,7 @@ page = f'''<!DOCTYPE html>
   </dialog>
 
   <script type="application/json" id="release-data">{data_json}</script>
+  <script type="application/json" id="artist-data">{artist_json}</script>
 
 {foot}
   <script src="main.js"></script>
