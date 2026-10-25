@@ -161,7 +161,7 @@
 
   // Desktop: Seitenpanel ohne Sperre (Wand und Jahresleiste bleiben bedienbar). Handy: bildschirmfüllend und modal.
   const wide = window.matchMedia('(min-width: 701px)');
-  // Seitenpanel: darf über den Hero, bleibt aber immer unter dem Menü und über dem Footer frei
+  // Seitenpanel: beginnt unter dem Hero und dem Menü und endet über dem Footer
   const siteNav = document.querySelector('.site-nav');
   const siteFooter = document.querySelector('footer');
   let syncQueued = false;
@@ -171,7 +171,8 @@
     if (!document.body.classList.contains('panel-side')) { panel.style.removeProperty('--panel-top'); panel.style.removeProperty('--panel-bottom'); if (rail) rail.classList.remove('behind-hero'); return; }
     // Jahresleiste ausblenden, solange sie über dem Hero (und dessen Infobox) läge
     if (rail && hero) rail.classList.toggle('behind-hero', hero.getBoundingClientRect().bottom > rail.getBoundingClientRect().top);
-    const navBottom = siteNav ? Math.max(0, siteNav.getBoundingClientRect().bottom) : 0;
+    // Oberkante: Unterkante des Menüs, oder Unterkante des Heros, wenn der noch im Bild ist (das Panel ragt nie in den Hero)
+    const navBottom = Math.max(siteNav ? Math.max(0, siteNav.getBoundingClientRect().bottom) : 0, hero ? hero.getBoundingClientRect().bottom : 0);
     const footTop = siteFooter ? siteFooter.getBoundingClientRect().top : innerHeight;
     panel.style.setProperty('--panel-top', navBottom + 'px');
     panel.style.setProperty('--panel-bottom', Math.max(0, innerHeight - footTop) + 'px');
