@@ -9,8 +9,8 @@
   const closeLbl = document.getElementById('panel-close-label');
   const root = document.documentElement;
   const T = {
-    de: { close: 'Schließen', listen: 'Anhören', soon: 'Streaming-Link folgt.', hide: 'Player schließen', consent: n => `Player von ${n}. Beim Laden werden Daten an ${n} übertragen.`, open: 'Öffnen in', all: 'Alle Tracks anhören', by: 'The Orchard · ohne Anmeldung', revoke: 'Spotify-Einwilligung widerrufen', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
-    en: { close: 'Close', listen: 'Listen', soon: 'Streaming link coming soon.', hide: 'Close player', consent: n => `Player from ${n}. Loading it sends data to ${n}.`, open: 'Open in', all: 'Listen to all tracks', by: 'The Orchard · no sign-in needed', revoke: 'Withdraw Spotify consent', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
+    de: { close: 'Schließen', listen: 'Anhören', soon: 'Streaming-Link folgt.', hide: 'Player schließen', consent: n => `Player von ${n}. Beim Laden werden Daten an ${n} übertragen.`, open: 'Öffnen in', orchardTip: 'Alle Tracks ohne Anmeldung anhören', revoke: 'Spotify-Einwilligung widerrufen', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
+    en: { close: 'Close', listen: 'Listen', soon: 'Streaming link coming soon.', hide: 'Close player', consent: n => `Player from ${n}. Loading it sends data to ${n}.`, open: 'Open in', orchardTip: 'Listen to all tracks without signing in', revoke: 'Withdraw Spotify consent', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
   };
   const PLATFORMS = [['orchard', 'The Orchard'], ['spotify', 'Spotify'], ['apple', 'Apple Music'], ['bandcamp', 'Bandcamp'], ['youtube', 'YouTube'], ['soundcloud', 'SoundCloud'], ['other', 'Web']];
   const lang = () => (root.lang === 'en' ? 'en' : 'de');
@@ -141,19 +141,16 @@
       const b = el('span', 'btn btn-disabled', t.listen); b.setAttribute('aria-disabled', 'true');
       row.append(b); act.append(el('p', 'panel-note', t.soon));
     }
-    const orchard = links.find(x => x[0] === 'The Orchard'), others = links.filter(x => x[0] !== 'The Orchard');
-    if (others.length) {
+    if (links.length) {
       const p = el('p', 'panel-open', `${t.open} `);
-      others.forEach(([n, u]) => { const l = el('a', null, `${n} ↗`); l.href = u; l.target = '_blank'; l.rel = 'noopener'; p.appendChild(l); });
+      links.forEach(([n, u]) => {
+        const l = el('a', null, `${n} ↗`); l.href = u; l.target = '_blank'; l.rel = 'noopener';
+        if (n === 'The Orchard') l.dataset.tip = t.orchardTip;   // Hinweis im eigenen Tooltip (Schrift der Seite)
+        p.appendChild(l);
+      });
       row.appendChild(p);
     }
     act.appendChild(row);
-    // Hörzugang ohne Anmeldung: Aktion zuerst, Anbieter als kleiner Zusatz
-    if (orchard) {
-      const p = el('p', 'panel-listen'); const a = el('a', null, `${t.all} ↗`);
-      a.href = orchard[1]; a.target = '_blank'; a.rel = 'noopener';
-      p.append(a, el('span', 'listen-by', t.by)); act.appendChild(p);
-    }
     body.appendChild(act);
 
     if (r.tracks && r.tracks.length) {
