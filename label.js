@@ -98,6 +98,13 @@
     const desc = lang() === 'en' && r.descriptionEn ? r.descriptionEn : r.description;
     if (desc) body.appendChild(el('p', 'panel-desc', desc));
 
+    // Titelliste vor dem Player
+    if (r.tracks && r.tracks.length) {
+      body.appendChild(el('h3', 'panel-h', t.tracks));
+      const ol = el('ol', 'panel-tracks');
+      r.tracks.forEach(x => { const li = el('li'); li.appendChild(el('span', null, x.title)); if (x.duration) li.appendChild(el('span', 'track-dur', x.duration)); ol.appendChild(li); });
+      body.appendChild(ol);
+    }
     const links = r.links ? PLATFORMS.map(([k, n]) => [n, safeUrl(r.links[k])]).filter(x => x[1]) : [];
     const emb = embedOf(r);
     const act = el('div', 'panel-actions');
@@ -153,12 +160,6 @@
     act.appendChild(row);
     body.appendChild(act);
 
-    if (r.tracks && r.tracks.length) {
-      body.appendChild(el('h3', 'panel-h', t.tracks));
-      const ol = el('ol', 'panel-tracks');
-      r.tracks.forEach(x => { const li = el('li'); li.appendChild(el('span', null, x.title)); if (x.duration) li.appendChild(el('span', 'track-dur', x.duration)); ol.appendChild(li); });
-      body.appendChild(ol);
-    }
     const vids = (r.videos || []).map(v => [v.title, safeUrl(v.url)]).filter(v => v[1]);
     if (vids.length) {
       body.appendChild(el('h3', 'panel-h', t.video));
