@@ -388,6 +388,13 @@
     });
     lb.addEventListener('close', () => { lb.classList.remove('is-photo'); const art = lb.querySelector('.lightbox-art'); art.style.removeProperty('--ar'); art.style.removeProperty('max-width'); });
   }
+  // „… oder entdecke die Künstler“ im Einleitungssatz: zum Hero-Knopf scrollen und das Menü öffnen (Delegation, weil die Sprachumschaltung den Satz neu setzt)
+  const wallIntro = document.querySelector('.release-wall .section-intro');
+  if (wallIntro && menu && menuBtn) wallIntro.addEventListener('click', e => {
+    if (!e.target.closest('.intro-artists')) return;
+    menuBtn.scrollIntoView({ block: 'center', behavior: reduced() ? 'auto' : 'smooth' });
+    setTimeout(() => { try { menu.showPopover(); } catch (err) {} }, reduced() ? 0 : 450);
+  });
   if (intro) intro.querySelector('.artist-intro-reset').addEventListener('click', () => { setArtist(null, true); if (menuBtn) menuBtn.focus({ preventScroll: true }); });
   // Bei aktivem Filter fehlt oft der Jahresanker: zur ersten sichtbaren Kachel des Jahres springen
   document.querySelectorAll('#year-nav a').forEach(a => a.addEventListener('click', e => {
