@@ -53,7 +53,14 @@
     const img = document.createElement('img');
     img.src = r.imageSmall; img.srcset = `${r.imageSmall} 480w, ${r.image} 960w`; img.sizes = '(max-width: 700px) 70vw, 300px';
     img.alt = en ? 'Self-portrait of ' + r.name : 'Selbstporträt von ' + r.name; img.width = 480; img.height = 739;
-    wrap.appendChild(img); body.appendChild(wrap);
+    wrap.appendChild(img);
+    if (r.image2) {
+      const img2 = document.createElement('img');
+      img2.src = r.image2Small; img2.srcset = `${r.image2Small} 480w, ${r.image2} 960w`; img2.sizes = '(max-width: 700px) 45vw, 300px';
+      img2.alt = en ? 'Drawing by ' + r.name + ', made with the mouse' : 'Zeichnung von ' + r.name + ', mit der Maus gezeichnet'; img2.width = 480; img2.height = 480;
+      wrap.classList.add('is-pair'); wrap.appendChild(img2);
+    }
+    body.appendChild(wrap);
     const head = el('div', 'panel-head');
     head.appendChild(el('p', 'panel-artist', en ? r.roleEn : r.role));
     const title = el('h2', 'panel-title', r.name); title.id = 'panel-title';

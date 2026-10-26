@@ -2047,7 +2047,10 @@ html:has(dialog:modal) { overflow: hidden; scrollbar-gutter: stable; }
 .artist-tile .meta { flex: none; }
 .artist-tile .release-artist { text-transform: uppercase; }
 .panel-cover.is-portrait { aspect-ratio: auto; width: auto; max-width: 100%; background: none; }
+.panel-cover.is-pair { display: flex; align-items: stretch; width: 100%; gap: 10px; }
 .panel-cover.is-portrait img { width: auto; max-width: 100%; height: auto; max-height: 42dvh; object-fit: contain; }
+.panel-cover.is-portrait.is-pair img { min-width: 0; width: 0; max-width: none; height: auto; max-height: none; flex: 65 1 0; }   /* beide Bilder gleich hoch: Breiten im Verhältnis 480:739 zu 1:1 */
+.panel-cover.is-portrait.is-pair img + img { flex-grow: 100; }
 
 .year-nav.behind-hero { opacity: 0; pointer-events: none; }
 
