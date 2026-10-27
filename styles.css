@@ -2249,3 +2249,8 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
   opacity: 1; mix-blend-mode: normal; }   /* volle Deckkraft, kein Multiply: kein Schleier über den Farben */
 /* Handy/Tablet hochkant: Bild unter die Überschrift schieben, unteres Drittel liegt hinter dem Glaskasten mit dem Einleitungstext */
 @media (max-width: 780px) { .page-label .hero-deco-img.hero-deco-full { top: clamp(120px, 46vw, 250px); height: clamp(250px, 72vw, 420px); } }
+/* Handy: Milchglas deutlich zurücknehmen (weniger Deckkraft, kaum Unschärfe); die Lesbarkeit hält ein heller Schein um die Schrift */
+@media (max-width: 780px) {
+  .page-label .hero-deco .hero-copy, .page-label .hero-panel { background: rgba(237, 232, 219, 0.14); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+  .page-label .hero-copy .lede { text-shadow: 0 0 6px rgba(237, 232, 219, 0.95), 0 0 14px rgba(237, 232, 219, 0.85); }
+}
