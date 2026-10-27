@@ -108,6 +108,13 @@
       r.tracks.forEach(x => { const li = el('li'); li.appendChild(el('span', null, x.title)); if (x.duration) li.appendChild(el('span', 'track-dur', x.duration)); ol.appendChild(li); });
       body.appendChild(ol);
     }
+    // Credits (Rolle + Name) ebenfalls vor dem Player
+    if (r.credits && r.credits.length) {
+      body.appendChild(el('h3', 'panel-h', t.credits));
+      const dl = el('dl', 'panel-credits');
+      r.credits.forEach(c => dl.append(el('dt', null, c.role), el('dd', null, c.name)));
+      body.appendChild(dl);
+    }
     const links = r.links ? PLATFORMS.map(([k, n]) => [n, safeUrl(r.links[k])]).filter(x => x[1]) : [];
     const emb = embedOf(r);
     const act = el('div', 'panel-actions');
@@ -169,12 +176,6 @@
       const ul = el('ul', 'panel-links');
       vids.forEach(([n, u]) => ul.appendChild(linkItem(n, u)));
       body.appendChild(ul);
-    }
-    if (r.credits && r.credits.length) {
-      body.appendChild(el('h3', 'panel-h', t.credits));
-      const dl = el('dl', 'panel-credits');
-      r.credits.forEach(c => dl.append(el('dt', null, c.role), el('dd', null, c.name)));
-      body.appendChild(dl);
     }
     closeBtn.setAttribute('aria-label', t.close);
     closeLbl.textContent = t.close;
