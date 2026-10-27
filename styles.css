@@ -2247,3 +2247,5 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 /* Hero-Bild (freigestellter Plattenstapel): proportional verkleinert statt randlos beschnitten */
 .page-label .hero-deco-img.hero-deco-full { top: 4%; height: 70%; left: auto; right: 3%; width: 94%; object-fit: contain; object-position: right top;
   opacity: 1; mix-blend-mode: normal; }   /* volle Deckkraft, kein Multiply: kein Schleier über den Farben */
+/* Handy/Tablet hochkant: Bild unter die Überschrift schieben, unteres Drittel liegt hinter dem Glaskasten mit dem Einleitungstext */
+@media (max-width: 780px) { .page-label .hero-deco-img.hero-deco-full { top: clamp(120px, 46vw, 250px); height: clamp(250px, 72vw, 420px); } }
