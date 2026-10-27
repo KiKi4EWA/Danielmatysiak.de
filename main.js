@@ -6,7 +6,7 @@ if (heroDecoEl) {
   const imgSets = {
     'page-home':    ['img/index_hero3.webp'],
     'page-audio':   ['img/audio_neve.webp', 'img/audio_hero3.webp', 'img/audio_hero4.webp', 'img/audio_hero5.webp', 'img/audio_hero6.webp'],
-    'page-label':   ['img/audio_neve.webp', 'img/audio_hero3.webp', 'img/audio_hero4.webp', 'img/audio_hero5.webp', 'img/audio_hero6.webp'],
+    'page-label':   ['img/label_hero.webp'],
     'page-lab':     ['img/lab_hero3.webp', 'img/lab_hero4.webp'],
     'page-faq':     ['img/faq_hero1.webp', 'img/faq_hero2.webp', 'img/faq_hero3.webp'],
     'page-contact': ['img/kontakt_hero1.webp', 'img/kontakt_hero3.webp', 'img/kontakt_hero5.webp'],
@@ -27,6 +27,7 @@ if (heroDecoEl) {
       else if (src.includes('audio_hero3')) heroDecoEl.style.objectPosition = Math.random() > 0.5 ? 'center' : 'right top';
       else if (src.includes('audio_hero4')) heroDecoEl.style.objectPosition = Math.random() > 0.5 ? 'left center' : 'right center';
       else if (src.includes('audio_hero5')) heroDecoEl.style.objectPosition = Math.random() > 0.5 ? 'left center' : 'right center';
+      else if (src.includes('label_hero')) heroDecoEl.style.objectPosition = 'right center';
       else if (src.includes('audio_hero6')) heroDecoEl.style.objectPosition = 'center';
     }
     // Lab: drei Optionen gleichverteilt, immer top damit oben nichts abgeschnitten wird
