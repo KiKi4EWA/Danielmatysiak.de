@@ -9,8 +9,8 @@
   const closeLbl = document.getElementById('panel-close-label');
   const root = document.documentElement;
   const T = {
-    de: { close: 'Schließen', listen: 'Anhören', soon: 'Streaming-Link folgt.', hide: 'Player schließen', consent: n => `Player von ${n}. Beim Laden werden Daten an ${n} übertragen.`, open: 'Öffnen in', orchardTip: 'Alle Tracks ohne Anmeldung anhören', revoke: 'Spotify-Einwilligung widerrufen', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.', share: 'Teilen', shareTitle: 'Teilen', copy: 'Link kopieren', copied: 'Kopiert', mail: 'E-Mail', more: 'Mehr …', shareText: n => `${n} · 4Spur Records` },
-    en: { close: 'Close', listen: 'Listen', soon: 'Streaming link coming soon.', hide: 'Close player', consent: n => `Player from ${n}. Loading it sends data to ${n}.`, open: 'Open in', orchardTip: 'Listen to all tracks without signing in', revoke: 'Withdraw Spotify consent', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.', share: 'Share', shareTitle: 'Share', copy: 'Copy link', copied: 'Copied', mail: 'Email', more: 'More …', shareText: n => `${n} · 4Spur Records` },
+    de: { close: 'Schließen', listen: 'Anhören', soon: 'Streaming-Link folgt.', hide: 'Player schließen', consent: n => `Player von ${n}. Beim Laden werden Daten an ${n} übertragen.`, open: 'Öffnen in', orchardTip: 'Alle Tracks ohne Anmeldung anhören', revoke: 'Spotify-Einwilligung widerrufen', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.', prev: 'Vorheriges Release', next: 'Nächstes Release', share: 'Teilen', shareTitle: 'Teilen', copy: 'Link kopieren', copied: 'Kopiert', mail: 'E-Mail', more: 'Mehr …', shareText: n => `${n} · 4Spur Records` },
+    en: { close: 'Close', listen: 'Listen', soon: 'Streaming link coming soon.', hide: 'Close player', consent: n => `Player from ${n}. Loading it sends data to ${n}.`, open: 'Open in', orchardTip: 'Listen to all tracks without signing in', revoke: 'Withdraw Spotify consent', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.', prev: 'Previous release', next: 'Next release', share: 'Share', shareTitle: 'Share', copy: 'Copy link', copied: 'Copied', mail: 'Email', more: 'More …', shareText: n => `${n} · 4Spur Records` },
   };
   const PLATFORMS = [['orchard', 'The Orchard'], ['spotify', 'Spotify'], ['apple', 'Apple Music'], ['bandcamp', 'Bandcamp'], ['youtube', 'YouTube'], ['soundcloud', 'SoundCloud'], ['other', 'Web']];
   const lang = () => (root.lang === 'en' ? 'en' : 'de');
@@ -24,7 +24,7 @@
   const safeUrl = u => { try { const x = new URL(u); return x.protocol === 'https:' ? x.href : null; } catch (e) { return null; } };
   const linkItem = (name, url) => { const li = el('li'); const a = el('a', null, name); a.href = url; a.target = '_blank'; a.rel = 'noopener'; li.appendChild(a); return li; };
 
-  let opener = null, currentId = null, activeArtist = null;
+  let opener = null, currentId = null, activeArtist = null, syncNav = null;
 
   function coverEl(r) {
     if (!r.cover) return el('div', 'panel-cover cover-ph');
@@ -333,6 +333,7 @@
       if (wide.matches && from) placeAfterOpen(from);
     }
     try { history.replaceState(null, '', '#r-' + id); } catch (e) {}
+    if (syncNav) syncNav();
   }
   // Aufräumen läuft sofort beim Schließen und noch einmal beim close-Ereignis (z. B. natives Escape im Modal)
   function cleanup() {
@@ -353,9 +354,87 @@
   panel.addEventListener('click', e => { if (e.target === panel) close(); }); // Klick auf Backdrop
   document.querySelectorAll('.release-open').forEach(b => b.addEventListener('click', () => open(b.dataset.id, b)));
 
+  // Durch die Releases blättern: Wischen (Touch), Pfeile im Panel und Pfeiltasten. Reihenfolge wie auf der Wand, ein aktiver Künstlerfilter wird beachtet.
+  (function () {
+    const tiles = () => [...document.querySelectorAll('.release-open')].filter(b => !b.closest('.release[hidden]'));
+    const where = () => { const t = tiles(); return { t, i: t.findIndex(b => b.dataset.id === currentId) }; };
+    const neighbor = dir => { const { t, i } = where(); return i < 0 ? null : (t[i + dir] || null); };
+    const still = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const set = (x, o, ms) => { body.style.transition = ms ? `transform ${ms}ms var(--ease-out), opacity ${ms}ms var(--ease-out)` : 'none'; body.style.transform = x ? `translateX(${x}px)` : ''; body.style.opacity = o < 1 ? String(o) : ''; };
+    const offsetNow = () => { try { return new DOMMatrix(getComputedStyle(body).transform).m41 || 0; } catch (e) { return 0; } };
+    const rubber = d => Math.sign(d) * 56 * (1 - Math.exp(-Math.abs(d) / 110));   // ohne Nachbarn: je weiter gezogen, desto weniger bewegt es sich
+    let busy = false, token = 0;
+
+    // Wechsel zum Nachbarn. Mit Animation (Touch, Pfeilknöpfe) gleitet der alte Inhalt in Richtung hinaus und der neue kommt von der Gegenseite; per Tastatur ohne Animation.
+    function goTo(dir, animate) {
+      const next = neighbor(dir); if (!next) return false;
+      const swap = () => { open(next.dataset.id, next); body.scrollTop = 0; };
+      if (!animate || still()) { set(0, 1, 0); swap(); return true; }
+      busy = true; const mine = ++token;
+      set(-dir * innerWidth * 0.35, 0, 140);   // Ausgang schnell
+      setTimeout(() => {
+        busy = false;
+        if (mine !== token || !panel.open) return;
+        swap(); set(dir * innerWidth * 0.35, 0, 0); void body.offsetWidth; set(0, 1, 220);   // Eingang etwas ruhiger, sofort wieder bedienbar
+      }, 140);
+      return true;
+    }
+
+    // Pfeile + Position oben links im Panel (Gegenstück zum Schließen-Knopf)
+    const nav = el('div', 'panel-nav'); nav.hidden = true;
+    const mkBtn = (cls, glyph, dir) => { const b = el('button', cls, glyph); b.type = 'button'; b.addEventListener('click', () => goTo(dir, true)); return b; };
+    const prevBtn = mkBtn('nav-prev', '‹', -1), nextBtn = mkBtn('nav-next', '›', 1), count = el('span', 'nav-count');
+    nav.append(prevBtn, count, nextBtn);
+    panel.querySelector('.panel-inner').appendChild(nav);
+    syncNav = () => {
+      const { t, i } = where(), tx = T[lang()];
+      nav.hidden = i < 0 || t.length < 2;
+      count.textContent = `${i + 1} / ${t.length}`;
+      prevBtn.disabled = i <= 0; nextBtn.disabled = i < 0 || i >= t.length - 1;
+      prevBtn.setAttribute('aria-label', tx.prev); nextBtn.setAttribute('aria-label', tx.next);
+    };
+    panel.addEventListener('close', () => { nav.hidden = true; });
+
+    // Tastatur: ohne Animation (wiederholte Eingabe)
+    document.addEventListener('keydown', e => {
+      if (!panel.open || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || (lb && lb.open) || (shareDlg && shareDlg.open)) return;
+      if (e.key === 'ArrowRight' && goTo(1, false)) e.preventDefault();
+      else if (e.key === 'ArrowLeft' && goTo(-1, false)) e.preventDefault();
+    });
+
+    // Touch: Inhalt folgt dem Finger; Weiterblättern per Distanz oder Schwung
+    let sx = 0, sy = 0, dx = 0, base = 0, t0 = 0, mode = 'ignore';
+    panel.addEventListener('touchstart', e => {
+      const t = e.touches[0];
+      if (busy || e.touches.length !== 1 || currentId === null || t.clientX < 24 || t.clientX > innerWidth - 24) { mode = 'ignore'; return; }   // Rand = System-Wischgeste
+      base = offsetNow(); if (base) set(base, 1, 0);   // mitten in der Animation: dort aufnehmen, kein Sprung
+      sx = t.clientX; sy = t.clientY; dx = 0; t0 = Date.now(); mode = 'wait';
+    }, { passive: true });
+    panel.addEventListener('touchmove', e => {
+      if (mode === 'ignore' || mode === 'v') return;
+      if (e.touches.length > 1) { mode = 'ignore'; set(0, 1, still() ? 0 : 220); return; }   // zweiter Finger: abbrechen
+      const t = e.touches[0]; dx = t.clientX - sx; const dy = t.clientY - sy;
+      if (mode === 'wait') {
+        if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+        mode = Math.abs(dx) > Math.abs(dy) * 1.4 ? 'h' : 'v';   // waagerecht nur bei klar horizontaler Geste
+        if (mode === 'v') { if (base) set(0, 1, 220); return; }
+      }
+      const x = neighbor(dx < 0 ? 1 : -1) ? base + dx * 0.55 : base + rubber(dx);
+      set(x, 1 - Math.min(Math.abs(x) / 500, 0.3), 0);
+    }, { passive: true });
+    const end = () => {
+      if (mode !== 'h') { mode = 'ignore'; return; }
+      mode = 'ignore';
+      const dir = dx < 0 ? 1 : -1, v = Math.abs(dx) / Math.max(Date.now() - t0, 1);
+      if (!(Math.abs(dx) > 70 || (Math.abs(dx) > 25 && v > 0.11)) || !goTo(dir, true)) set(0, 1, still() ? 0 : 220);   // sonst zurückfedern
+    };
+    panel.addEventListener('touchend', end, { passive: true });
+    panel.addEventListener('touchcancel', () => { if (mode === 'h') set(0, 1, still() ? 0 : 220); mode = 'ignore'; }, { passive: true });
+  })();
+
   // Sprache: Datum und offenes Panel neu rendern
   const refreshDates = () => document.querySelectorAll('.release-date').forEach(t => { t.textContent = fmtDate(t.getAttribute('datetime')); });
-  new MutationObserver(() => { refreshDates(); if (currentId) render(currentId); renderIntro(); }).observe(root, { attributes: true, attributeFilter: ['lang'] });
+  new MutationObserver(() => { refreshDates(); if (currentId) render(currentId); renderIntro(); if (syncNav) syncNav(); }).observe(root, { attributes: true, attributeFilter: ['lang'] });
   refreshDates();
 
   // Artists: Menü im Hero filtert die Wand; ein Textblock zwischen Hero und Wand stellt den Artist vor

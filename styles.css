@@ -2263,3 +2263,18 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 /* Hero-Überschrift „4SPUR RECORDS.“: am Desktop dunkel und beim Hover petrol, auf dem Handy (kein Hover) dauerhaft petrol */
 @media (hover: hover) and (pointer: fine) { .page-label .hero:hover h1 { color: var(--accent); } }
 @media (max-width: 780px) { .page-label .hero-deco h1 { color: var(--accent); } }
+
+/* Wischen im Panel: senkrechtes Scrollen bleibt dem Browser, waagerechte Gesten laufen über label.js */
+.panel-body { touch-action: pan-y; }
+
+/* Blättern im Panel: Pfeile und Position oben links (spiegelt den Schließen-Knopf) */
+.panel-nav { position: absolute; top: 10px; left: 10px; z-index: 2; display: flex; align-items: center; height: 44px; }
+.panel-nav[hidden] { display: none; }
+.panel-nav button { width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: none; padding: 0; cursor: pointer; color: var(--muted);
+  font-family: var(--mono); font-size: 26px; line-height: 1; text-shadow: 0 0 10px rgba(237, 232, 219, 0.9); transition: color 160ms ease, opacity 160ms ease, transform 100ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .panel-nav button:not(:disabled):hover { color: var(--accent); } }
+.panel-nav button:not(:disabled):active { transform: scale(0.9); }
+.panel-nav button:disabled { opacity: 0.3; cursor: default; }
+.panel-nav button:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+.nav-count { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-shadow: 0 0 10px rgba(237, 232, 219, 0.9); min-width: 4.5ch; text-align: center; font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { .panel-nav button { transition: color 160ms ease; } }
