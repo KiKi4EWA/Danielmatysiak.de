@@ -273,17 +273,22 @@
   // Großansicht des Covers (Klick auf den Bildtitel)
   const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightbox-img'), lbCap = document.getElementById('lightbox-cap');
   let lbOpener = null;
+  const zoomed = () => matchMedia('(pointer: coarse), (max-width: 700px)').matches;
   function openLightbox(r, from) {
     if (!lb || !r.cover) return;
     const size = r.cover.includes(1440) ? 1440 : Math.max(...r.cover);
     lbImg.src = `img/covers/${r.id}-${size}.webp`;
     lbImg.srcset = r.cover.map(s => `img/covers/${r.id}-${s}.webp ${s}w`).join(', ');
-    lbImg.sizes = 'min(92vw, 84dvh)';
+    lbImg.sizes = zoomed() ? 'max(92vw, 112dvh)' : 'min(92vw, 84dvh)';
     lbImg.alt = `${r.art || r.artBy}: ${r.title}, ${r.artist}`;
     const who = r.artist + (r.feat ? ' feat. ' + r.feat : '');
     lbCap.textContent = `${who} \u00b7 ${r.title} \u00b7 ${r.cline}`;   // Trennpunkte in Zeilenmitte
     lbOpener = from || null;
     lb.showModal();
+    if (zoomed()) {   // Handy: Quadrat ragt etwas über den Bildschirm hinaus; zu Beginn mittig, per Wischen in alle Richtungen verschiebbar
+      const art = lb.querySelector('.lightbox-art'), r = art.getBoundingClientRect();
+      lb.scrollLeft += r.left + r.width / 2 - lb.clientWidth / 2; lb.scrollTop += r.top + r.height / 2 - lb.clientHeight / 2;
+    }
   }
   // Großansicht des Selbstporträts; Klick aufs große Bild wechselt zur Zeichnung (Easter Egg), noch ein Klick zurück
   function openArtistLightbox(r, from) {
