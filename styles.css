@@ -61,8 +61,8 @@ body.page-lab {
 }
 
 body.page-label {
-  --accent:    #2f8582;
-  --accent-h:  #429b97;
+  --accent:    #3a9a96;
+  --accent-h:  #4fb0ab;
 }
 
 body.page-about {
@@ -775,7 +775,7 @@ form .btn,
   .chapter-item:nth-child(1):hover,
   .chapter-item:nth-child(1):hover .chapter-title { color: #4878b0; }
   .chapter-item:nth-child(2):hover,
-  .chapter-item:nth-child(2):hover .chapter-title { color: #2f8582; }
+  .chapter-item:nth-child(2):hover .chapter-title { color: #3a9a96; }
   .chapter-item:nth-child(3):hover,
   .chapter-item:nth-child(3):hover .chapter-title { color: #7a9672; }
   .chapter-item:nth-child(4):hover,
