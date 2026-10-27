@@ -27,7 +27,7 @@ if (heroDecoEl) {
       else if (src.includes('audio_hero3')) heroDecoEl.style.objectPosition = Math.random() > 0.5 ? 'center' : 'right top';
       else if (src.includes('audio_hero4')) heroDecoEl.style.objectPosition = Math.random() > 0.5 ? 'left center' : 'right center';
       else if (src.includes('audio_hero5')) heroDecoEl.style.objectPosition = Math.random() > 0.5 ? 'left center' : 'right center';
-      else if (src.includes('label_hero')) heroDecoEl.style.objectPosition = 'right center';
+      else if (src.includes('label_hero')) heroDecoEl.style.objectPosition = 'right top';
       else if (src.includes('audio_hero6')) heroDecoEl.style.objectPosition = 'center';
     }
     // Lab: drei Optionen gleichverteilt, immer top damit oben nichts abgeschnitten wird
@@ -40,7 +40,7 @@ if (heroDecoEl) {
 
 // Parallax — subtiler Tiefeneffekt für home/audio/lab full-bleed hero (nur Desktop)
 (function () {
-  const parallaxPages = ['page-home', 'page-audio', 'page-label', 'page-lab'];
+  const parallaxPages = ['page-home', 'page-audio', 'page-lab'];
   if (!parallaxPages.some(k => document.body.classList.contains(k))) return;
   if (noMotionGlobal) return;
   if (window.matchMedia('(pointer: coarse)').matches) return; // kein Parallax auf Touch

@@ -2245,4 +2245,4 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 @media (prefers-reduced-motion: reduce) { .share-dialog { transition: none; transform: none; } }
 
 /* Hero-Bild (freigestellter Plattenstapel): proportional verkleinert statt randlos beschnitten */
-.page-label .hero-deco-img.hero-deco-full { top: 7%; height: 86%; left: auto; right: 2%; width: 96%; object-fit: contain; object-position: right center; }
+.page-label .hero-deco-img.hero-deco-full { top: 5%; height: 68%; left: auto; right: 3%; width: 94%; object-fit: contain; object-position: right top; }
