@@ -2196,8 +2196,8 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 [data-tip]:focus-visible::after { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { [data-tip]::after { transition: none; transform: none; } }
 
-/* Hero-Knopf „Label-Künstler“: im Blau der Hero-Überschrift beim Hover (.hero:hover h1 = Akzent 72 %), dunkler Text für Lesbarkeit */
-.page-label .btn-menu { background: color-mix(in srgb, var(--accent) 72%, transparent); color: var(--text); transition: background-color 160ms ease, transform 100ms var(--ease-out); }
+/* Hero-Knopf „Label-Künstler“: im Blau der Hero-Überschrift beim Hover (.hero:hover h1 = Akzent 72 %) mit hellem Text (Seitenhintergrund) */
+.page-label .btn-menu { background: color-mix(in srgb, var(--accent) 72%, transparent); color: var(--bg); transition: background-color 160ms ease, transform 100ms var(--ease-out); }
 @media (hover: hover) and (pointer: fine) { .page-label .btn-menu:hover { background: color-mix(in srgb, var(--accent) 86%, transparent); } }
 .page-label .btn-menu[aria-expanded="true"] { background: color-mix(in srgb, var(--accent) 86%, transparent); }
 .page-label .btn-menu:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -2245,5 +2245,4 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 @media (prefers-reduced-motion: reduce) { .share-dialog { transition: none; transform: none; } }
 
 /* Hero-Bild (freigestellter Plattenstapel): proportional verkleinert statt randlos beschnitten */
-.page-label .hero-deco-img.hero-deco-full { top: 5%; height: 68%; left: auto; right: 3%; width: 94%; object-fit: contain; object-position: right top;
-  filter: drop-shadow(-12px 14px 16px rgba(28, 25, 16, 0.32)); }   /* sanfter Schatten nach links unten */
+.page-label .hero-deco-img.hero-deco-full { top: 4%; height: 76%; left: auto; right: 3%; width: 94%; object-fit: contain; object-position: right top; }
