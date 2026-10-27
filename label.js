@@ -274,21 +274,40 @@
   const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lightbox-img'), lbCap = document.getElementById('lightbox-cap');
   let lbOpener = null;
   const zoomed = () => matchMedia('(pointer: coarse), (max-width: 700px)').matches;
+  let zoomAnim = null;
   function openLightbox(r, from) {
     if (!lb || !r.cover) return;
     const size = r.cover.includes(1440) ? 1440 : Math.max(...r.cover);
     lbImg.src = `img/covers/${r.id}-${size}.webp`;
     lbImg.srcset = r.cover.map(s => `img/covers/${r.id}-${s}.webp ${s}w`).join(', ');
-    lbImg.sizes = zoomed() ? 'max(92vw, 112dvh)' : 'min(92vw, 84dvh)';
+    lbImg.sizes = 'min(92vw, 84dvh)';
     lbImg.alt = `${r.art || r.artBy}: ${r.title}, ${r.artist}`;
     const who = r.artist + (r.feat ? ' feat. ' + r.feat : '');
     lbCap.textContent = `${who} \u00b7 ${r.title} \u00b7 ${r.cline}`;   // Trennpunkte in Zeilenmitte
     lbOpener = from || null;
     lb.showModal();
-    if (zoomed()) {   // Handy: Quadrat ragt etwas über den Bildschirm hinaus; zu Beginn mittig, per Wischen in alle Richtungen verschiebbar
-      const art = lb.querySelector('.lightbox-art'), r = art.getBoundingClientRect();
-      lb.scrollLeft += r.left + r.width / 2 - lb.clientWidth / 2; lb.scrollTop += r.top + r.height / 2 - lb.clientHeight / 2;
-    }
+    // Handy: erst die Gesamtansicht wie bisher; Antippen des Bildes zoomt (Quadrat ragt etwas über den Bildschirm, in alle Richtungen verschiebbar), nochmal Antippen zurück.
+    // Der Wechsel läuft als FLIP über transform (läuft über die WAAPI, ruckelfrei, mitten in der Animation umkehrbar), nicht über Breite/Höhe.
+    lb.classList.remove('is-zoomed');
+    lbImg.onclick = zoomed() ? e => {
+      const art = lb.querySelector('.lightbox-art'), cap = document.getElementById('lightbox-cap'), zoomIn = !lb.classList.contains('is-zoomed');
+      const first = art.getBoundingClientRect();   // inkl. einer evtl. laufenden Bewegung: Start dort, wo das Bild gerade steht
+      const fx = (e.clientX - first.left) / first.width, fy = (e.clientY - first.top) / first.height;
+      if (zoomAnim) zoomAnim.cancel();
+      if (zoomIn) {
+        lb.classList.add('is-zoomed'); lbImg.sizes = 'max(92vw, 112dvh)';
+        const a = art.getBoundingClientRect();   // getippte Stelle ins Zentrum
+        lb.scrollLeft += a.left + fx * a.width - lb.clientWidth / 2; lb.scrollTop += a.top + fy * a.height - lb.clientHeight / 2;
+      } else {
+        lb.classList.remove('is-zoomed'); lb.scrollTo(0, 0); lbImg.sizes = 'min(92vw, 84dvh)';
+      }
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const last = art.getBoundingClientRect();
+      art.style.transformOrigin = '0 0';
+      zoomAnim = art.animate([{ transform: `translate(${first.left - last.left}px, ${first.top - last.top}px) scale(${first.width / last.width})` }, { transform: 'none' }], { duration: 280, easing: 'cubic-bezier(0.77, 0, 0.175, 1)' });   // Bewegung auf dem Bildschirm: ease-in-out
+      zoomAnim.onfinish = zoomAnim.oncancel = () => { zoomAnim = null; };
+      if (!zoomIn) cap.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, delay: 120, easing: 'ease-out', fill: 'backwards' });   // Text erscheint erst, wenn das Bild fast steht
+    } : null;
   }
   // Großansicht des Selbstporträts; Klick aufs große Bild wechselt zur Zeichnung (Easter Egg), noch ein Klick zurück
   function openArtistLightbox(r, from) {
@@ -311,7 +330,7 @@
   if (lb) {
     lb.addEventListener('click', e => { if (e.target !== lbImg) lb.close(); });
     document.getElementById('lightbox-close').addEventListener('click', () => lb.close());
-    lb.addEventListener('close', () => { lb.classList.remove('is-photo'); lbImg.removeAttribute('src'); lbImg.removeAttribute('srcset'); if (lbOpener && document.contains(lbOpener)) lbOpener.focus({ preventScroll: true }); lbOpener = null; });
+    lb.addEventListener('close', () => { lb.classList.remove('is-photo', 'is-zoomed'); lb.scrollTo(0, 0); if (zoomAnim) zoomAnim.cancel(); lbImg.onclick = null; lbImg.removeAttribute('src'); lbImg.removeAttribute('srcset'); if (lbOpener && document.contains(lbOpener)) lbOpener.focus({ preventScroll: true }); lbOpener = null; });
   }
 
   // Beim Öffnen die Wand so schieben, dass das Panel genug Platz hat und die gewählte Kachel im Bild bleibt
