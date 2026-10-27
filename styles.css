@@ -2259,3 +2259,7 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
   /* Text beginnt erst unter dem Bild: keine Überlappung mit der Fließschrift (Bild liegt nur hinter der großen Überschrift) */
   .page-label .hero-copy .lede { margin-top: clamp(70px, calc(116.5vw - 297px), 205px); }
 }
+
+/* Hero-Überschrift „4SPUR RECORDS.“: am Desktop dunkel und beim Hover petrol, auf dem Handy (kein Hover) dauerhaft petrol */
+@media (hover: hover) and (pointer: fine) { .page-label .hero:hover h1 { color: var(--accent); } }
+@media (max-width: 780px) { .page-label .hero-deco h1 { color: var(--accent); } }
