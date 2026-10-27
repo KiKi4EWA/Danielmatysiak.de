@@ -230,8 +230,8 @@
       art.style.setProperty('--ar', w.toFixed(4)); art.style.maxWidth = Math.round((egg ? 960 : 1478) * w * 1.6) + 'px';
       lbImg.removeAttribute('srcset'); lbImg.src = egg ? r.image2 : r.image;
       lbImg.sizes = 'min(92vw, 84dvh)';
-      lbImg.alt = egg ? (en ? 'Drawing by ' + r.name + ', made with the mouse' : 'Zeichnung von ' + r.name + ', mit der Maus gezeichnet') : (en ? 'Self-portrait of ' + r.name : 'Selbstporträt von ' + r.name);
-      lbCap.textContent = egg ? r.name + ' \u00b7 ' + (en ? 'drawn with the mouse' : 'mit der Maus gezeichnet') : r.name;
+      lbImg.alt = egg ? (en ? 'Maus (mouse), drawing by ' + r.name : 'Maus, Zeichnung von ' + r.name) : (en ? 'Self-portrait of ' + r.name : 'Selbstporträt von ' + r.name);
+      lbCap.textContent = egg ? r.name + ' \u00b7 Maus' : r.name;   // Titel der Zeichnung: „Maus“
     };
     lbImg.onclick = r.image2 ? () => { egg = !egg; show(); } : null;
     lb.addEventListener('close', () => { lbImg.onclick = null; }, { once: true });
