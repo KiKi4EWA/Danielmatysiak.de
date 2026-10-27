@@ -61,7 +61,11 @@
     head.appendChild(el('p', 'panel-artist', en ? r.roleEn : r.role));
     const title = el('h2', 'panel-title', r.name); title.id = 'panel-title';
     head.appendChild(title); body.appendChild(head);
-    (en ? r.bioEn : r.bio).forEach(p => body.appendChild(el('p', 'panel-desc', p)));
+    (en ? r.bioEn : r.bio).forEach(p => {
+      const para = el('p', 'panel-desc');
+      p.split('<3').forEach((part, i) => { if (i) para.appendChild(el('span', 'heart', '<3')); if (part) para.appendChild(document.createTextNode(part)); });   // ASCII-Herz hochkant
+      body.appendChild(para);
+    });
     const p = el('p', 'panel-open', `${en ? 'More from her' : 'Mehr von ihr'} `);
     r.links.forEach(([n, u]) => { const l = el('a', null, `${n} ↗`); l.href = u; l.target = '_blank'; l.rel = 'noopener'; p.appendChild(l); });
     body.appendChild(p);
