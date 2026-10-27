@@ -2210,3 +2210,5 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 
 /* Knopf unter der Wand: Abstand zur letzten Kachelreihe */
 .wall-cta { margin-top: clamp(28px, 4vw, 56px); }
+
+.heart { display: inline-block; transform: rotate(-90deg); margin-left: 0.15em; }   /* „<3“ um 90° gegen den Uhrzeigersinn: Herz steht aufrecht */
