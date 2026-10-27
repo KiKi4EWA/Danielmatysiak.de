@@ -2259,6 +2259,3 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
   /* Text beginnt erst unter dem Bild: keine Überlappung mit der Fließschrift (Bild liegt nur hinter der großen Überschrift) */
   .page-label .hero-copy .lede { margin-top: clamp(70px, calc(116.5vw - 297px), 205px); }
 }
-
-/* Label (body.page-label): eigene Farbe Petrol; die Hero-Überschrift ist hier ausnahmsweise in der Seitenfarbe statt dunkel */
-.page-label .hero-deco h1, .page-label .hero:hover h1 { color: var(--accent); }
