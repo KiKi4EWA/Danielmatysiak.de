@@ -51,8 +51,8 @@ body.page-home {
 }
 
 body.page-audio {
-  --accent:    #2f8582;
-  --accent-h:  #429b97;
+  --accent:    #4878b0;
+  --accent-h:  #5a8cc8;
 }
 
 body.page-lab {
@@ -61,8 +61,8 @@ body.page-lab {
 }
 
 body.page-label {
-  --accent:    #4878b0;
-  --accent-h:  #5a8cc8;
+  --accent:    #2f8582;
+  --accent-h:  #429b97;
 }
 
 body.page-about {
@@ -773,9 +773,9 @@ form .btn,
   .chapter-item:nth-child(2):hover,
   .chapter-item:nth-child(2):hover .chapter-title { color: #cf7338; }
   .chapter-item:nth-child(1):hover,
-  .chapter-item:nth-child(1):hover .chapter-title { color: #2f8582; }
+  .chapter-item:nth-child(1):hover .chapter-title { color: #4878b0; }
   .chapter-item:nth-child(2):hover,
-  .chapter-item:nth-child(2):hover .chapter-title { color: #4878b0; }
+  .chapter-item:nth-child(2):hover .chapter-title { color: #2f8582; }
   .chapter-item:nth-child(3):hover,
   .chapter-item:nth-child(3):hover .chapter-title { color: #7a9672; }
   .chapter-item:nth-child(4):hover,
@@ -2260,5 +2260,5 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
   .page-label .hero-copy .lede { margin-top: clamp(70px, calc(116.5vw - 297px), 205px); }
 }
 
-/* Studio (Seite „Audio“, body.page-audio): eigene Farbe Petrol; die Hero-Überschrift ist hier ausnahmsweise in der Seitenfarbe statt dunkel */
-.page-audio .hero-deco h1, .page-audio .hero:hover h1 { color: var(--accent); }
+/* Label (body.page-label): eigene Farbe Petrol; die Hero-Überschrift ist hier ausnahmsweise in der Seitenfarbe statt dunkel */
+.page-label .hero-deco h1, .page-label .hero:hover h1 { color: var(--accent); }
