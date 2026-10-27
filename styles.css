@@ -2196,10 +2196,10 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 [data-tip]:focus-visible::after { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { [data-tip]::after { transition: none; transform: none; } }
 
-/* Hero-Knopf „Label-Künstler“: das helle Seitenblau mit hellem Text (der Hero hat kein Vollbild-Foto mehr, das mehr Kontrast bräuchte) */
-.page-label .btn-menu { background: var(--accent); color: var(--bg); transition: background-color 160ms ease, transform 100ms var(--ease-out); }
-@media (hover: hover) and (pointer: fine) { .page-label .btn-menu:hover { background: var(--accent-h); } }
-.page-label .btn-menu[aria-expanded="true"] { background: var(--accent-h); }
+/* Hero-Knopf „Label-Künstler“: im Blau der Hero-Überschrift beim Hover (.hero:hover h1 = Akzent 72 %), dunkler Text für Lesbarkeit */
+.page-label .btn-menu { background: color-mix(in srgb, var(--accent) 72%, transparent); color: var(--text); transition: background-color 160ms ease, transform 100ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .page-label .btn-menu:hover { background: color-mix(in srgb, var(--accent) 86%, transparent); } }
+.page-label .btn-menu[aria-expanded="true"] { background: color-mix(in srgb, var(--accent) 86%, transparent); }
 .page-label .btn-menu:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 /* Textlink im Einleitungssatz der Wand */
