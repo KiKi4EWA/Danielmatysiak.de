@@ -2248,9 +2248,10 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 .page-label .hero-deco-img.hero-deco-full { top: 4%; height: 70%; left: auto; right: 3%; width: 94%; object-fit: contain; object-position: right top;
   opacity: 1; mix-blend-mode: normal; }   /* volle Deckkraft, kein Multiply: kein Schleier über den Farben */
 /* Handy/Tablet hochkant: Bild unter die Überschrift schieben, unteres Drittel liegt hinter dem Glaskasten mit dem Einleitungstext */
-@media (max-width: 780px) { .page-label .hero-deco-img.hero-deco-full { top: clamp(120px, 46vw, 250px); height: clamp(250px, 72vw, 420px); } }
-/* Handy: Milchglas deutlich zurücknehmen (weniger Deckkraft, kaum Unschärfe); die Lesbarkeit hält ein heller Schein um die Schrift */
+@media (max-width: 780px) { .page-label .hero-deco-img.hero-deco-full { top: clamp(120px, 46vw, 200px); height: clamp(250px, 72vw, 300px); } }
+/* Handy: Milchglas deutlich zurücknehmen (weniger Deckkraft, kaum Unschärfe) */
 @media (max-width: 780px) {
   .page-label .hero-deco .hero-copy, .page-label .hero-panel { background: rgba(237, 232, 219, 0.14); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
-  .page-label .hero-copy .lede { text-shadow: 0 0 6px rgba(237, 232, 219, 0.95), 0 0 14px rgba(237, 232, 219, 0.85); }
+  /* Text beginnt erst unter dem Bild: keine Überlappung mit der Fließschrift (Bild liegt nur hinter der großen Überschrift) */
+  .page-label .hero-copy .lede { margin-top: clamp(70px, calc(116.5vw - 297px), 205px); }
 }
