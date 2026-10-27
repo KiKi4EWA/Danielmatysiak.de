@@ -49,17 +49,13 @@
   function renderArtist(r) {
     const t = T[lang()], en = lang() === 'en';
     body.replaceChildren();
-    const wrap = el('div', 'panel-cover is-portrait');
+    const wrap = el('button', 'panel-cover is-portrait'); wrap.type = 'button';
+    wrap.setAttribute('aria-label', en ? 'View larger' : 'Großansicht');
     const img = document.createElement('img');
     img.src = r.imageSmall; img.srcset = `${r.imageSmall} 480w, ${r.image} 960w`; img.sizes = '(max-width: 700px) 70vw, 300px';
     img.alt = en ? 'Self-portrait of ' + r.name : 'Selbstporträt von ' + r.name; img.width = 480; img.height = 739;
     wrap.appendChild(img);
-    if (r.image2) {
-      const img2 = document.createElement('img');
-      img2.src = r.image2Small; img2.srcset = `${r.image2Small} 480w, ${r.image2} 960w`; img2.sizes = '(max-width: 700px) 45vw, 300px';
-      img2.alt = en ? 'Drawing by ' + r.name + ', made with the mouse' : 'Zeichnung von ' + r.name + ', mit der Maus gezeichnet'; img2.width = 480; img2.height = 480;
-      wrap.classList.add('is-pair'); wrap.appendChild(img2);
-    }
+    wrap.addEventListener('click', () => openArtistLightbox(r, wrap));
     body.appendChild(wrap);
     const head = el('div', 'panel-head');
     head.appendChild(el('p', 'panel-artist', en ? r.roleEn : r.role));
@@ -222,10 +218,28 @@
     lbOpener = from || null;
     lb.showModal();
   }
+  // Großansicht des Selbstporträts; Klick aufs große Bild wechselt zur Zeichnung (Easter Egg), noch ein Klick zurück
+  function openArtistLightbox(r, from) {
+    if (!lb) return;
+    const en = lang() === 'en', art = lb.querySelector('.lightbox-art');
+    let egg = false;
+    const show = () => {
+      const w = egg ? 1 : 960 / 1478;
+      lb.classList.add('is-photo');
+      art.style.setProperty('--ar', w.toFixed(4)); art.style.maxWidth = Math.round((egg ? 960 : 1478) * w * 1.6) + 'px';
+      lbImg.removeAttribute('srcset'); lbImg.src = egg ? r.image2 : r.image;
+      lbImg.sizes = 'min(92vw, 84dvh)';
+      lbImg.alt = egg ? (en ? 'Drawing by ' + r.name + ', made with the mouse' : 'Zeichnung von ' + r.name + ', mit der Maus gezeichnet') : (en ? 'Self-portrait of ' + r.name : 'Selbstporträt von ' + r.name);
+      lbCap.textContent = egg ? r.name + ' \u00b7 ' + (en ? 'drawn with the mouse' : 'mit der Maus gezeichnet') : r.name;
+    };
+    lbImg.onclick = r.image2 ? () => { egg = !egg; show(); } : null;
+    lb.addEventListener('close', () => { lbImg.onclick = null; }, { once: true });
+    show(); lbOpener = from || null; lb.showModal();
+  }
   if (lb) {
     lb.addEventListener('click', e => { if (e.target !== lbImg) lb.close(); });
     document.getElementById('lightbox-close').addEventListener('click', () => lb.close());
-    lb.addEventListener('close', () => { lbImg.removeAttribute('src'); lbImg.removeAttribute('srcset'); if (lbOpener && document.contains(lbOpener)) lbOpener.focus({ preventScroll: true }); lbOpener = null; });
+    lb.addEventListener('close', () => { lb.classList.remove('is-photo'); lbImg.removeAttribute('src'); lbImg.removeAttribute('srcset'); if (lbOpener && document.contains(lbOpener)) lbOpener.focus({ preventScroll: true }); lbOpener = null; });
   }
 
   // Beim Öffnen die Wand so schieben, dass das Panel genug Platz hat und die gewählte Kachel im Bild bleibt
