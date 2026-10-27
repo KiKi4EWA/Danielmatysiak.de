@@ -2196,10 +2196,10 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 [data-tip]:focus-visible::after { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { [data-tip]::after { transition: none; transform: none; } }
 
-/* Hero-Knopf „Label-Künstler“: kräftiges Blau mit hellem Text (deutlich stärker als die hellen Knöpfe, aber nicht schwarz) */
-.page-label .btn-menu { background: color-mix(in srgb, var(--accent) 84%, var(--text)); color: var(--bg); transition: background-color 160ms ease, transform 100ms var(--ease-out); }
-@media (hover: hover) and (pointer: fine) { .page-label .btn-menu:hover { background: color-mix(in srgb, var(--accent) 66%, var(--text)); } }
-.page-label .btn-menu[aria-expanded="true"] { background: color-mix(in srgb, var(--accent) 66%, var(--text)); }
+/* Hero-Knopf „Label-Künstler“: das helle Seitenblau mit hellem Text (der Hero hat kein Vollbild-Foto mehr, das mehr Kontrast bräuchte) */
+.page-label .btn-menu { background: var(--accent); color: var(--bg); transition: background-color 160ms ease, transform 100ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .page-label .btn-menu:hover { background: var(--accent-h); } }
+.page-label .btn-menu[aria-expanded="true"] { background: var(--accent-h); }
 .page-label .btn-menu:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 /* Textlink im Einleitungssatz der Wand */
@@ -2245,4 +2245,5 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 @media (prefers-reduced-motion: reduce) { .share-dialog { transition: none; transform: none; } }
 
 /* Hero-Bild (freigestellter Plattenstapel): proportional verkleinert statt randlos beschnitten */
-.page-label .hero-deco-img.hero-deco-full { top: 7%; height: 86%; left: auto; right: 2%; width: 96%; object-fit: contain; object-position: right center; }
+.page-label .hero-deco-img.hero-deco-full { top: 5%; height: 68%; left: auto; right: 3%; width: 94%; object-fit: contain; object-position: right top;
+  filter: drop-shadow(-12px 14px 16px rgba(28, 25, 16, 0.32)); }   /* sanfter Schatten nach links unten */
