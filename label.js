@@ -94,7 +94,7 @@
     if (r.duration) meta.append(document.createTextNode(` · ${r.duration}`));
     head.append(artist, title, meta);
     if ((r.art || r.artBy) && r.cover) {
-      const art = el('p', 'panel-art'); art.appendChild(el('span', null, 'Cover Art'));
+      const art = el('p', 'panel-art'); art.appendChild(el('span', null, (lang() === 'en' ? r.artLabelEn : r.artLabel) || 'Cover Art'));
       const ab = el('button', 'art-open', r.art || r.artBy); ab.type = 'button'; ab.setAttribute('aria-haspopup', 'dialog');
       ab.dataset.tip = lang() === 'en' ? 'Show cover large' : 'Cover groß anzeigen';   // eigener Tooltip (Schrift der Seite), kein System-Tooltip
       ab.addEventListener('click', () => openLightbox(r, ab));
