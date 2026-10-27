@@ -405,7 +405,7 @@
       lbImg.src = a.photo.l; if (a.photo.s !== a.photo.l) lbImg.srcset = `${a.photo.s} ${a.photo.sw}w, ${a.photo.l} ${a.photo.lw}w`; else lbImg.removeAttribute('srcset');
       lbImg.sizes = 'min(92vw, 112dvh)';
       lbImg.alt = (lang() === 'en' ? a.photoAltEn : a.photoAlt) || a.name;
-      lbCap.textContent = shown(a.name);
+      lbCap.textContent = shown(a.name) + (a.photoCredit ? ' \u00b7 ' + (lang() === 'en' ? 'Photo: ' : 'Foto: ') + a.photoCredit : '');
       lbOpener = e.currentTarget; lb.showModal();
     });
     lb.addEventListener('close', () => { lb.classList.remove('is-photo'); const art = lb.querySelector('.lightbox-art'); art.style.removeProperty('--ar'); art.style.removeProperty('max-width'); });
