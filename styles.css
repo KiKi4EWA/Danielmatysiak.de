@@ -2263,3 +2263,6 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 /* Hero-Überschrift „4SPUR RECORDS.“: am Desktop dunkel und beim Hover petrol, auf dem Handy (kein Hover) dauerhaft petrol */
 @media (hover: hover) and (pointer: fine) { .page-label .hero:hover h1 { color: var(--accent); } }
 @media (max-width: 780px) { .page-label .hero-deco h1 { color: var(--accent); } }
+
+/* Wischen im Panel: senkrechtes Scrollen bleibt dem Browser, waagerechte Gesten laufen über label.js */
+.panel-body { touch-action: pan-y; }

@@ -353,6 +353,49 @@
   panel.addEventListener('click', e => { if (e.target === panel) close(); }); // Klick auf Backdrop
   document.querySelectorAll('.release-open').forEach(b => b.addEventListener('click', () => open(b.dataset.id, b)));
 
+  // Touch: im offenen Panel nach links/rechts wischen = nächstes/vorheriges Release (Reihenfolge wie auf der Wand, Künstlerfilter wird beachtet)
+  (function () {
+    const tiles = () => [...document.querySelectorAll('.release-open')].filter(b => !b.closest('.release[hidden]'));
+    const neighbor = dir => { const t = tiles(), i = t.findIndex(b => b.dataset.id === currentId); return i < 0 ? null : (t[i + dir] || null); };
+    const still = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let sx = 0, sy = 0, dx = 0, t0 = 0, mode = 'ignore', busy = false;
+    const set = (x, o, ms) => { body.style.transition = ms ? `transform ${ms}ms var(--ease-out), opacity ${ms}ms var(--ease-out)` : 'none'; body.style.transform = x ? `translateX(${x}px)` : ''; body.style.opacity = o < 1 ? String(o) : ''; };
+    panel.addEventListener('touchstart', e => {
+      const t = e.touches[0];
+      if (busy || e.touches.length !== 1 || currentId === null || t.clientX < 24 || t.clientX > innerWidth - 24) { mode = 'ignore'; return; }   // Rand = System-Wischgeste
+      sx = t.clientX; sy = t.clientY; dx = 0; t0 = Date.now(); mode = 'wait';
+    }, { passive: true });
+    panel.addEventListener('touchmove', e => {
+      if (mode === 'ignore' || mode === 'v') return;
+      const t = e.touches[0]; dx = t.clientX - sx; const dy = t.clientY - sy;
+      if (mode === 'wait') {
+        if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+        mode = Math.abs(dx) > Math.abs(dy) * 1.4 ? 'h' : 'v';   // waagerecht nur bei klar horizontaler Geste
+        if (mode === 'v') return;
+      }
+      const has = neighbor(dx < 0 ? 1 : -1);
+      const k = has ? 0.55 : 0.2;   // ohne Nachbarn: starke Dämpfung wie ein Gummiband
+      set(dx * k, 1 - Math.min(Math.abs(dx) / 500, 0.3), 0);
+    }, { passive: true });
+    const end = () => {
+      if (mode !== 'h') { mode = 'ignore'; return; }
+      mode = 'ignore';
+      const dir = dx < 0 ? 1 : -1, next = neighbor(dir), v = Math.abs(dx) / Math.max(Date.now() - t0, 1);
+      if (!next || !(Math.abs(dx) > 80 || (Math.abs(dx) > 30 && v > 0.4))) { set(0, 1, still() ? 0 : 220); return; }   // zurückfedern
+      if (still()) { open(next.dataset.id, next); body.scrollTop = 0; set(0, 1, 0); return; }
+      busy = true;
+      set(-dir * innerWidth * 0.35, 0, 140);   // alter Inhalt gleitet in Wischrichtung hinaus
+      setTimeout(() => {
+        open(next.dataset.id, next); body.scrollTop = 0;
+        set(dir * innerWidth * 0.35, 0, 0);   // neuer Inhalt kommt von der Gegenseite
+        void body.offsetWidth;   // Startzustand sofort anwenden, dann einblenden (kein rAF: pausiert in Hintergrund-Tabs und würde busy festhalten)
+        set(0, 1, 220); setTimeout(() => { busy = false; }, 240);
+      }, 140);
+    };
+    panel.addEventListener('touchend', end, { passive: true });
+    panel.addEventListener('touchcancel', () => { if (mode === 'h') set(0, 1, still() ? 0 : 220); mode = 'ignore'; }, { passive: true });
+  })();
+
   // Sprache: Datum und offenes Panel neu rendern
   const refreshDates = () => document.querySelectorAll('.release-date').forEach(t => { t.textContent = fmtDate(t.getAttribute('datetime')); });
   new MutationObserver(() => { refreshDates(); if (currentId) render(currentId); renderIntro(); }).observe(root, { attributes: true, attributeFilter: ['lang'] });
