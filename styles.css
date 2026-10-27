@@ -2279,11 +2279,9 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 .nav-count { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-shadow: 0 0 10px rgba(237, 232, 219, 0.9); min-width: 4.5ch; text-align: center; font-variant-numeric: tabular-nums; }
 @media (prefers-reduced-motion: reduce) { .panel-nav button { transition: color 160ms ease; } }
 
-/* Handy/Touch: Cover-Großansicht etwas größer als der Bildschirm (Quadrat, proportional). Die Ansicht lässt sich verschieben, anfangs ist das Bild mittig. */
-@media (pointer: coarse), (max-width: 700px) {
-  .lightbox:not(.is-photo) { overflow: auto; overscroll-behavior: contain; place-items: normal; -webkit-overflow-scrolling: touch; }
-  .lightbox:not(.is-photo) .lightbox-fig { margin: auto; justify-items: start; }
-  .lightbox:not(.is-photo) .lightbox-art { width: max(92vw, 112dvh); height: max(92vw, 112dvh); }
-  .lightbox:not(.is-photo) .lightbox-close { position: fixed; z-index: 2; text-shadow: 0 0 8px rgba(28, 25, 16, 0.9); }
-  .lightbox:not(.is-photo) .lightbox-fig figcaption { position: sticky; left: 0; width: 100vw; text-align: center; box-sizing: border-box; padding: 0 16px; }
-}
+/* Handy/Touch: Antippen des Covers zoomt (Klasse is-zoomed, gesetzt von label.js): Quadrat proportional auf 112 % der Bildschirmhöhe, verschiebbar; ohne Bildunterschrift */
+.lightbox.is-zoomed:not(.is-photo) { overflow: auto; overscroll-behavior: contain; place-items: normal; -webkit-overflow-scrolling: touch; }
+.lightbox.is-zoomed:not(.is-photo) .lightbox-fig { margin: auto; justify-items: start; }
+.lightbox.is-zoomed:not(.is-photo) .lightbox-art { width: max(92vw, 112dvh); height: max(92vw, 112dvh); }
+.lightbox.is-zoomed:not(.is-photo) .lightbox-close { position: fixed; z-index: 2; text-shadow: 0 0 8px rgba(28, 25, 16, 0.9); }
+.lightbox.is-zoomed:not(.is-photo) .lightbox-fig figcaption { display: none; }

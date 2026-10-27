@@ -279,16 +279,22 @@
     const size = r.cover.includes(1440) ? 1440 : Math.max(...r.cover);
     lbImg.src = `img/covers/${r.id}-${size}.webp`;
     lbImg.srcset = r.cover.map(s => `img/covers/${r.id}-${s}.webp ${s}w`).join(', ');
-    lbImg.sizes = zoomed() ? 'max(92vw, 112dvh)' : 'min(92vw, 84dvh)';
+    lbImg.sizes = 'min(92vw, 84dvh)';
     lbImg.alt = `${r.art || r.artBy}: ${r.title}, ${r.artist}`;
     const who = r.artist + (r.feat ? ' feat. ' + r.feat : '');
     lbCap.textContent = `${who} \u00b7 ${r.title} \u00b7 ${r.cline}`;   // Trennpunkte in Zeilenmitte
     lbOpener = from || null;
     lb.showModal();
-    if (zoomed()) {   // Handy: Quadrat ragt etwas über den Bildschirm hinaus; zu Beginn mittig, per Wischen in alle Richtungen verschiebbar
-      const art = lb.querySelector('.lightbox-art'), r = art.getBoundingClientRect();
-      lb.scrollLeft += r.left + r.width / 2 - lb.clientWidth / 2; lb.scrollTop += r.top + r.height / 2 - lb.clientHeight / 2;
-    }
+    // Handy: erst die Gesamtansicht wie bisher; Antippen des Bildes zoomt (Quadrat ragt etwas über den Bildschirm, in alle Richtungen verschiebbar), nochmal Antippen zurück
+    lb.classList.remove('is-zoomed');
+    lbImg.onclick = zoomed() ? e => {
+      const art = lb.querySelector('.lightbox-art');
+      if (lb.classList.contains('is-zoomed')) { lb.classList.remove('is-zoomed'); lb.scrollTo(0, 0); lbImg.sizes = 'min(92vw, 84dvh)'; return; }
+      const r = lbImg.getBoundingClientRect(), fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;   // getippte Stelle bleibt im Zentrum
+      lb.classList.add('is-zoomed'); lbImg.sizes = 'max(92vw, 112dvh)';
+      const a = art.getBoundingClientRect();
+      lb.scrollLeft += a.left + fx * a.width - lb.clientWidth / 2; lb.scrollTop += a.top + fy * a.height - lb.clientHeight / 2;
+    } : null;
   }
   // Großansicht des Selbstporträts; Klick aufs große Bild wechselt zur Zeichnung (Easter Egg), noch ein Klick zurück
   function openArtistLightbox(r, from) {
@@ -311,7 +317,7 @@
   if (lb) {
     lb.addEventListener('click', e => { if (e.target !== lbImg) lb.close(); });
     document.getElementById('lightbox-close').addEventListener('click', () => lb.close());
-    lb.addEventListener('close', () => { lb.classList.remove('is-photo'); lbImg.removeAttribute('src'); lbImg.removeAttribute('srcset'); if (lbOpener && document.contains(lbOpener)) lbOpener.focus({ preventScroll: true }); lbOpener = null; });
+    lb.addEventListener('close', () => { lb.classList.remove('is-photo', 'is-zoomed'); lb.scrollTo(0, 0); lbImg.onclick = null; lbImg.removeAttribute('src'); lbImg.removeAttribute('srcset'); if (lbOpener && document.contains(lbOpener)) lbOpener.focus({ preventScroll: true }); lbOpener = null; });
   }
 
   // Beim Öffnen die Wand so schieben, dass das Panel genug Platz hat und die gewählte Kachel im Bild bleibt
