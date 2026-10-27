@@ -9,8 +9,8 @@
   const closeLbl = document.getElementById('panel-close-label');
   const root = document.documentElement;
   const T = {
-    de: { close: 'Schließen', listen: 'Anhören', soon: 'Streaming-Link folgt.', hide: 'Player schließen', consent: n => `Player von ${n}. Beim Laden werden Daten an ${n} übertragen.`, open: 'Öffnen in', orchardTip: 'Alle Tracks ohne Anmeldung anhören', revoke: 'Spotify-Einwilligung widerrufen', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
-    en: { close: 'Close', listen: 'Listen', soon: 'Streaming link coming soon.', hide: 'Close player', consent: n => `Player from ${n}. Loading it sends data to ${n}.`, open: 'Open in', orchardTip: 'Listen to all tracks without signing in', revoke: 'Withdraw Spotify consent', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.' },
+    de: { close: 'Schließen', listen: 'Anhören', soon: 'Streaming-Link folgt.', hide: 'Player schließen', consent: n => `Player von ${n}. Beim Laden werden Daten an ${n} übertragen.`, open: 'Öffnen in', orchardTip: 'Alle Tracks ohne Anmeldung anhören', revoke: 'Spotify-Einwilligung widerrufen', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.', share: 'Teilen', shareTitle: 'Teilen', copy: 'Link kopieren', copied: 'Kopiert', mail: 'E-Mail', more: 'Mehr …', shareText: n => `${n} · 4Spur Records` },
+    en: { close: 'Close', listen: 'Listen', soon: 'Streaming link coming soon.', hide: 'Close player', consent: n => `Player from ${n}. Loading it sends data to ${n}.`, open: 'Open in', orchardTip: 'Listen to all tracks without signing in', revoke: 'Withdraw Spotify consent', tracks: 'Tracks', credits: 'Credits', video: 'Video', feat: 'feat.', share: 'Share', shareTitle: 'Share', copy: 'Copy link', copied: 'Copied', mail: 'Email', more: 'More …', shareText: n => `${n} · 4Spur Records` },
   };
   const PLATFORMS = [['orchard', 'The Orchard'], ['spotify', 'Spotify'], ['apple', 'Apple Music'], ['bandcamp', 'Bandcamp'], ['youtube', 'YouTube'], ['soundcloud', 'SoundCloud'], ['other', 'Web']];
   const lang = () => (root.lang === 'en' ? 'en' : 'de');
@@ -46,6 +46,66 @@
     return m ? { name: 'Spotify', src: `https://open.spotify.com/embed/album/${m[1]}?utm_source=generator`, h: 152 } : null;
   }
 
+
+  // Teilen: Button unten im Panel öffnet einen Dialog (Link kopieren, WhatsApp, E-Mail, System-Teilen). Es werden erst beim Klick Daten weitergegeben.
+  const shareUrl = id => { const c = document.querySelector('link[rel="canonical"]'); return (c ? c.href : location.origin + location.pathname).split('#')[0] + '#r-' + id; };
+  let shareDlg = null, shareOpener = null;
+  const svgIcon = () => {
+    const NS = 'http://www.w3.org/2000/svg', s = document.createElementNS(NS, 'svg');
+    s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('width', '16'); s.setAttribute('height', '16'); s.setAttribute('aria-hidden', 'true'); s.setAttribute('focusable', 'false');
+    [['circle', { cx: 18, cy: 5, r: 2.6 }], ['circle', { cx: 6, cy: 12, r: 2.6 }], ['circle', { cx: 18, cy: 19, r: 2.6 }], ['path', { d: 'M8.3 10.7l7.4-4.3M8.3 13.3l7.4 4.3' }]].forEach(([tag, at]) => {
+      const n = document.createElementNS(NS, tag); Object.entries(at).forEach(([k, v]) => n.setAttribute(k, v));
+      n.setAttribute('fill', 'none'); n.setAttribute('stroke', 'currentColor'); n.setAttribute('stroke-width', '1.7'); n.setAttribute('stroke-linecap', 'round'); s.appendChild(n);
+    });
+    return s;
+  };
+  function openShare(r, from) {
+    const t = T[lang()], url = shareUrl(r.id), name = r.kind === 'artist' ? r.name : `${r.artist} – ${r.title}`, text = t.shareText(name);
+    if (!shareDlg) {
+      shareDlg = document.createElement('dialog'); shareDlg.className = 'share-dialog'; shareDlg.setAttribute('data-no-swipe', '');
+      document.body.appendChild(shareDlg);
+      shareDlg.addEventListener('click', e => { if (e.target === shareDlg) shareDlg.close(); });
+      shareDlg.addEventListener('close', () => { if (shareOpener && document.contains(shareOpener)) shareOpener.focus({ preventScroll: true }); shareOpener = null; });
+    }
+    shareOpener = from || null;
+    shareDlg.setAttribute('aria-label', t.shareTitle);
+    shareDlg.replaceChildren();
+    const x = el('button', 'share-close', '×'); x.type = 'button'; x.setAttribute('aria-label', t.close); x.addEventListener('click', () => shareDlg.close());
+    const h = el('h2', 'share-title', t.shareTitle), sub = el('p', 'share-sub', name);
+    const field = el('div', 'share-field');
+    const input = el('input'); input.type = 'text'; input.readOnly = true; input.value = url; input.setAttribute('aria-label', 'Link'); input.addEventListener('focus', () => input.select());
+    const copy = el('button', 'share-copy', t.copy); copy.type = 'button';
+    let timer = 0;
+    copy.addEventListener('click', async () => {
+      let ok = false;
+      try { await navigator.clipboard.writeText(url); ok = true; } catch (e) { input.select(); try { ok = document.execCommand('copy'); } catch (e2) {} }
+      if (!ok) return;
+      copy.textContent = t.copied; copy.classList.add('is-done'); clearTimeout(timer);
+      timer = setTimeout(() => { copy.textContent = t.copy; copy.classList.remove('is-done'); }, 1800);
+    });
+    field.append(input, copy);
+    const list = el('ul', 'share-targets');
+    const li = (label, href) => { const i = el('li'), a = el('a', null, label); a.href = href; a.target = '_blank'; a.rel = 'noopener'; i.appendChild(a); list.appendChild(i); };
+    li('WhatsApp', 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url));
+    li(t.mail, 'mailto:?subject=' + encodeURIComponent(text) + '&body=' + encodeURIComponent(text + '\n' + url));
+    if (navigator.share) {
+      const i = el('li'), b = el('button', null, t.more); b.type = 'button';
+      b.addEventListener('click', () => { navigator.share({ title: text, url }).catch(() => {}); });
+      i.appendChild(b); list.appendChild(i);
+    }
+    shareDlg.append(x, h, sub, field, list);
+    shareDlg.showModal();
+    copy.focus({ preventScroll: true });
+  }
+  function shareEl(r) {
+    const t = T[lang()], wrap = el('p', 'panel-share');
+    const b = el('button', 'share-btn'); b.type = 'button'; b.setAttribute('aria-haspopup', 'dialog');
+    b.append(svgIcon(), el('span', null, t.share));
+    b.addEventListener('click', () => openShare(r, b));
+    wrap.appendChild(b);
+    return wrap;
+  }
+
   function renderArtist(r) {
     const t = T[lang()], en = lang() === 'en';
     body.replaceChildren();
@@ -69,6 +129,7 @@
     const p = el('p', 'panel-open', `${en ? 'More from her' : 'Mehr von ihr'} `);
     r.links.forEach(([n, u]) => { const l = el('a', null, `${n} ↗`); l.href = u; l.target = '_blank'; l.rel = 'noopener'; p.appendChild(l); });
     body.appendChild(p);
+    body.appendChild(shareEl(r));
     closeBtn.setAttribute('aria-label', t.close); closeLbl.textContent = t.close;
   }
 
@@ -181,6 +242,7 @@
       vids.forEach(([n, u]) => ul.appendChild(linkItem(n, u)));
       body.appendChild(ul);
     }
+    body.appendChild(shareEl(r));
     closeBtn.setAttribute('aria-label', t.close);
     closeLbl.textContent = t.close;
   }
@@ -285,7 +347,7 @@
     opener = null;
   }
   function close() { if (panel.open) { panel.close(); cleanup(); } }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel.open && !(lb && lb.open)) { e.preventDefault(); close(); } });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel.open && !(lb && lb.open) && !(shareDlg && shareDlg.open)) { e.preventDefault(); close(); } });
   panel.addEventListener('close', cleanup);
   closeBtn.addEventListener('click', close);
   panel.addEventListener('click', e => { if (e.target === panel) close(); }); // Klick auf Backdrop

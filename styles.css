@@ -2212,3 +2212,34 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 .wall-cta { margin-top: clamp(28px, 4vw, 56px); }
 
 .heart { display: inline-block; transform: rotate(-90deg); margin-left: 0.15em; }   /* „<3“ um 90° gegen den Uhrzeigersinn: Herz steht aufrecht */
+
+/* Teilen: Button am Ende des Panels + Dialog */
+.panel-share { margin: 28px 0 0; padding-top: 18px; border-top: 1px solid color-mix(in srgb, var(--muted) 28%, transparent); }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 6px 0; background: none; border: 0; cursor: pointer; color: var(--accent);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; transition: color 160ms ease, transform 100ms var(--ease-out); }
+.share-btn svg { flex: none; }
+.share-btn span { text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); text-underline-offset: 4px; }
+.share-btn:active { transform: scale(0.97); }
+.share-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.share-dialog { width: min(420px, calc(100vw - 32px)); margin: auto; padding: 26px 24px 22px; border: 0; border-radius: 14px; background: var(--bg); color: var(--text);
+  box-shadow: 0 18px 60px rgba(28, 25, 16, 0.35); opacity: 0; transform: translateY(8px) scale(0.97);
+  transition: opacity 180ms ease, transform 220ms var(--ease-out), overlay 180ms allow-discrete, display 180ms allow-discrete; }
+.share-dialog[open] { opacity: 1; transform: none; }
+@starting-style { .share-dialog[open] { opacity: 0; transform: translateY(8px) scale(0.97); } }
+.share-dialog::backdrop { background: rgba(28, 25, 16, 0.5); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.share-title { margin: 0; font-size: 26px; line-height: 1.1; }
+.share-sub { margin: 6px 36px 16px 0; font-size: 15px; color: var(--muted); overflow-wrap: anywhere; }
+.share-close { position: absolute; top: 8px; right: 8px; width: 40px; height: 40px; display: grid; place-items: center; border: 0; background: none; color: var(--muted); font-family: var(--mono); font-size: 24px; line-height: 1; cursor: pointer; }
+@media (hover: hover) and (pointer: fine) { .share-close:hover { color: var(--accent); } }
+.share-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.share-field { display: flex; gap: 8px; }
+.share-field input { flex: 1; min-width: 0; padding: 10px 12px; border: 1px solid color-mix(in srgb, var(--muted) 40%, transparent); border-radius: 8px; background: transparent; color: var(--text); font-family: var(--mono); font-size: 12px; }
+.share-copy { flex: none; padding: 0 14px; border: 0; border-radius: 8px; background: var(--accent); color: var(--bg); cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; transition: background-color 160ms ease, transform 100ms var(--ease-out); }
+.share-copy.is-done { background: var(--muted); }
+.share-copy:active { transform: scale(0.97); }
+.share-copy:focus-visible, .share-field input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.share-targets { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 18px 0 0; padding: 0; }
+.share-targets a, .share-targets button { padding: 4px 0; background: none; border: 0; cursor: pointer; color: var(--accent); font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); text-underline-offset: 4px; }
+.share-targets a:focus-visible, .share-targets button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .share-dialog { transition: none; transform: none; } }
