@@ -2243,3 +2243,6 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
   text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); text-underline-offset: 4px; }
 .share-targets a:focus-visible, .share-targets button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .share-dialog { transition: none; transform: none; } }
+
+/* Hero-Bild (freigestellter Plattenstapel): proportional verkleinert statt randlos beschnitten */
+.page-label .hero-deco-img.hero-deco-full { top: 7%; height: 86%; left: auto; right: 2%; width: 96%; object-fit: contain; object-position: right center; }
