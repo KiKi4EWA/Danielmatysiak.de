@@ -2285,3 +2285,15 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 .lightbox.is-zoomed:not(.is-photo) .lightbox-art { width: max(92vw, 112dvh); height: max(92vw, 112dvh); }
 .lightbox.is-zoomed:not(.is-photo) .lightbox-close { position: fixed; z-index: 2; text-shadow: 0 0 8px rgba(28, 25, 16, 0.9); }
 .lightbox.is-zoomed:not(.is-photo) .lightbox-fig figcaption { display: none; }
+
+/* Typografie-Review: Anklickbares mindestens 12 px, Beschriftungen mindestens 11 px, weniger Zwischengrößen, Zeilenlänge der Wandeinleitung */
+.page-label .cta-row .btn, .page-label .cta-row .btn-menu { font-size: 12px; }
+.page-label .hero-panel-label { font-size: 11px; }
+.page-label .hero-panel ul li { font-size: 15px; }
+.page-label .release-wall .section-intro { font-size: 16px; max-width: 31em; }   /* ca. 62 Zeichen pro Zeile */
+.year-nav a, .panel-open, .panel-links a, .panel-actions button.btn, .panel-art, .art-open, .panel-revoke, .share-btn, .share-copy, .share-targets a, .share-targets button, .nav-count { font-size: 12px; }
+/* Handy: Hero-Text ohne unsichtbaren Rand (das Milchglas ist dort weg), Einleitung eine Stufe größer und damit deutlicher abgesetzt */
+@media (max-width: 780px) {
+  .page-label .hero-deco .hero-copy, .page-label .hero-panel { padding-left: 0; padding-right: 0; }
+  .page-label .hero-copy .lede { font-size: 18px; }
+}
