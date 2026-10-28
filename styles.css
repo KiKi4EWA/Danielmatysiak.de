@@ -2311,3 +2311,9 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 .page-home .hero-deco-img.hero-deco-full,
 .page-audio .hero-deco-img.hero-deco-full,
 .page-lab .hero-deco-img.hero-deco-full { object-fit: contain; height: 100% !important; transform: none !important; }
+
+/* Label-Hero: Infobox ueber dem Plattenstapel deckender, damit das Violett der Werte und die Zeilen lesbar bleiben (Handy: kein Milchglas, dort unveraendert) */
+@media (min-width: 781px) {
+  .page-label .hero-panel { background: rgba(237, 232, 219, 0.9); }
+  .page-label .hero-panel-label { color: #4a3f2d; }
+}
