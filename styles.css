@@ -2147,7 +2147,8 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 @media (hover: hover) and (pointer: fine) { .artist-intro-photo:hover { opacity: 0.98; } }
 .artist-intro-photo:active { transform: scale(0.99); }
 .artist-intro-photo:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; opacity: 1; }
-@media (max-width: 800px) { .artist-intro-body { flex-direction: column; } .artist-intro-photo { width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; } }
+@media (max-width: 800px) { .artist-intro-body { flex-direction: column; }
+  .artist-intro-photo { width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; } }
 .artist-intro[hidden] { display: none; }
 .artist-intro.is-in { animation: intro-in 260ms var(--ease-out); }
 @keyframes intro-in { from { opacity: 0; transform: translateY(8px); } }
@@ -2297,3 +2298,6 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
   .page-label .hero-deco .hero-copy, .page-label .hero-panel { padding-left: 0; padding-right: 0; }
   .page-label .hero-copy .lede { font-size: 18px; }
 }
+
+/* Handy: Künstlertext in der Spalte; die Flex-Basis 50ch wäre dort die Höhe und ließ leeren Raum zwischen Text und Foto */
+@media (max-width: 800px) { .artist-intro-text { flex: none; } }
