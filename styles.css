@@ -2302,3 +2302,7 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 
 /* Handy: Künstlertext in der Spalte; die Flex-Basis 50ch wäre dort die Höhe und ließ leeren Raum zwischen Text und Foto */
 @media (max-width: 800px) { .artist-intro-text { flex: none; } }
+
+/* Lab-Hero: Textfläche und Formate-Infobox gleich hoch (wie auf der Label-Seite) */
+.page-lab .hero-grid { align-items: stretch; }
+.page-lab .hero-panel { align-self: stretch; }
