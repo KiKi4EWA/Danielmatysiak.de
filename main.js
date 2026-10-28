@@ -337,6 +337,16 @@ if (document.body.classList.contains('page-lab')) {
   }
 }
 
+// Hero-Parallax (nur Desktop): Bild wandert beim Scrollen langsamer als die Seite; Bildgroesse bleibt, daher nichts abgeschnitten (CSS-Eigenschaft translate, nicht transform)
+(() => {
+  if (!document.body.matches('.page-home, .page-audio, .page-lab, .page-label')) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 781px) and (prefers-reduced-motion: no-preference)').matches) return;
+  const img = document.querySelector('.hero-deco-img.hero-deco-full');
+  if (!img) return;
+  let ticking = false;
+  const update = () => { img.style.translate = '0 ' + Math.min(window.scrollY * 0.08, 28).toFixed(1) + 'px'; ticking = false; };
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+})();
 // Kontaktformular: Format aus ?format=… (Lab-Dialoge) in die Nachricht übernehmen
 (() => {
   const f = new URLSearchParams(location.search).get('format');
