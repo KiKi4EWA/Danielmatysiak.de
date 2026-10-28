@@ -777,9 +777,9 @@ form .btn,
   .chapter-item:nth-child(2):hover,
   .chapter-item:nth-child(2):hover .chapter-title { color: #3a9a96; }
   .chapter-item:nth-child(3):hover,
-  .chapter-item:nth-child(3):hover .chapter-title { color: #7a9672; }
+  .chapter-item:nth-child(3):hover .chapter-title { color: #cf7338; }
   .chapter-item:nth-child(4):hover,
-  .chapter-item:nth-child(4):hover .chapter-title { color: #cf7338; }
+  .chapter-item:nth-child(4):hover .chapter-title { color: #7a9672; }
   .chapter-item:nth-child(5):hover,
   .chapter-item:nth-child(5):hover .chapter-title { color: #9898cc; }
   .chapter-item:nth-child(6):hover,

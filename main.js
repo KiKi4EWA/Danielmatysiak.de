@@ -65,7 +65,7 @@ if (heroDecoEl) {
 
 // Swipe navigation — spring-based drag (Emil: page follows finger, spring-snap on release)
 (function () {
-  const ORDER = ['index.html', 'leistungen.html', 'label.html', 'about.html', 'lab.html', 'faq.html', 'kontakt.html'];
+  const ORDER = ['index.html', 'leistungen.html', 'label.html', 'lab.html', 'about.html', 'faq.html', 'kontakt.html'];
   const CLASS_MAP = {
     'page-home':    'index.html',
     'page-audio':   'leistungen.html',
