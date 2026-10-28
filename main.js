@@ -336,3 +336,10 @@ if (document.body.classList.contains('page-lab')) {
     hashDialog.showModal();
   }
 }
+
+// Kontaktformular: Format aus ?format=… (Lab-Dialoge) in die Nachricht übernehmen
+(() => {
+  const f = new URLSearchParams(location.search).get('format');
+  const t = document.getElementById('message');
+  if (f && t && !t.value) t.value = 'Anfrage zum Format „' + f.slice(0, 80) + '“: ';
+})();
