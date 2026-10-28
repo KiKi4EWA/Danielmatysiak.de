@@ -40,7 +40,7 @@ if (heroDecoEl) {
 
 // Parallax — subtiler Tiefeneffekt für home/audio/lab full-bleed hero (nur Desktop)
 (function () {
-  const parallaxPages = ['page-home', 'page-audio', 'page-lab'];
+  const parallaxPages = [];   // Hero-Bilder werden komplett gezeigt (object-fit: contain), daher kein überhöhtes Parallax-Bild
   if (!parallaxPages.some(k => document.body.classList.contains(k))) return;
   if (noMotionGlobal) return;
   if (window.matchMedia('(pointer: coarse)').matches) return; // kein Parallax auf Touch
