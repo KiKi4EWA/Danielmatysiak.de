@@ -2307,8 +2307,7 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 .page-lab .hero-grid { align-items: stretch; }
 .page-lab .hero-panel { align-self: stretch; }
 
-/* Hero-Bilder auf Start-, Audio- und Lab-Seite komplett zeigen statt anzuschneiden (wie About/Kontakt/Label); ohne Parallax-Überhöhe */
-.page-home .hero-deco-img.hero-deco-full,
+/* Hero-Bilder auf Start-, Audio- und Lab-Seite komplett zeigen statt anzuschneiden (wie About/Kontakt/Label); Start bleibt wie urspruenglich: Bild fuellt den Hero; ohne Parallax-Überhöhe */
 .page-audio .hero-deco-img.hero-deco-full,
 .page-lab .hero-deco-img.hero-deco-full { object-fit: contain; height: 100% !important; transform: none !important; }
 
