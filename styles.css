@@ -2311,3 +2311,6 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 .page-home .hero-deco-img.hero-deco-full,
 .page-audio .hero-deco-img.hero-deco-full,
 .page-lab .hero-deco-img.hero-deco-full { object-fit: contain; height: 100% !important; transform: none !important; }
+
+/* Audio-Hero mit Neve-Konsole: ein paar Prozent kleiner, damit die Unterkante (auch beim Parallax) nicht abgeschnitten wird */
+.page-audio .hero-deco-img.hero-deco-full[src*="audio_neve"] { height: 92% !important; }
