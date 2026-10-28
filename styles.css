@@ -2306,3 +2306,8 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 /* Lab-Hero: Textfläche und Formate-Infobox gleich hoch (wie auf der Label-Seite) */
 .page-lab .hero-grid { align-items: stretch; }
 .page-lab .hero-panel { align-self: stretch; }
+
+/* Hero-Bilder auf Start-, Audio- und Lab-Seite komplett zeigen statt anzuschneiden (wie About/Kontakt/Label); ohne Parallax-Überhöhe */
+.page-home .hero-deco-img.hero-deco-full,
+.page-audio .hero-deco-img.hero-deco-full,
+.page-lab .hero-deco-img.hero-deco-full { object-fit: contain; height: 100% !important; transform: none !important; }
