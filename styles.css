@@ -2314,3 +2314,6 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 
 /* Audio-Hero mit Neve-Konsole: ein paar Prozent kleiner, damit die Unterkante (auch beim Parallax) nicht abgeschnitten wird */
 .page-audio .hero-deco-img.hero-deco-full[src*="audio_neve"] { height: 92% !important; }
+
+/* Lab-Hero mit Koffer: ebenfalls etwas kleiner (Unterkante nicht abschneiden) */
+.page-lab .hero-deco-img.hero-deco-full[src*="lab_hero4"] { height: 92% !important; }
