@@ -61,8 +61,8 @@ body.page-lab {
 }
 
 body.page-label {
-  --accent:    #3a9a96;
-  --accent-h:  #4fb0ab;
+  --accent:    #4e25ba;
+  --accent-h:  #6a44d6;
 }
 
 body.page-about {
@@ -775,7 +775,7 @@ form .btn,
   .chapter-item:nth-child(1):hover,
   .chapter-item:nth-child(1):hover .chapter-title { color: #4878b0; }
   .chapter-item:nth-child(2):hover,
-  .chapter-item:nth-child(2):hover .chapter-title { color: #3a9a96; }
+  .chapter-item:nth-child(2):hover .chapter-title { color: #4e25ba; }
   .chapter-item:nth-child(3):hover,
   .chapter-item:nth-child(3):hover .chapter-title { color: #cf7338; }
   .chapter-item:nth-child(4):hover,
@@ -2263,7 +2263,7 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 
 /* Hero-Überschrift „4SPUR RECORDS.“: am Desktop dunkel und beim Hover petrol, auf dem Handy (kein Hover) dauerhaft petrol */
 .page-label .hero h1 { color: #172223; }
-@media (hover: hover) and (pointer: fine) { .page-label .hero:hover h1 { color: #14494b; } }
+@media (hover: hover) and (pointer: fine) { .page-label .hero:hover h1 { color: #4e25ba; } }
 @media (max-width: 780px) { .page-label .hero-deco h1 { color: var(--accent); } }
 
 /* Wischen im Panel: senkrechtes Scrollen bleibt dem Browser, waagerechte Gesten laufen über label.js */
