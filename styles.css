@@ -2326,3 +2326,6 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 
 /* Release-Info am Desktop (Maus/Trackpad): keine Blaetterpfeile und keine Positionsanzeige; Blaettern bleibt Touch (Wischen) und Pfeiltasten vorbehalten */
 @media (hover: hover) and (pointer: fine) and (min-width: 781px) { .panel-nav { display: none !important; } }
+
+/* Beschreibung im Release-Panel: einfache Zeilenumbrueche im Text bleiben erhalten (z. B. Zitat mit mehreren Zeilen) */
+.panel-desc { white-space: pre-line; }
