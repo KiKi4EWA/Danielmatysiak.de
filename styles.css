@@ -2216,7 +2216,8 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 /* Knopf unter der Wand: Abstand zur letzten Kachelreihe */
 .wall-cta { margin-top: clamp(28px, 4vw, 56px); }
 
-.heart { display: inline-block; transform: rotate(-90deg); margin-left: 0.15em; }   /* „<3“ um 90° gegen den Uhrzeigersinn: Herz steht aufrecht */
+.heart { display: inline-block; width: 0.9em; height: 0.82em; margin-left: 0.2em; vertical-align: -0.06em; color: var(--accent); }
+.heart svg { display: block; width: 100%; height: 100%; fill: currentColor; }
 
 /* Teilen: Button am Ende des Panels + Dialog */
 .panel-share { margin: 28px 0 0; padding-top: 18px; border-top: 1px solid color-mix(in srgb, var(--muted) 28%, transparent); }

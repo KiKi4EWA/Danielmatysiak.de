@@ -1,3 +1,4 @@
+const HEART_SVG = '<svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21C6 16.2 1.5 12.2 1.5 7.3 1.5 4 4 1.8 6.9 1.8c2 0 3.9 1.1 5.1 3.1 1.2-2 3.1-3.1 5.1-3.1 2.9 0 5.4 2.2 5.4 5.5 0 4.9-4.5 8.9-10.5 13.7z"/></svg>';
 // 4Spur Records: Detailpanel, Jahresnavigation, Datumsformat
 (function () {
   const dataEl = document.getElementById('release-data');
@@ -123,7 +124,7 @@
     head.appendChild(title); body.appendChild(head);
     (en ? r.bioEn : r.bio).forEach(p => {
       const para = el('p', 'panel-desc');
-      p.split('<3').forEach((part, i) => { if (i) para.appendChild(el('span', 'heart', '<3')); if (part) para.appendChild(document.createTextNode(part)); });   // ASCII-Herz hochkant
+      p.split('<3').forEach((part, i) => { if (i) { const h = el('span', 'heart'); h.setAttribute('role', 'img'); h.setAttribute('aria-label', 'Herz'); h.innerHTML = HEART_SVG; para.appendChild(h); } if (part) para.appendChild(document.createTextNode(part)); });   // „<3“ wird zum gezeichneten Herz
       body.appendChild(para);
     });
     const p = el('p', 'panel-open', `${en ? 'More from her' : 'Mehr von ihr'} `);
