@@ -347,6 +347,25 @@ if (document.body.classList.contains('page-lab')) {
   const update = () => { img.style.translate = '0 ' + Math.min(window.scrollY * 0.08, 28).toFixed(1) + 'px'; ticking = false; };
   window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
 })();
+// Desktop: Pfeile zur vorigen/naechsten Seite (Wischen gibt es nur auf Touch); gleiche Reihenfolge und gleiche Einblendrichtung wie beim Wischen
+(() => {
+  const PAGES = [['index.html', 'Start'], ['leistungen.html', 'Audio'], ['label.html', 'Label'], ['lab.html', 'Lab'], ['about.html', 'About'], ['faq.html', 'FAQ'], ['kontakt.html', 'Kontakt']];
+  const here = location.pathname.split('/').pop() || 'index.html';
+  const i = PAGES.findIndex(p => p[0] === here);
+  if (i === -1) return;
+  const wrap = document.createElement('nav');
+  wrap.className = 'page-arrows'; wrap.setAttribute('aria-label', 'Seiten');
+  const mk = (to, dir, glyph, word) => {
+    if (to < 0 || to >= PAGES.length) return;
+    const a = document.createElement('a');
+    a.href = PAGES[to][0]; a.className = 'page-arrow page-arrow-' + dir; a.textContent = glyph;
+    a.setAttribute('aria-label', word + ': ' + PAGES[to][1]); a.title = word + ': ' + PAGES[to][1];
+    a.addEventListener('click', () => { try { sessionStorage.setItem('swipe-dir', dir === 'next' ? 'from-right' : 'from-left'); } catch (e) {} });
+    wrap.appendChild(a);
+  };
+  mk(i - 1, 'prev', '←', 'Zurück'); mk(i + 1, 'next', '→', 'Weiter');
+  document.body.appendChild(wrap);
+})();
 // Kontaktformular: Format aus ?format=… (Lab-Dialoge) in die Nachricht übernehmen
 (() => {
   const f = new URLSearchParams(location.search).get('format');
