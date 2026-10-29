@@ -2316,3 +2316,10 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
 
 /* Lab-Hero mit Koffer: ebenfalls etwas kleiner (Unterkante nicht abschneiden) */
 .page-lab .hero-deco-img.hero-deco-full[src*="lab_hero4"] { height: 92% !important; }
+
+/* About/FAQ/Kontakt: Hero-Bild 30 px niedriger, damit es trotz Parallax (max. 28 px nach unten) unten nicht angeschnitten wird; gleiche Bedingung wie der Parallax in main.js */
+@media (hover: hover) and (pointer: fine) and (min-width: 781px) {
+  .page-about .hero-deco-img.hero-deco-full,
+  .page-contact .hero-deco-img.hero-deco-full,
+  .page-faq .hero-deco-img { height: calc(100% - 30px); }
+}
