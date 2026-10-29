@@ -2336,3 +2336,6 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
   .page-arrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) { .page-arrow { transition: opacity 160ms ease, color 160ms ease; } }
+
+/* Release-Info am Desktop (Maus/Trackpad): keine Blaetterpfeile und keine Positionsanzeige; Blaettern bleibt Touch (Wischen) und Pfeiltasten vorbehalten */
+@media (hover: hover) and (pointer: fine) and (min-width: 781px) { .panel-nav { display: none !important; } }
