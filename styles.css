@@ -2324,15 +2324,5 @@ button.panel-cover.is-portrait { border: 0; cursor: zoom-in; }
   .page-faq .hero-deco-img { height: calc(100% - 30px); }
 }
 
-/* Desktop: Pfeile zur vorigen/naechsten Seite unten links/rechts (auf Touch gibt es stattdessen Wischen) */
-.page-arrows { display: none; }
-@media (hover: hover) and (pointer: fine) and (min-width: 781px) {
-  .page-arrows { display: block; }
-  .page-arrow { position: fixed; bottom: 22px; z-index: 30; width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%;
-    background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: var(--muted); text-decoration: none; font-family: var(--mono); font-size: 18px; line-height: 1;
-    opacity: 0.6; transition: opacity 160ms ease, color 160ms ease, border-color 160ms ease, transform 100ms var(--ease-out); }
-  .page-arrow:hover { opacity: 1; color: var(--accent); border-color: var(--accent); }
-  .page-arrow:active { transform: scale(0.94); }
-  .page-arrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; opacity: 1; }
-}
-@media (prefers-reduced-motion: reduce) { .page-arrow { transition: opacity 160ms ease, color 160ms ease; } }
+/* Release-Info am Desktop (Maus/Trackpad): keine Blaetterpfeile und keine Positionsanzeige; Blaettern bleibt Touch (Wischen) und Pfeiltasten vorbehalten */
+@media (hover: hover) and (pointer: fine) and (min-width: 781px) { .panel-nav { display: none !important; } }
