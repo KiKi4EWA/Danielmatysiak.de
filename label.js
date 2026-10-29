@@ -164,7 +164,7 @@
     body.appendChild(head);
 
     const desc = lang() === 'en' && r.descriptionEn ? r.descriptionEn : r.description;
-    if (desc) body.appendChild(el('p', 'panel-desc', desc));
+    if (desc) desc.split('\n\n').forEach(part => body.appendChild(el('p', 'panel-desc', part)));   // Leerzeile im Text = neuer Absatz
 
     // Titelliste vor dem Player
     if (r.tracks && r.tracks.length) {
