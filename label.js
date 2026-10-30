@@ -559,10 +559,14 @@ const HEART_SVG = '<svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21C6
     if (!intro || intro.hidden) return;
     const pb = intro.querySelector('.artist-intro-photo'), tx = intro.querySelector('.artist-intro-text');
     if (pb.hidden) return;
+    const ph = (ARTISTS.find(x => x.slug === activeArtist) || {}).photo;
+    const portrait = !!ph && ph.w < ph.h, ar = portrait ? ph.w / ph.h : 4 / 3;   // Hochformat bleibt ungeschnitten
+    pb.style.aspectRatio = portrait ? String(ar) : ''; pb.style.maxWidth = portrait ? '320px' : '';
     if (matchMedia('(max-width: 800px)').matches) { pb.style.removeProperty('width'); pb.style.removeProperty('height'); return; }
     const lh = parseFloat(getComputedStyle(tx).lineHeight) || 26;
-    const h = Math.round(Math.max(tx.getBoundingClientRect().height, lh * 8));   // mindestens acht Zeilen hoch, auch bei kurzem Text
-    if (h > 0) { pb.style.height = h + 'px'; pb.style.width = Math.round(h * 4 / 3) + 'px'; }
+    let h = Math.round(Math.max(tx.getBoundingClientRect().height, lh * 8));   // mindestens acht Zeilen hoch, auch bei kurzem Text
+    if (portrait) h = Math.max(h, 340);
+    if (h > 0) { pb.style.height = h + 'px'; pb.style.width = Math.round(h * ar) + 'px'; }
   }
   if (intro && 'ResizeObserver' in window) new ResizeObserver(fitPhoto).observe(intro.querySelector('.artist-intro-text'));
   window.addEventListener('resize', fitPhoto);
