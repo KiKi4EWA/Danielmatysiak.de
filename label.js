@@ -142,8 +142,20 @@ const HEART_SVG = '<svg viewBox="0 0 24 22" aria-hidden="true"><path d="M12 21C6
     body.appendChild(coverEl(r));
 
     const head = el('div', 'panel-head');
-    const artist = el('p', 'panel-artist', r.artist);
-    if (r.feat) artist.appendChild(el('span', 'release-feat', ` ${t.feat} ${r.feat}`));
+    // Künstlernamen im Panel führen zur Künstleransicht (Filter + Bio), sofern es dazu einen Eintrag gibt
+    const aslug = n => n.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    const linkNames = (box, names) => names.split(',').map(n => n.trim()).filter(Boolean).forEach((n, i) => {
+      if (i) box.append(', ');
+      const slug = aslug(n);
+      if (!ARTISTS.some(a => a.slug === slug)) { box.append(n); return; }
+      const b = el('button', 'artist-link', n); b.type = 'button';
+      b.setAttribute('aria-label', (lang() === 'en' ? 'Show artist: ' : 'Künstler ansehen: ') + n);
+      b.addEventListener('click', () => setArtist(slug, true));
+      box.appendChild(b);
+    });
+    const artist = el('p', 'panel-artist');
+    linkNames(artist, r.artist);
+    if (r.feat) { const f = el('span', 'release-feat'); f.append(` ${t.feat} `); linkNames(f, r.feat); artist.appendChild(f); }
     // Die Display-Schrift hat keine brauchbaren Klammern: Versionszusatz "(…)" in Textschrift setzen
     const tm = r.title.match(/^(.*?)\s*(\([^)]*\))\s*$/);
     const title = el('h2', 'panel-title'); title.id = 'panel-title';
